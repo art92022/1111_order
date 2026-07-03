@@ -55,7 +55,6 @@
   .sec-head .num { font-size: 13px; color: var(--gold); letter-spacing: 1px; font-weight: 600; }
   .sec-label { font-weight: 700; font-size: 16.5px; color: var(--navy); letter-spacing: 2px; }
 
-  /* 說明提示區 */
   .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
   .kitchen-tips .tip-title { display: block; font-size: 11px; letter-spacing: 2px; color: var(--navy); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
   .kitchen-tips div { margin-bottom: 6px; }
@@ -72,14 +71,12 @@
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-  /* 段選按鈕 */
   .seg { display: flex; border: 1px solid var(--line); overflow: hidden; background: #fff; }
   .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; letter-spacing: 1px; }
   .seg button.active { background: var(--navy); color: #fff; }
   .seg button:not(:last-child) { border-right: 1px solid var(--line); }
   .seg button:disabled { color: #B9B3A6; }
 
-  /* 商品型錄外觀 */
   .category-zone { margin-bottom: 24px; }
   .category-zone:last-child { margin-bottom: 0; }
   .category-title { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: 2px; margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
@@ -98,7 +95,6 @@
   .product-card .p-stock.low-stock { color: var(--accent); font-weight: 600; }
   .catalog-empty { font-size: 13px; color: var(--muted); text-align: center; padding: 32px 0; letter-spacing: 0.5px; }
 
-  /* 購物車明細 */
   .cart { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
   .cart-title { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
   .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
@@ -115,15 +111,14 @@
   .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 17px; cursor: pointer; padding: 0 4px; }
   .empty-cart { font-size: 13px; color: var(--muted); padding: 12px 0; text-align: center; letter-spacing: 0.5px; }
 
-  /* 總金額計算 */
   .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
+  .totals .fee-line { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--muted); margin-bottom: 6px; }
   .totals .grand {
     display: flex; justify-content: space-between; align-items: baseline;
     margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15px; font-weight: 600; color: var(--navy); letter-spacing: 1px;
   }
   .totals .grand .amt { color: var(--accent); font-size: 23px; font-weight: 900; }
 
-  /* 固定底部的提交欄 */
   .submit-bar { position: sticky; bottom: 16px; margin-top: 18px; z-index: 10; }
   .submit-btn {
     width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px;
@@ -135,7 +130,6 @@
   .validation-banner { background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 500; line-height: 1.8; }
   input.field-error, select.field-error { border-color: var(--accent) !important; }
 
-  /* 彈出視窗（遮罩疊加） */
   .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.55); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   .overlay.hidden { display: none !important; }
   .modal { background: var(--paper-card); width: 100%; max-width: 620px; padding: 32px 26px; max-height: 85vh; overflow-y: auto; }
@@ -146,25 +140,11 @@
   .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; letter-spacing: 2px; }
   .close-btn { background: var(--navy); color: #fff; }
   .close-btn:hover { background: var(--navy-light); }
-
   .icon-circle { width: 40px; height: 40px; border: 1px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 16px; color: var(--navy); }
 
-  /* 加載圈圈 */
   .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: 1px; }
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* 內部管理專區隱藏樣式 */
-  .admin-trigger { text-align: center; margin-top: 50px; opacity: 0.15; font-size: 11px; cursor: pointer; transition: opacity 0.2s; letter-spacing: 1px; }
-  .admin-trigger:hover { opacity: 0.8; }
-  .admin-panel { background: #ebdcb9; border: 1px dashed var(--accent); padding: 20px; margin-top: 24px; text-align: left; }
-  .admin-panel h3 { margin: 0 0 12px 0; font-size: 14px; color: var(--navy); display: flex; justify-content: space-between; align-items: center; letter-spacing: 1px; }
-  .admin-btn-group { display: flex; gap: 12px; margin-bottom: 12px; }
-  .admin-btn { flex: 1; padding: 12px; font-size: 13px; font-weight: 700; border-radius: 2px; border: none; cursor: pointer; color: #fff; letter-spacing: 1px; }
-  .admin-btn.up { background: var(--navy); }
-  .admin-btn.down { background: var(--accent); }
-  .admin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .admin-status-msg { font-size: 12px; color: var(--ink); background: rgba(255,255,255,0.7); padding: 8px 12px; border-radius: 2px; margin: 0; min-height: 34px; }
 </style>
 </head>
 <body>
@@ -214,6 +194,16 @@
       <span class="tip-title">自取資訊</span>
       <div>地址：板橋區中興里63號</div>
       <div>電話：09-7280-6443</div>
+      
+      <div class="field" style="margin-top: 14px;">
+        <label style="color: var(--navy); font-size: 12.5px;">預計自取時段 <span class="hint">*</span></label>
+        <select id="pickupTime" style="margin-top: 6px; padding: 10px;">
+          <option value="">-- 請選擇自取時段 --</option>
+          <option value="下午時段 (13:00 - 16:00)">下午時段 (13:00 - 16:00)</option>
+          <option value="傍晚時段 (16:00 - 19:00)">傍晚時段 (16:00 - 19:00)</option>
+          <option value="晚間時段 (19:00 - 21:00)">晚間時段 (19:00 - 21:00)</option>
+        </select>
+      </div>
     </div>
 
     <div id="block-address" class="hidden">
@@ -299,6 +289,10 @@
     </div>
 
     <div class="totals">
+      <div id="shippingFeeLine" class="fee-line hidden">
+        <span>外送運費</span>
+        <span>NT$ <span id="shippingFeeVal">0</span></span>
+      </div>
       <div class="grand">
         <span>應付總金額</span>
         <span class="amt">NT$ <span id="grandTotal">0</span></span>
@@ -319,18 +313,6 @@
   <div class="submit-bar">
     <button type="button" id="submitBtn" class="submit-btn">確認送出訂單</button>
   </div>
-
-  <!-- 內部管理專區隱藏開關 -->
-  <div class="admin-trigger" onclick="toggleAdminPanel()">⚙️ 現場內部狀態管理專區</div>
-  
-  <div class="admin-panel hidden" id="adminPanel">
-    <h3>海鮮水餃前台狀態控制 <span style="font-size:11px; font-weight:normal; color:var(--muted);">內部人員專用</span></h3>
-    <div class="admin-btn-group">
-      <button type="button" class="admin-btn up" id="batchUpBtn" onclick="changeCatalogStatus('active')">⬆️ 一鍵全品項上架</button>
-      <button type="button" class="admin-btn down" id="batchDownBtn" onclick="changeCatalogStatus('hidden')">⬇️ 一鍵全品項下架</button>
-    </div>
-    <p class="admin-status-msg" id="adminStatusMsg">系統就緒，等待指令...</p>
-  </div>
 </div>
 
 <div id="successOverlay" class="overlay hidden">
@@ -346,17 +328,15 @@
 </div>
 
 <script>
-  // 🔗 完美串接你發布的最新 Google Apps Script 網路應用程式 URL
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgthRpX6of779wIzq1jKpKRm3EDWjYJ_xgvSQ5Rx5njnMoGJkUzQdXb4pEg63aTqOk/exec';
 
   let products = [];
   let cart = {};
   let currentDeliveryType = "自取";
+  let shippingFee = 0; 
 
-  // ===== 功能開關區 =====
   const ENABLE_FROZEN_DELIVERY = false;
 
-  // 初始化單號與時間
   const now = new Date();
   const dateStr = now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
   const randNo = String(now.getHours()).padStart(2,'0') + String(now.getMinutes()).padStart(2,'0') + String(Math.floor(Math.random()*900)+100);
@@ -373,7 +353,6 @@
     document.getElementById("frozen-soon-tag").classList.remove("hidden");
   }
 
-  // 1. 即時連線試算表載入商品型錄 (跨網域 JSONP 讀取)
   function loadCatalog() {
     const container = document.getElementById("catalogContainer");
     container.innerHTML = `<div class="catalog-loading"><div class="spinner"></div><span>正在讀取今日庫存清單</span></div>`;
@@ -384,7 +363,6 @@
     window[callbackName] = (data) => {
       delete window[callbackName]; 
       script.remove();
-      // 自動隱藏試算表中 E 欄被設為 hidden 的品項
       products = (data && data.products) ? data.products.filter(p => p.status !== 'hidden') : [];
       renderCatalog();
     };
@@ -393,7 +371,6 @@
     document.body.appendChild(script);
   }
 
-  // 渲染型錄
   function renderCatalog() {
     const container = document.getElementById("catalogContainer");
     if (products.length === 0) {
@@ -434,7 +411,6 @@
 
   document.addEventListener("DOMContentLoaded", loadCatalog);
 
-  // 配送段選切換
   document.getElementById("deliveryTypeSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
     if (btn && btn.tagName === "BUTTON") {
@@ -446,23 +422,31 @@
       const blockPickup = document.getElementById("block-pickup");
       const blockAddress = document.getElementById("block-address");
       const zoneField = document.getElementById("zone-field");
+      const shippingLine = document.getElementById("shippingFeeLine");
 
       if (currentDeliveryType === "自取") {
         blockPickup.classList.remove("hidden");
         blockAddress.classList.add("hidden");
+        shippingFee = 0; 
+        shippingLine.classList.add("hidden");
       } else if (currentDeliveryType === "雙北外送") {
         blockPickup.classList.add("hidden");
         blockAddress.classList.remove("hidden");
         zoneField.classList.remove("hidden");
+        shippingFee = 150; 
+        document.getElementById("shippingFeeVal").innerText = shippingFee;
+        shippingLine.classList.remove("hidden");
       } else if (currentDeliveryType === "黑貓冷凍") {
         blockPickup.classList.add("hidden");
         blockAddress.classList.remove("hidden");
         zoneField.classList.add("hidden"); 
+        shippingFee = 0; 
+        shippingLine.classList.add("hidden");
       }
+      updateCartUI(); 
     }
   });
 
-  // 購物車核心邏輯
   function addToCart(name) {
     const p = products.find(prod => prod.name === name);
     if (!p || p.stock <= 0) return;
@@ -501,7 +485,7 @@
 
     if (Object.keys(cart).length === 0) {
       rowsContainer.innerHTML = '<div class="empty-cart">尚未選購任何商品</div>';
-      document.getElementById("grandTotal").innerText = "0";
+      document.getElementById("grandTotal").innerText = shippingFee; 
       return;
     }
 
@@ -536,10 +520,9 @@
       `;
     }
     rowsContainer.innerHTML = html;
-    document.getElementById("grandTotal").innerText = total;
+    document.getElementById("grandTotal").innerText = total + shippingFee;
   }
 
-  // 2. 表單驗證與即時寫入試算表 (Fetch POST)
   document.getElementById("submitBtn").addEventListener("click", function() {
     const banner = document.getElementById("validationBanner");
     banner.classList.add("hidden");
@@ -551,23 +534,31 @@
     const bName = document.getElementById("buyerName").value.trim();
     const bPhone = document.getElementById("buyerPhone").value.trim();
     const bEmail = document.getElementById("buyerEmail").value.trim();
+    const pTime = document.getElementById("pickupTime").value; 
     const dZone = document.getElementById("deliveryZone").value;
     const dAddress = document.getElementById("deliveryAddress").value.trim();
     const note = document.getElementById("orderNote").value.trim();
-    const totalAmt = parseInt(document.getElementById("grandTotal").innerText) || 0;
+    
+    let itemTotal = 0;
+    for (let name in cart) {
+      const p = products.find(prod => prod.name === name);
+      if (p) itemTotal += p.price * cart[name];
+    }
 
     if (!bName) { errors.push("請輸入姓名"); document.getElementById("buyerName").classList.add("field-error"); }
     if (!bPhone) { errors.push("請輸入聯絡電話"); document.getElementById("buyerPhone").classList.add("field-error"); }
     if (!bEmail) { errors.push("請輸入電子信箱"); document.getElementById("buyerEmail").classList.add("field-error"); }
 
-    if (currentDeliveryType === "雙北外送") {
+    if (currentDeliveryType === "自取") {
+      if (!pTime) { errors.push("請選擇預計自取時段"); document.getElementById("pickupTime").classList.add("field-error"); }
+    } else if (currentDeliveryType === "雙北外送") {
       if (!dZone) { errors.push("請選擇雙北外送區域"); document.getElementById("deliveryZone").classList.add("field-error"); }
       if (!dAddress) { errors.push("請輸入收件地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     } else if (currentDeliveryType === "黑貓冷凍") {
       if (!dAddress) { errors.push("請輸入黑貓冷凍宅配地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     }
 
-    if (totalAmt <= 0) { errors.push("購物車目前是空的，請至少選購一項商品"); }
+    if (itemTotal <= 0) { errors.push("購物車目前是空的，請至少選購一項商品"); }
 
     if (errors.length > 0) {
       banner.innerHTML = errors.join("<br>");
@@ -587,6 +578,8 @@
       });
     }
 
+    const finalTotal = itemTotal + shippingFee;
+
     const finalPayload = {
       orderNo: finalOrderNo,
       orderDate: dateStr,
@@ -594,13 +587,13 @@
       name: bName,
       phone: bPhone,
       email: bEmail,
-      deliveryType: currentDeliveryType,
+      deliveryType: currentDeliveryType === "自取" ? `店面自取 (${pTime})` : currentDeliveryType, 
       deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : ((currentDeliveryType === "黑貓冷凍") ? "大量冷凍宅配" : "店面自取"),
-      deliveryAddress: (currentDeliveryType === "自取") ? "無 (店面自取)" : dAddress,
+      deliveryAddress: (currentDeliveryType === "自取") ? `無 (預計自取時間：${pTime})` : dAddress,
       items: itemsPayload,
-      untaxed: Math.round(totalAmt / 1.05),
-      tax: totalAmt - Math.round(totalAmt / 1.05),
-      total: totalAmt,
+      untaxed: Math.round(finalTotal / 1.05),
+      tax: finalTotal - Math.round(finalTotal / 1.05),
+      total: finalTotal,
       note: note
     };
 
@@ -628,14 +621,16 @@
     });
   });
 
-  // 顯示成功視窗
   function showSuccessModal(payload) {
     let summary = `【訂單單號】${payload.orderNo}\n`;
     summary += `【訂購日期】${payload.orderDate}\n`;
     summary += `【聯絡姓名】${payload.name}\n`;
     summary += `【聯絡電話】${payload.phone}\n`;
-    summary += `【配送通路】${payload.deliveryType}\n`;
-    if (payload.deliveryType !== '自取') {
+    summary += `【配送管道】${payload.deliveryType}\n`;
+    if (shippingFee > 0) {
+      summary += `【外送運費】NT$ ${shippingFee} 元\n`;
+    }
+    if (!payload.deliveryType.includes('自取')) {
       summary += `【區域縣市】${payload.deliveryZone}\n`;
       summary += `【完整地址】${payload.deliveryAddress}\n`;
     }
@@ -648,53 +643,6 @@
 
     document.getElementById("summaryContent").innerText = summary;
     document.getElementById("successOverlay").classList.remove("hidden");
-  }
-
-  // 3. 內部人員專用控制面板切換
-  function toggleAdminPanel() {
-    document.getElementById('adminPanel').classList.toggle('hidden');
-  }
-
-  // 批量一鍵上下架前台核心發送機制
-  function changeCatalogStatus(targetStatus) {
-    const msgEl = document.getElementById('adminStatusMsg');
-    const upBtn = document.getElementById('batchUpBtn');
-    const downBtn = document.getElementById('batchDownBtn');
-    const actionText = targetStatus === 'active' ? '批次上架前台' : '批次下架前台';
-    
-    if (!confirm(`確定要將現場所有水餃品項執行「${actionText}」嗎？`)) return;
-
-    upBtn.disabled = true;
-    downBtn.disabled = true;
-    msgEl.style.color = 'var(--accent)';
-    msgEl.textContent = `正在連線後端試算表執行${actionText}...`;
-
-    fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        action: 'updateCatalogStatus',
-        status: targetStatus
-      })
-    })
-    .then(res => { if (!res.ok) throw new Error('連線異常'); return res.json(); })
-    .then(resData => {
-      if (resData.status === 'success') {
-        msgEl.style.color = 'var(--navy)';
-        msgEl.textContent = `✅ 變更成功：前台品項已切換為 ${targetStatus === 'active' ? '全面顯示' : '全面隱藏'}！`;
-        loadCatalog(); 
-      } else {
-        throw new Error(resData.message || '狀態變更失敗');
-      }
-    })
-    .catch(err => {
-      msgEl.style.color = 'var(--accent)';
-      msgEl.textContent = `❌ 錯誤：${err.message}`;
-    })
-    .finally(() => {
-      upBtn.disabled = false;
-      downBtn.disabled = false;
-    });
   }
 </script>
 </body>
