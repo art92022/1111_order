@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海鮮水餃</title>
+<title>海鮮冷凍水餃</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
     --paper-card: #FFFFFF; /* 純白：卡片底色 */
     --line: #E3DDCF;       /* 淺褐灰：細線分隔 */
     --ink: #2A2724;        /* 墨色：主要文字 */
-    --muted: #8C8579;      /* 灰褐：說明文字、提示 */
+    --muted: #4A453F;      /* 💡 已加深：灰褐改為深灰色，提升清晰度 */
     --accent: #9B4B34;     /* 深朱色：價格、強調標示 */
     --accent-bg: #F6EEE8;  /* 朱色淡底 */
     --gold: #B08F5C;       /* 金褐：細節點綴 */
@@ -35,51 +35,57 @@
     display: flex; align-items: flex-start; justify-content: space-between;
     border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 28px;
   }
-  .title-block .eyebrow { display: block; font-size: 11px; letter-spacing: 3px; color: var(--gold); font-weight: 500; margin-bottom: 8px; text-transform: uppercase; }
+  .title-block .eyebrow { display: block; font-size: 11px; letter-spacing: 3px; color: var(--gold); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+  /* 💡 藍字加粗 */
   .title-block h1 { font-size: 27px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
-  .title-block p { margin: 0; font-size: 13px; color: var(--muted); letter-spacing: 0.5px; }
+  .title-block p { margin: 0; font-size: 13px; color: var(--muted); letter-spacing: 0.5px; font-weight: 500; }
 
   .stamp {
     flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent);
-    display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; line-height: 1.6;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; line-height: 1.6;
     text-align: center; letter-spacing: 2px; background: var(--accent-bg);
     writing-mode: vertical-rl;
   }
 
+  /* 💡 藍字加粗 */
   .order-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; }
-  .order-meta span { font-weight: 600; color: var(--navy); }
+  .order-meta span { font-weight: 800; color: var(--navy); }
 
   section { background: var(--paper-card); border: 1px solid var(--line); padding: 26px 24px; margin-bottom: 22px; }
 
-  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-  .sec-head .num { font-size: 13px; color: var(--gold); letter-spacing: 1px; font-weight: 600; }
-  .sec-label { font-weight: 700; font-size: 16.5px; color: var(--navy); letter-spacing: 2px; }
+  运作.sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .sec-head .num { font-size: 13px; color: var(--gold); letter-spacing: 1px; font-weight: 700; }
+  /* 💡 藍字加粗 */
+  .sec-label { font-weight: 900; font-size: 16.5px; color: var(--navy); letter-spacing: 2px; }
 
   .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
-  .kitchen-tips .tip-title { display: block; font-size: 11px; letter-spacing: 2px; color: var(--navy); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
-  .kitchen-tips div { margin-bottom: 6px; }
+  /* 💡 藍字加粗 */
+  .kitchen-tips .tip-title { display: block; font-size: 11px; letter-spacing: 2px; color: var(--navy); font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
+  .kitchen-tips div { margin-bottom: 6px; font-weight: 500; }
   .kitchen-tips div:last-child { margin-bottom: 0; }
 
   .field { margin-bottom: 18px; }
   .field:last-child { margin-bottom: 0; }
-  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
-  .field .hint { font-weight: 400; font-size: 11px; color: var(--accent); margin-left: 4px; }
+  /* 💡 藍字加粗 */
+  .field label { display: block; font-size: 13px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
+  .field .hint { font-weight: 700; font-size: 11px; color: var(--accent); margin-left: 4px; }
 
   input[type=text], input[type=number], input[type=email], input[type=tel], select, textarea {
-    width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14px; color: var(--ink); background: #fff; font-family: inherit;
+    width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14px; color: var(--ink); background: #fff; font-family: inherit; font-weight: 500;
   }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
   .seg { display: flex; border: 1px solid var(--line); overflow: hidden; background: #fff; }
-  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; letter-spacing: 1px; }
-  .seg button.active { background: var(--navy); color: #fff; }
+  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; letter-spacing: 1px; }
+  .seg button.active { background: var(--navy); color: #fff; font-weight: 900; }
   .seg button:not(:last-child) { border-right: 1px solid var(--line); }
   .seg button:disabled { color: #B9B3A6; }
 
   .category-zone { margin-bottom: 24px; }
   .category-zone:last-child { margin-bottom: 0; }
-  .category-title { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: 2px; margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  /* 💡 藍字加粗 */
+  .category-title { font-size: 15px; font-weight: 900; color: var(--navy); letter-spacing: 2px; margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
   .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
   .product-card {
@@ -91,31 +97,33 @@
   .product-card:disabled { opacity: 0.45; cursor: not-allowed; background: #eee; }
   .product-card .p-name { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--ink); letter-spacing: 0.5px; }
   .product-card .p-price { display: block; font-size: 14.5px; color: var(--accent); font-weight: 700; }
-  .product-card .p-stock { display: block; font-size: 11px; color: var(--muted); margin-top: 8px; letter-spacing: 0.5px; }
-  .product-card .p-stock.low-stock { color: var(--accent); font-weight: 600; }
-  .catalog-empty { font-size: 13px; color: var(--muted); text-align: center; padding: 32px 0; letter-spacing: 0.5px; }
+  .product-card .p-stock { display: block; font-size: 11px; color: var(--muted); margin-top: 8px; letter-spacing: 0.5px; font-weight: 600; }
+  .product-card .p-stock.low-stock { color: var(--accent); font-weight: 700; }
+  .catalog-empty { font-size: 13px; color: var(--muted); text-align: center; padding: 32px 0; letter-spacing: 0.5px; font-weight: 600; }
 
   .cart { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
-  .cart-title { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .cart-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
   .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .cart-row:last-child { border-bottom: none; }
   .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
-  .cart-row .c-price { font-size: 11.5px; color: var(--muted); display: block; margin-top: 3px; }
+  .cart-row .c-price { font-size: 11.5px; color: var(--muted); display: block; margin-top: 3px; font-weight: 500; }
   .qty-ctrl { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+  /* 💡 藍字加粗 */
   .qty-ctrl button {
     width: 26px; height: 26px; border: 1px solid var(--line);
-    background: #fff; font-size: 15px; font-weight: 600; cursor: pointer; color: var(--navy); display: flex; align-items: center; justify-content: center;
+    background: #fff; font-size: 15px; font-weight: 900; cursor: pointer; color: var(--navy); display: flex; align-items: center; justify-content: center;
   }
-  .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 600; color: var(--ink); }
+  .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 700; color: var(--ink); }
   .cart-row .c-sub { width: 68px; text-align: right; font-weight: 700; flex-shrink: 0; color: var(--accent); }
   .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 17px; cursor: pointer; padding: 0 4px; }
-  .empty-cart { font-size: 13px; color: var(--muted); padding: 12px 0; text-align: center; letter-spacing: 0.5px; }
+  .empty-cart { font-size: 13px; color: var(--muted); padding: 12px 0; text-align: center; letter-spacing: 0.5px; font-weight: 600; }
 
   .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
-  .totals .fee-line { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--muted); margin-bottom: 6px; }
+  .totals .fee-line { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+  /* 💡 藍字加粗 */
   .totals .grand {
     display: flex; justify-content: space-between; align-items: baseline;
-    margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15px; font-weight: 600; color: var(--navy); letter-spacing: 1px;
+    margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15px; font-weight: 900; color: var(--navy); letter-spacing: 1px;
   }
   .totals .grand .amt { color: var(--accent); font-size: 23px; font-weight: 900; }
 
@@ -127,22 +135,24 @@
   .submit-btn:hover { background: var(--navy-light); }
   .submit-btn:disabled { opacity: 0.5; cursor: default; }
 
-  .validation-banner { background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 500; line-height: 1.8; }
+  .validation-banner { background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 700; line-height: 1.8; }
   input.field-error, select.field-error { border-color: var(--accent) !important; }
 
   .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.55); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   .overlay.hidden { display: none !important; }
   .modal { background: var(--paper-card); width: 100%; max-width: 620px; padding: 32px 26px; max-height: 85vh; overflow-y: auto; }
+  /* 💡 藍字加粗 */
   .modal h2 { margin: 0 0 8px; font-size: 19px; font-weight: 900; color: var(--navy); letter-spacing: 1px; }
-  .modal .modal-sub { font-size: 12.5px; color: var(--muted); margin: 0 0 20px; line-height: 1.8; }
+  .modal .modal-sub { font-size: 12.5px; color: var(--muted); margin: 0 0 20px; line-height: 1.8; font-weight: 500; }
   .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 13.5px; line-height: 1.8; color: var(--ink); margin: 0; font-family: inherit; }
   .modal-actions { display: flex; gap: 12px; margin-top: 20px; }
-  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; letter-spacing: 2px; }
+  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 700; font-size: 14px; cursor: pointer; border: none; letter-spacing: 2px; }
   .close-btn { background: var(--navy); color: #fff; }
   .close-btn:hover { background: var(--navy-light); }
-  .icon-circle { width: 40px; height: 40px; border: 1px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 16px; color: var(--navy); }
+  /* 💡 藍字加粗 */
+  .icon-circle { width: 40px; height: 40px; border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 16px; color: var(--navy); font-weight: 900; }
 
-  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: 1px; }
+  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 12.5px; color: var(--muted); font-weight: 600; letter-spacing: 1px; }
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 </style>
@@ -153,7 +163,7 @@
   <header>
     <div class="title-block">
       <span class="eyebrow">Handmade Seafood Dumplings</span>
-      <h1>海鮮水餃</h1>
+      <h1>海鮮冷凍水餃</h1>
       <p>嚴選食材，職人手作 — 請選擇商品與配送方式</p>
     </div>
     <div class="stamp">職人手作</div>
@@ -162,25 +172,25 @@
   <div class="order-meta">單號 <span id="orderNo">---</span> ・ 日期 <span id="orderDate">---</span></div>
 
   <section>
-    <div class="sec-head"><span class="num">01</span><div class="sec-label">顧客資料</div></div>
+    <div class="sec-head"><span class="num">01</span><div class="sec-label">顧客資料 (必填)</div></div>
     <div class="row2">
       <div class="field">
-        <label>姓名</label>
+        <label>姓名 <span class="hint">*</span></label>
         <input type="text" id="buyerName" placeholder="請輸入姓名">
       </div>
       <div class="field">
-        <label>聯絡電話<span class="hint">*</span></label>
+        <label>聯絡電話 <span class="hint">*</span></label>
         <input type="tel" id="buyerPhone" placeholder="09xx-xxx-xxx">
       </div>
     </div>
     <div class="field">
-      <label>電子信箱<span class="hint">*</span></label>
+      <label>電子信箱 <span class="hint">*</span></label>
       <input type="email" id="buyerEmail" placeholder="example@gmail.com">
     </div>
   </section>
 
   <section>
-    <div class="sec-head"><span class="num">02</span><div class="sec-label">配送方式</div></div>
+    <div class="sec-head"><span class="num">02</span><div class="sec-label">配送方式 (二選一)</div></div>
     <div class="field">
       <label>選擇取貨管道</label>
       <div class="seg" id="deliveryTypeSeg">
@@ -196,7 +206,7 @@
       <div>電話：09-7280-6443</div>
       
       <div class="field" style="margin-top: 14px;">
-        <label style="color: var(--navy); font-size: 12.5px;">預計自取時段 <span class="hint">*</span></label>
+        <label>預計自取時段 <span class="hint">*</span></label>
         <select id="pickupTime" style="margin-top: 6px; padding: 10px;">
           <option value="">-- 請選擇自取時段 --</option>
           <option value="下午時段 (13:00 - 16:00)">下午時段 (13:00 - 16:00)</option>
@@ -208,7 +218,7 @@
 
     <div id="block-address" class="hidden">
       <div class="field" id="zone-field">
-        <label>外送地區（僅限雙北）</label>
+        <label>外送地區（僅限雙北） <span class="hint">*</span></label>
         <select id="deliveryZone">
           <option value="">-- 請選擇區域 --</option>
           <optgroup label="台北市">
@@ -259,7 +269,7 @@
         </select>
       </div>
       <div class="field">
-        <label>收件地址<span class="hint">*</span></label>
+        <label>收件地址 <span class="hint">*</span></label>
         <input type="text" id="deliveryAddress" placeholder="請填寫完整道路巷弄、樓層門牌">
       </div>
     </div>
@@ -277,7 +287,7 @@
     <div id="catalogContainer">
       <div class="catalog-loading">
         <div class="spinner"></div>
-        <span>正在讀取今日庫存清單</span>
+        <span>正在讀取今日冷凍水餃庫存清單</span>
       </div>
     </div>
 
@@ -290,7 +300,7 @@
 
     <div class="totals">
       <div id="shippingFeeLine" class="fee-line hidden">
-        <span>外送運費</span>
+        <span>雙北外送運費</span>
         <span>NT$ <span id="shippingFeeVal">0</span></span>
       </div>
       <div class="grand">
@@ -355,7 +365,7 @@
 
   function loadCatalog() {
     const container = document.getElementById("catalogContainer");
-    container.innerHTML = `<div class="catalog-loading"><div class="spinner"></div><span>正在讀取今日庫存清單</span></div>`;
+    container.innerHTML = `<div class="catalog-loading"><div class="spinner"></div><span>正在讀取今日冷凍水餃庫存清單</span></div>`;
     
     const callbackName = 'catalogCb_' + Date.now();
     const script = document.createElement('script');
@@ -374,7 +384,7 @@
   function renderCatalog() {
     const container = document.getElementById("catalogContainer");
     if (products.length === 0) {
-      container.innerHTML = '<div class="catalog-empty">目前後台庫存沒有任何上架商品</div>';
+      container.innerHTML = '<div class="catalog-empty">目前後台庫存沒有任何上架的冷凍水餃</div>';
       return;
     }
 
@@ -411,6 +421,7 @@
 
   document.addEventListener("DOMContentLoaded", loadCatalog);
 
+  // 💡 配送管道切換分流（完全二選一）
   document.getElementById("deliveryTypeSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
     if (btn && btn.tagName === "BUTTON") {
@@ -433,7 +444,7 @@
         blockPickup.classList.add("hidden");
         blockAddress.classList.remove("hidden");
         zoneField.classList.remove("hidden");
-        shippingFee = 150; 
+        shippingFee = 150; // 💡 雙北外送費 150 元
         document.getElementById("shippingFeeVal").innerText = shippingFee;
         shippingLine.classList.remove("hidden");
       } else if (currentDeliveryType === "黑貓冷凍") {
@@ -523,6 +534,7 @@
     document.getElementById("grandTotal").innerText = total + shippingFee;
   }
 
+  // 表單驗證與提交
   document.getElementById("submitBtn").addEventListener("click", function() {
     const banner = document.getElementById("validationBanner");
     banner.classList.add("hidden");
@@ -545,20 +557,22 @@
       if (p) itemTotal += p.price * cart[name];
     }
 
+    // 💡 顧客資料必填驗證
     if (!bName) { errors.push("請輸入姓名"); document.getElementById("buyerName").classList.add("field-error"); }
     if (!bPhone) { errors.push("請輸入聯絡電話"); document.getElementById("buyerPhone").classList.add("field-error"); }
     if (!bEmail) { errors.push("請輸入電子信箱"); document.getElementById("buyerEmail").classList.add("field-error"); }
 
+    // 💡 配送必填驗證二選一分流
     if (currentDeliveryType === "自取") {
       if (!pTime) { errors.push("請選擇預計自取時段"); document.getElementById("pickupTime").classList.add("field-error"); }
     } else if (currentDeliveryType === "雙北外送") {
       if (!dZone) { errors.push("請選擇雙北外送區域"); document.getElementById("deliveryZone").classList.add("field-error"); }
-      if (!dAddress) { errors.push("請輸入收件地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
+      if (!dAddress) { errors.push("請輸入外送收件地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     } else if (currentDeliveryType === "黑貓冷凍") {
       if (!dAddress) { errors.push("請輸入黑貓冷凍宅配地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     }
 
-    if (itemTotal <= 0) { errors.push("購物車目前是空的，請至少選購一項商品"); }
+    if (itemTotal <= 0) { errors.push("購物車目前是空的，請至少選購一包冷凍水餃"); }
 
     if (errors.length > 0) {
       banner.innerHTML = errors.join("<br>");
@@ -587,7 +601,7 @@
       name: bName,
       phone: bPhone,
       email: bEmail,
-      deliveryType: currentDeliveryType === "自取" ? `店面自取 (${pTime})` : currentDeliveryType, 
+      deliveryType: currentDeliveryType === "自取" ? `店面自取 (${pTime})` : `${currentDeliveryType} (外送費 $${shippingFee})`, 
       deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : ((currentDeliveryType === "黑貓冷凍") ? "大量冷凍宅配" : "店面自取"),
       deliveryAddress: (currentDeliveryType === "自取") ? `無 (預計自取時間：${pTime})` : dAddress,
       items: itemsPayload,
@@ -628,7 +642,7 @@
     summary += `【聯絡電話】${payload.phone}\n`;
     summary += `【配送管道】${payload.deliveryType}\n`;
     if (shippingFee > 0) {
-      summary += `【外送運費】NT$ ${shippingFee} 元\n`;
+      summary += `【雙北運費】NT$ ${shippingFee} 元\n`;
     }
     if (!payload.deliveryType.includes('自取')) {
       summary += `【區域縣市】${payload.deliveryZone}\n`;
