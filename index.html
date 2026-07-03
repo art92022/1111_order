@@ -15,7 +15,7 @@
     --paper-card: #FFFFFF; /* 純白：卡片底色 */
     --line: #E3DDCF;       /* 淺褐灰：細線分隔 */
     --ink: #2A2724;        /* 墨色：主要文字 */
-    --muted: #3A3530;      /* 💡 再度加深：提示與說明文字全部改為高清晰「深炭灰」 */
+    --muted: #3A3530;      /* 灰色字全部加深為深炭灰 */
     --accent: #9B4B34;     /* 深朱色：價格、強調標示 */
     --accent-bg: #F6EEE8;  /* 朱色淡底 */
     --gold: #B08F5C;       /* 金褐：細節點綴 */
@@ -68,7 +68,6 @@
   input[type=text], input[type=number], input[type=email], input[type=tel], select, textarea {
     width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14px; color: var(--ink); background: #fff; font-family: inherit; font-weight: 600;
   }
-  /* 💡 讓輸入框的預設提示字 (placeholder) 同步變為深灰色 */
   input::placeholder, textarea::placeholder { color: #6A6259; font-weight: 500; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -129,7 +128,6 @@
   .submit-btn:hover { background: var(--navy-light); }
   .submit-btn:disabled { opacity: 0.5; cursor: default; }
 
-  /* 💡 錯誤提示橫幅：預設加上 display: none 確保不佔用紅色外框線，只有當錯誤成立時才在 JS 裡開啟 */
   .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 700; line-height: 1.8; }
   input.field-error, select.field-error { border-color: var(--accent) !important; }
 
@@ -148,6 +146,8 @@
   .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 12.5px; color: var(--muted); font-weight: 700; letter-spacing: 1px; }
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -249,7 +249,7 @@
             <option value="新北市深坑區">新北市 深坑區</option>
             <option value="新北市石碇區">新北市 石碇區</option>
             <option value="新北市坪林區">新北市 坪林區</option>
-            <option value="新北市三芝區">新芝區 三芝區</option>
+            <option value="新北市三芝區">新北市 三芝區</option>
             <option value="新北市石門區">新北市 石門區</option>
             <option value="新北市八里區">新北市 八里區</option>
             <option value="新北市平溪區">新北市 平溪區</option>
@@ -414,6 +414,7 @@
 
   document.addEventListener("DOMContentLoaded", loadCatalog);
 
+  // 💡 配送管道切換（點選自取就完全只有自取區塊，外送就完全只有外送區塊）
   document.getElementById("deliveryTypeSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
     if (btn && btn.tagName === "BUTTON") {
@@ -528,7 +529,7 @@
 
   document.getElementById("submitBtn").addEventListener("click", function() {
     const banner = document.getElementById("validationBanner");
-    banner.style.display = "none"; // 💡 每次驗證前先確保徹底隱藏
+    banner.style.display = "none"; 
     banner.innerText = "";
 
     document.querySelectorAll(".field-error").forEach(el => el.classList.remove("field-error"));
@@ -565,7 +566,7 @@
 
     if (errors.length > 0) {
       banner.innerHTML = errors.join("<br>");
-      banner.style.display = "block"; // 💡 只有當有錯誤時才改為 block 顯示外框
+      banner.style.display = "block"; 
       window.scrollTo({ top: banner.offsetTop - 40, behavior: 'smooth' });
       return;
     }
