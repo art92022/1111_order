@@ -15,7 +15,7 @@
     --paper-card: #FFFFFF; /* 純白：卡片底色 */
     --line: #E3DDCF;       /* 淺褐灰：細線分隔 */
     --ink: #2A2724;        /* 墨色：主要文字 */
-    --muted: #3A3530;      /* 💡 提示與說明文字全部改為清晰「深炭灰」 */
+    --muted: #3A3530;      /* 提示與說明文字全部改為清晰「深炭灰」 */
     --accent: #9B4B34;     /* 深朱色：價格、強調標示 */
     --accent-bg: #F6EEE8;  /* 朱色淡底 */
     --gold: #B08F5C;       /* 金褐：細節點綴 */
@@ -128,7 +128,6 @@
   .submit-btn:hover { background: var(--navy-light); }
   .submit-btn:disabled { opacity: 0.5; cursor: default; }
 
-  /* 💡 修正紅框：預設徹底 display: none 不露出任何多餘邊框線 */
   .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 700; line-height: 1.8; }
   input.field-error, select.field-error { border-color: var(--accent) !important; }
 
@@ -275,7 +274,7 @@
     <div class="kitchen-tips">
       <span class="tip-title">保存與烹煮</span>
       <div>保存方式：全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
-      <div>美味烹煮：冷水下鍋，水滾一遍加水，再滾一遍再加水，水餃浮起來就好了。</div>
+      <div>美味烹煮：冷水下鍋，初滾加半碗冷水，再滾時加半碗冷水，待全數浮起轉小火慢滾一分鐘，即可優雅上桌。</div>
     </div>
 
     <div id="catalogContainer">
@@ -445,7 +444,7 @@
         shippingFee = 0; 
         shippingLine.classList.add("hidden");
       }
-      updateCartUI(); // 即時重算含外送費的應付金額
+      updateCartUI(); 
     }
   });
 
