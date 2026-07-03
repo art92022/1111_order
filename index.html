@@ -3,149 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海鮮水餃點單系統</title>
+<title>海鮮水餃</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1D3461;       /* 深藍：主色、按鈕、重要大標 */
-    --navy-light: #2A4573; /* 次級深藍 */
-    --paper: #F9F8F3;      /* 溫潤米白：網頁主底色 */
-    --paper-card: #FFFFFF; /* 純白：卡片與區塊底色 */
-    --line: #D3CAD0;       /* 莫蘭迪淺灰：框線 */
-    --ink: #1C1C1C;        /* 極致深黑：主要文字 */
-    --muted: #6E757C;      /* 莫蘭迪灰藍：說明文字、提示 */
-    --accent: #B85A38;     /* 焦糖紅棕：價格、庫存、強調標示 */
-    --accent-bg: #FDF7F4;  /* 焦糖紅棕淡底 */
+    --navy: #1D3461;       /* 藏藍：主色、按鈕、標題重點 */
+    --navy-light: #2A4573; /* 次級藏藍 */
+    --paper: #F7F4EC;      /* 生成り和紙色：網頁主底色 */
+    --paper-card: #FFFFFF; /* 純白：卡片底色 */
+    --line: #E3DDCF;       /* 淺褐灰：細線分隔 */
+    --ink: #2A2724;        /* 墨色：主要文字 */
+    --muted: #8C8579;      /* 灰褐：說明文字、提示 */
+    --accent: #9B4B34;     /* 深朱色：價格、強調標示 */
+    --accent-bg: #F6EEE8;  /* 朱色淡底 */
+    --gold: #B08F5C;       /* 金褐：細節點綴 */
   }
-  
+
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--paper);
-    background-image: radial-gradient(circle at 1px 1px, rgba(26,42,58,0.04) 1px, transparent 0);
-    background-size: 20px 20px; font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-    color: var(--ink); padding: 24px 16px 100px; line-height: 1.5;
+    font-family: "Noto Serif TC", "PingFang TC", "Microsoft JhengHei", serif;
+    color: var(--ink); padding: 40px 18px 110px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
   }
-  
-  .sheet { max-width: 640px; margin: 0 auto; }
-  
+
+  .sheet { max-width: 620px; margin: 0 auto; }
+
   header {
     display: flex; align-items: flex-start; justify-content: space-between;
-    border-bottom: 2px dashed var(--line); padding-bottom: 16px; margin-bottom: 20px;
+    border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 28px;
   }
-  .title-block h1 { font-size: 24px; margin: 0 0 6px; letter-spacing: 1.5px; font-weight: 900; color: var(--navy); }
-  .title-block p { margin: 0; font-size: 13px; color: var(--muted); }
-  
+  .title-block .eyebrow { display: block; font-size: 11px; letter-spacing: 3px; color: var(--gold); font-weight: 500; margin-bottom: 8px; text-transform: uppercase; }
+  .title-block h1 { font-size: 27px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
+  .title-block p { margin: 0; font-size: 13px; color: var(--muted); letter-spacing: 0.5px; }
+
   .stamp {
-    flex-shrink: 0; width: 68px; height: 68px; border: 2px dashed var(--accent); border-radius: 50%; color: var(--accent);
-    display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; line-height: 1.3;
-    text-align: center; transform: rotate(-8deg); opacity: 0.9; background: var(--accent-bg);
+    flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; line-height: 1.6;
+    text-align: center; letter-spacing: 2px; background: var(--accent-bg);
+    writing-mode: vertical-rl;
   }
-  
-  .order-meta { font-size: 12px; color: var(--muted); margin-bottom: 16px; text-align: right; letter-spacing: 0.5px; }
-  .order-meta span { font-weight: 700; color: var(--navy); }
 
-  section { background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-  
-  .sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-  .sec-label { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 16px; color: var(--navy); }
-  .sec-label .tag { background: var(--navy); color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 700; letter-spacing: 0.5px; }
+  .order-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; }
+  .order-meta span { font-weight: 600; color: var(--navy); }
 
-  /* 廚房溫馨提示 */
-  .kitchen-tips { background: #F4F6F8; border-left: 4px solid var(--navy-light); padding: 12px 14px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: var(--navy-light); margin-bottom: 16px; }
-  .kitchen-tips div { margin-bottom: 4px; }
+  section { background: var(--paper-card); border: 1px solid var(--line); padding: 26px 24px; margin-bottom: 22px; }
+
+  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .sec-head .num { font-size: 13px; color: var(--gold); letter-spacing: 1px; font-weight: 600; }
+  .sec-label { font-weight: 700; font-size: 16.5px; color: var(--navy); letter-spacing: 2px; }
+
+  /* 說明提示區 */
+  .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 12.5px; color: var(--muted); margin-bottom: 20px; }
+  .kitchen-tips .tip-title { display: block; font-size: 11px; letter-spacing: 2px; color: var(--navy); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+  .kitchen-tips div { margin-bottom: 6px; }
   .kitchen-tips div:last-child { margin-bottom: 0; }
 
-  .field { margin-bottom: 16px; }
+  .field { margin-bottom: 18px; }
   .field:last-child { margin-bottom: 0; }
-  .field label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 6px; color: var(--navy); }
-  .field .hint { font-weight: 400; font-size: 11.5px; color: var(--accent); margin-left: 4px; }
-  
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
+  .field .hint { font-weight: 400; font-size: 11px; color: var(--accent); margin-left: 4px; }
+
   input[type=text], input[type=number], input[type=email], input[type=tel], select, textarea {
-    width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 14.5px; color: var(--ink); background: #fff; font-family: inherit;
+    width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14px; color: var(--ink); background: #fff; font-family: inherit;
   }
-  input:focus, select:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: 0px; border-color: var(--navy); }
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
   /* 段選按鈕 */
-  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
-  .seg button { flex: 1; padding: 11px 8px; border: none; background: #fff; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+  .seg { display: flex; border: 1px solid var(--line); overflow: hidden; background: #fff; }
+  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all 0.2s; letter-spacing: 1px; }
   .seg button.active { background: var(--navy); color: #fff; }
   .seg button:not(:last-child) { border-right: 1px solid var(--line); }
+  .seg button:disabled { color: #B9B3A6; }
 
   /* 商品型錄外觀 */
-  .category-zone { margin-bottom: 20px; }
+  .category-zone { margin-bottom: 24px; }
   .category-zone:last-child { margin-bottom: 0; }
-  .category-title { font-size: 14.5px; font-weight: 800; color: var(--navy); letter-spacing: 1px; margin: 16px 0 10px; padding-bottom: 6px; border-bottom: 1px dashed var(--line); display: flex; align-items: center; gap: 6px; }
+  .category-title { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: 2px; margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
   .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  
+
   .product-card {
-    border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 14px 12px;
+    border: 1px solid var(--line); background: #fff; padding: 15px 13px;
     text-align: left; cursor: pointer; font-family: inherit; transition: all 0.15s ease; position: relative;
   }
-  .product-card:active { transform: translateY(1px); }
-  .product-card.in-cart { border-color: var(--navy); background: #F4F7F9; box-shadow: inset 0 0 0 1px var(--navy); }
-  .product-card:disabled { opacity: 0.5; cursor: not-allowed; background: #EEE; }
-  .product-card .p-name { display: block; font-weight: 700; font-size: 14.5px; margin-bottom: 6px; color: var(--ink); }
-  .product-card .p-price { display: block; font-size: 14px; color: var(--accent); font-weight: 800; }
-  .product-card .p-stock { display: block; font-size: 11.5px; color: var(--muted); margin-top: 6px; }
-  .product-card .p-stock.low-stock { color: var(--accent); font-weight: 700; }
-  
+  .product-card:hover:not(:disabled) { border-color: var(--navy); }
+  .product-card.in-cart { border-color: var(--navy); background: #F9FAFB; box-shadow: inset 0 0 0 1px var(--navy); }
+  .product-card:disabled { opacity: 0.45; cursor: not-allowed; }
+  .product-card .p-name { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; color: var(--ink); letter-spacing: 0.5px; }
+  .product-card .p-price { display: block; font-size: 14.5px; color: var(--accent); font-weight: 700; }
+  .product-card .p-stock { display: block; font-size: 11px; color: var(--muted); margin-top: 8px; letter-spacing: 0.5px; }
+  .product-card .p-stock.low-stock { color: var(--accent); font-weight: 600; }
+
   /* 購物車明細 */
-  .cart { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 16px; }
-  .cart-title { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
-  .cart-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #F0EFEA; font-size: 14px; }
+  .cart { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .cart-title { font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .cart-row:last-child { border-bottom: none; }
   .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
-  .cart-row .c-price { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; }
-  .qty-ctrl { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .cart-row .c-price { font-size: 11.5px; color: var(--muted); display: block; margin-top: 3px; }
+  .qty-ctrl { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
   .qty-ctrl button {
-    width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line);
-    background: #fff; font-size: 16px; font-weight: 700; cursor: pointer; color: var(--navy); display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border: 1px solid var(--line);
+    background: #fff; font-size: 15px; font-weight: 600; cursor: pointer; color: var(--navy); display: flex; align-items: center; justify-content: center;
   }
-  .qty-ctrl .qty-num { min-width: 22px; text-align: center; font-weight: 700; color: var(--ink); }
-  .cart-row .c-sub { width: 70px; text-align: right; font-weight: 800; flex-shrink: 0; color: var(--accent); }
-  .cart-row .c-del { background: none; border: none; color: var(--accent); font-size: 18px; cursor: pointer; padding: 0 4px; }
-  .empty-cart { font-size: 13.5px; color: var(--muted); padding: 10px 0; text-align: center; }
+  .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 600; color: var(--ink); }
+  .cart-row .c-sub { width: 68px; text-align: right; font-weight: 700; flex-shrink: 0; color: var(--accent); }
+  .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 17px; cursor: pointer; padding: 0 4px; }
+  .empty-cart { font-size: 13px; color: var(--muted); padding: 12px 0; text-align: center; letter-spacing: 0.5px; }
 
   /* 總金額計算 */
-  .totals { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 14px; }
+  .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
   .totals .grand {
     display: flex; justify-content: space-between; align-items: baseline;
-    margin-top: 4px; padding-top: 10px; border-top: 2px solid var(--navy); font-size: 19px; font-weight: 900; color: var(--navy);
+    margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15px; font-weight: 600; color: var(--navy); letter-spacing: 1px;
   }
-  .totals .grand .amt { color: var(--accent); font-size: 21px; }
+  .totals .grand .amt { color: var(--accent); font-size: 23px; font-weight: 900; }
 
   /* 固定底部的提交欄 */
-  .submit-bar { position: sticky; bottom: 16px; margin-top: 16px; z-index: 10; }
+  .submit-bar { position: sticky; bottom: 16px; margin-top: 18px; z-index: 10; }
   .submit-btn {
-    width: 100%; padding: 15px; background: var(--navy); color: #fff; border: none; border-radius: 10px;
-    font-size: 16.5px; font-weight: 800; letter-spacing: 1.5px; cursor: pointer; box-shadow: 0 4px 16px rgba(26,42,58,0.25); transition: all 0.2s;
+    width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px;
+    font-size: 14.5px; font-weight: 700; letter-spacing: 3px; cursor: pointer; box-shadow: 0 6px 18px rgba(29,52,97,0.18); transition: all 0.2s;
   }
   .submit-btn:hover { background: var(--navy-light); }
   .submit-btn:disabled { opacity: 0.5; cursor: default; }
-  
-  .validation-banner { background: #FDF3F1; border: 1px solid var(--accent); border-radius: 8px; padding: 12px; margin-bottom: 14px; font-size: 13px; color: var(--accent); font-weight: 700; }
-  input.field-error, select.field-error { border-color: var(--accent) !important; background: #FDFBFB; }
+
+  .validation-banner { background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 500; line-height: 1.8; }
+  input.field-error, select.field-error { border-color: var(--accent) !important; }
 
   /* 彈出視窗（遮罩疊加） */
-  .overlay { position: fixed; inset: 0; background: rgba(26,42,58,0.6); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
+  .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.55); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   .overlay.hidden { display: none !important; }
-  .modal { background: var(--paper-card); width: 100%; max-width: 640px; border-radius: 20px 20px 0 0; padding: 24px 20px; max-height: 85vh; overflow-y: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); }
-  .modal h2 { margin: 0 0 6px; font-size: 19px; font-weight: 900; color: var(--navy); }
-  .modal .modal-sub { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
-  .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 14px; font-size: 14px; line-height: 1.6; color: var(--ink); margin: 0; font-family: inherit; }
-  .modal-actions { display: flex; gap: 12px; margin-top: 18px; }
-  .modal-actions button { flex: 1; padding: 13px; border-radius: 8px; font-weight: 700; font-size: 14.5px; cursor: pointer; border: none; }
+  .modal { background: var(--paper-card); width: 100%; max-width: 620px; padding: 32px 26px; max-height: 85vh; overflow-y: auto; }
+  .modal h2 { margin: 0 0 8px; font-size: 19px; font-weight: 900; color: var(--navy); letter-spacing: 1px; }
+  .modal .modal-sub { font-size: 12.5px; color: var(--muted); margin: 0 0 20px; line-height: 1.8; }
+  .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 13.5px; line-height: 1.8; color: var(--ink); margin: 0; font-family: inherit; }
+  .modal-actions { display: flex; gap: 12px; margin-top: 20px; }
+  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; letter-spacing: 2px; }
   .close-btn { background: var(--navy); color: #fff; }
   .close-btn:hover { background: var(--navy-light); }
-  
-  .icon-circle { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 12px; }
-  .icon-circle.ok { background: #EDF3F0; color: var(--navy); }
+
+  .icon-circle { width: 40px; height: 40px; border: 1px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 16px; color: var(--navy); }
 
   /* 加載圈圈 */
-  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 0; font-size: 14px; color: var(--muted); font-weight: 700; }
-  .spinner { width: 34px; height: 34px; border: 3px solid rgba(26,42,58,0.1); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 12.5px; color: var(--muted); font-weight: 500; letter-spacing: 1px; }
+  .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  
+
   .hidden { display: none !important; }
 </style>
 </head>
@@ -154,19 +161,20 @@
 <div class="sheet">
   <header>
     <div class="title-block">
-      <h1>海鮮水餃點單系統</h1>
-      <p>手作鮮美即時品嚐，請選擇商品與配送方式</p>
+      <span class="eyebrow">Handmade Seafood Dumplings</span>
+      <h1>海鮮水餃</h1>
+      <p>嚴選食材，職人手作 — 請選擇商品與配送方式</p>
     </div>
-    <div class="stamp">職人<br>手作</div>
+    <div class="stamp">職人手作</div>
   </header>
 
   <div class="order-meta">單號 <span id="orderNo">---</span> ・ 日期 <span id="orderDate">---</span></div>
 
   <section>
-    <div class="sec-head"><div class="sec-label"><span class="tag">01</span> 顧客聯絡資料</div></div>
+    <div class="sec-head"><span class="num">01</span><div class="sec-label">顧客資料</div></div>
     <div class="row2">
       <div class="field">
-        <label>聯絡人姓名</label>
+        <label>姓名</label>
         <input type="text" id="buyerName" placeholder="請輸入姓名">
       </div>
       <div class="field">
@@ -175,77 +183,107 @@
       </div>
     </div>
     <div class="field">
-      <label>電子信箱 Email<span class="hint">*</span></label>
+      <label>電子信箱<span class="hint">*</span></label>
       <input type="email" id="buyerEmail" placeholder="example@gmail.com">
     </div>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-label"><span class="tag">02</span> 取貨配送管道</div></div>
+    <div class="sec-head"><span class="num">02</span><div class="sec-label">配送方式</div></div>
     <div class="field">
-      <label>選擇配送方式</label>
+      <label>選擇取貨管道</label>
       <div class="seg" id="deliveryTypeSeg">
         <button type="button" class="active" data-val="自取">店面自取</button>
         <button type="button" data-val="雙北外送">雙北外送</button>
-        <button type="button" id="btn-frozen" data-val="黑貓冷凍">黑貓冷凍宅配<span id="frozen-soon-tag" class="hidden"> (即將開放)</span></button>
+        <button type="button" id="btn-frozen" data-val="黑貓冷凍">黑貓冷凍宅配<span id="frozen-soon-tag" class="hidden">（即將開放）</span></button>
       </div>
     </div>
 
     <div id="block-pickup" class="kitchen-tips">
-      <strong>🏪 店面自取資訊：</strong>
-      <div>📍 店名：海鮮水餃職人專賣店</div>
-      <div>🏢 地址：新北市新店區北新路XX號</div>
-      <div>📞 電話：(02) XXXX-XXXX</div>
+      <span class="tip-title">自取資訊</span>
+      <div>地址：板橋區中興里63號</div>
+      <div>電話：0972806443</div>
     </div>
 
     <div id="block-address" class="hidden">
       <div class="field" id="zone-field">
-        <label>限制外送地區（僅限雙北地區）</label>
+        <label>外送地區（僅限雙北）</label>
         <select id="deliveryZone">
           <option value="">-- 請選擇區域 --</option>
           <optgroup label="台北市">
+            <option value="台北市中正區">台北市 中正區</option>
+            <option value="台北市大同區">台北市 大同區</option>
             <option value="台北市中山區">台北市 中山區</option>
+            <option value="台北市松山區">台北市 松山區</option>
             <option value="台北市大安區">台北市 大安區</option>
+            <option value="台北市萬華區">台北市 萬華區</option>
             <option value="台北市信義區">台北市 信義區</option>
+            <option value="台北市士林區">台北市 士林區</option>
+            <option value="台北市北投區">台北市 北投區</option>
             <option value="台北市內湖區">台北市 內湖區</option>
-            <option value="台北市其他區">台北市 其他區域</option>
+            <option value="台北市南港區">台北市 南港區</option>
+            <option value="台北市文山區">台北市 文山區</option>
           </optgroup>
           <optgroup label="新北市">
-            <option value="新北市新店區">新北市 新店區</option>
             <option value="新北市板橋區">新北市 板橋區</option>
+            <option value="新北市三重區">新北市 三重區</option>
             <option value="新北市中和區">新北市 中和區</option>
             <option value="新北市永和區">新北市 永和區</option>
-            <option value="新北市其他區">新北市 其他區域</option>
+            <option value="新北市新莊區">新北市 新莊區</option>
+            <option value="新北市新店區">新北市 新店區</option>
+            <option value="新北市樹林區">新北市 樹林區</option>
+            <option value="新北市鶯歌區">新北市 鶯歌區</option>
+            <option value="新北市三峽區">新北市 三峽區</option>
+            <option value="新北市淡水區">新北市 淡水區</option>
+            <option value="新北市汐止區">新北市 汐止區</option>
+            <option value="新北市瑞芳區">新北市 瑞芳區</option>
+            <option value="新北市土城區">新北市 土城區</option>
+            <option value="新北市蘆洲區">新北市 蘆洲區</option>
+            <option value="新北市五股區">新北市 五股區</option>
+            <option value="新北市泰山區">新北市 泰山區</option>
+            <option value="新北市林口區">新北市 林口區</option>
+            <option value="新北市深坑區">新北市 深坑區</option>
+            <option value="新北市石碇區">新北市 石碇區</option>
+            <option value="新北市坪林區">新北市 坪林區</option>
+            <option value="新北市三芝區">新北市 三芝區</option>
+            <option value="新北市石門區">新北市 石門區</option>
+            <option value="新北市八里區">新北市 八里區</option>
+            <option value="新北市平溪區">新北市 平溪區</option>
+            <option value="新北市雙溪區">新北市 雙溪區</option>
+            <option value="新北市貢寮區">新北市 貢寮區</option>
+            <option value="新北市金山區">新北市 金山區</option>
+            <option value="新北市萬里區">新北市 萬里區</option>
+            <option value="新北市烏來區">新北市 烏來區</option>
           </optgroup>
         </select>
       </div>
       <div class="field">
-        <label>收件完整地址<span class="hint">*</span></label>
+        <label>收件地址<span class="hint">*</span></label>
         <input type="text" id="deliveryAddress" placeholder="請填寫完整道路巷弄、樓層門牌">
       </div>
     </div>
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-label"><span class="tag">03</span> 美食商品選購</div></div>
-    
+    <div class="sec-head"><span class="num">03</span><div class="sec-label">商品選購</div></div>
+
     <div class="kitchen-tips">
-      <strong>🧊 保存與烹飪指南：</strong>
-      <div>• <b>保存方式：</b>全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
-      <div>• <b>美味烹煮：</b>大火水滾後下鍋，轉中火維持微滾煮 7 分鐘，水餃飽滿鼓起即可盛盤。</div>
+      <span class="tip-title">保存與烹煮</span>
+      <div>保存方式：全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
+      <div>美味烹煮：冷水下鍋，水滾一遍加水，再滾一遍再加水，水餃浮起來就好了。</div>
     </div>
 
     <div id="catalogContainer">
       <div class="catalog-loading">
         <div class="spinner"></div>
-        <span>正在從中央廚房讀取今日庫存清單...</span>
+        <span>正在讀取今日庫存清單</span>
       </div>
     </div>
 
     <div class="cart">
-      <div class="cart-title">已選購清單</div>
+      <div class="cart-title">已選購商品</div>
       <div id="cartRows">
-        <div class="empty-cart">尚未選擇任何水餃或海鮮商品</div>
+        <div class="empty-cart">尚未選購任何商品</div>
       </div>
     </div>
 
@@ -258,28 +296,28 @@
   </section>
 
   <section>
-    <div class="sec-head"><div class="sec-label"><span class="tag">04</span> 訂單特殊備註</div></div>
+    <div class="sec-head"><span class="num">04</span><div class="sec-label">訂單備註</div></div>
     <div class="field">
-      <label>備註 / 候補意願資訊</label>
-      <textarea id="orderNote" rows="3" placeholder="如遇某特定口味完售，可在此註明候補口味順序，或填寫外送特殊代收需求。"></textarea>
+      <label>備註事項</label>
+      <textarea id="orderNote" rows="3" placeholder="如遇特定口味完售，可於此註明候補順序，或填寫外送代收需求。"></textarea>
     </div>
   </section>
 
   <div id="validationBanner" class="validation-banner hidden"></div>
 
   <div class="submit-bar">
-    <button type="button" id="submitBtn" class="submit-btn">確認送出水餃訂單</button>
+    <button type="button" id="submitBtn" class="submit-btn">確認送出訂單</button>
   </div>
 </div>
 
 <div id="successOverlay" class="overlay hidden">
   <div class="modal">
-    <div class="icon-circle ok">✓</div>
-    <h2>您的水餃點單已送出！</h2>
-    <p class="modal-sub">已將以下訂單內容成功拋送至後台排單，請擷取此畫面核對。</p>
+    <div class="icon-circle">✓</div>
+    <h2>訂單已送出</h2>
+    <p class="modal-sub">訂單明細如下，請截圖保存以利核對。</p>
     <pre id="summaryContent"></pre>
     <div class="modal-actions">
-      <button type="button" class="close-btn" onclick="location.reload()">好 的，開啟新表單</button>
+      <button type="button" class="close-btn" onclick="location.reload()">完成，返回首頁</button>
     </div>
   </div>
 </div>
@@ -307,7 +345,7 @@
   const dateStr = now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
   const randNo = String(now.getHours()).padStart(2,'0') + String(now.getMinutes()).padStart(2,'0') + String(Math.floor(Math.random()*900)+100);
   const finalOrderNo = "DMP" + randNo;
-  
+
   document.getElementById("orderNo").innerText = finalOrderNo;
   document.getElementById("orderDate").innerText = dateStr;
 
@@ -343,7 +381,7 @@
       container.innerHTML = '<div class="catalog-empty">目前後台庫存沒有任何上架商品</div>';
       return;
     }
-    
+
     // 按分區分組
     let zones = {};
     products.forEach(p => {
@@ -354,14 +392,14 @@
     let html = "";
     for (let zoneName in zones) {
       html += `<div class="category-zone">`;
-      html += `<div class="category-title">🌊 ${zoneName}</div>`;
+      html += `<div class="category-title">${zoneName}</div>`;
       html += `<div class="catalog-grid">`;
       zones[zoneName].forEach(p => {
         const isLow = p.stock <= 5 && p.stock > 0;
         const isOut = p.stock <= 0;
         const stockTxt = isOut ? "已售完" : (isLow ? `即將完售：僅剩 ${p.stock} 包` : `在庫庫存：${p.stock} 包`);
         const disabledAttr = isOut ? "disabled" : "";
-        
+
         html += `
           <button type="button" class="product-card" id="card-${p.name}" ${disabledAttr} onclick="addToCart('${p.name}')">
             <span class="p-name">${p.name}</span>
@@ -385,11 +423,11 @@
       Array.from(this.children).forEach(b => b.classList.remove("active"));
       e.target.classList.add("active");
       currentDeliveryType = e.target.getAttribute("data-val");
-      
+
       const blockPickup = document.getElementById("block-pickup");
       const blockAddress = document.getElementById("block-address");
       const zoneField = document.getElementById("zone-field");
-      
+
       if (currentDeliveryType === "自取") {
         blockPickup.classList.remove("hidden");
         blockAddress.classList.add("hidden");
@@ -437,7 +475,7 @@
   // 更新購物車視覺
   function updateCartUI() {
     const rowsContainer = document.getElementById("cartRows");
-    
+
     // 先還原所有卡片的高亮選取狀態
     products.forEach(p => {
       const card = document.getElementById(`card-${p.name}`);
@@ -445,7 +483,7 @@
     });
 
     if (Object.keys(cart).length === 0) {
-      rowsContainer.innerHTML = '<div class="empty-cart">尚未選擇任何水餃或海鮮商品</div>';
+      rowsContainer.innerHTML = '<div class="empty-cart">尚未選購任何商品</div>';
       document.getElementById("grandTotal").innerText = "0";
       return;
     }
@@ -457,7 +495,7 @@
       const qty = cart[name];
       const p = products.find(prod => prod.name === name);
       if (!p) continue;
-      
+
       const sub = p.price * qty;
       total += sub;
 
@@ -490,7 +528,7 @@
     const banner = document.getElementById("validationBanner");
     banner.classList.add("hidden");
     banner.innerText = "";
-    
+
     // 清除舊錯誤樣式
     document.querySelectorAll(".field-error").forEach(el => el.classList.remove("field-error"));
 
@@ -503,19 +541,19 @@
     const note = document.getElementById("orderNote").value.trim();
     const totalAmt = parseInt(document.getElementById("grandTotal").innerText) || 0;
 
-    if (!bName) { errors.push("請輸入聯絡人姓名"); document.getElementById("buyerName").classList.add("field-error"); }
+    if (!bName) { errors.push("請輸入姓名"); document.getElementById("buyerName").classList.add("field-error"); }
     if (!bPhone) { errors.push("請輸入聯絡電話"); document.getElementById("buyerPhone").classList.add("field-error"); }
-    if (!bEmail) { errors.push("請輸入電子信箱 Email"); document.getElementById("buyerEmail").classList.add("field-error"); }
-    
+    if (!bEmail) { errors.push("請輸入電子信箱"); document.getElementById("buyerEmail").classList.add("field-error"); }
+
     if (currentDeliveryType === "雙北外送") {
       if (!dZone) { errors.push("請選擇雙北外送區域"); document.getElementById("deliveryZone").classList.add("field-error"); }
-      if (!dAddress) { errors.push("請輸入收件完整外送地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
+      if (!dAddress) { errors.push("請輸入收件地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     } else if (currentDeliveryType === "黑貓冷凍") {
-      if (!dAddress) { errors.push("請輸入黑貓冷凍宅配完整地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
+      if (!dAddress) { errors.push("請輸入黑貓冷凍宅配地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     }
 
     if (totalAmt <= 0) {
-      errors.push("您的購物車是空的，請至少點選一項美食商品！");
+      errors.push("購物車目前是空的，請至少選購一項商品");
     }
 
     if (errors.length > 0) {
@@ -554,7 +592,7 @@
     // 禁用按鈕防連點
     const btn = document.getElementById("submitBtn");
     btn.disabled = true;
-    btn.innerText = "訂單正在努力傳送至廚房中...";
+    btn.innerText = "訂單傳送中，請稍候";
 
     if (typeof google !== 'undefined' && google.script && google.script.run) {
       google.script.run.withSuccessHandler(function(response) {
