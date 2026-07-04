@@ -6,16 +6,16 @@
 <title>冷凍水餃</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1D3461;       /* 藏藍：主色、按鈕、標題重點 */
+    --navy: #1D3461;       /* 藏藍：主色、大標題、按鈕重點 */
     --navy-light: #2A4573; /* 次級藏藍 */
     --paper: #F7F4EC;      /* 生成り和紙色：網頁主底色 */
     --paper-card: #FFFFFF; /* 純白：卡片底色 */
     --line: #E3DDCF;       /* 淺褐灰：細線分隔 */
-    --ink: #2A2724;        /* 墨色：主要文字 */
-    --muted: #3A3530;      /* 提示與說明文字全部改為清晰「深炭灰」 */
+    --ink: #1F1D1A;        /* 墨碳色：主體文字，全面加深確保清晰度 */
+    --muted: #2E2A25;      /* 深炭灰：提示與說明文字，拒絕偏淡灰色 */
     --accent: #9B4B34;     /* 深朱色：價格、強調標示 */
     --accent-bg: #F6EEE8;  /* 朱色淡底 */
     --gold: #B08F5C;       /* 金褐：細節點綴 */
@@ -31,106 +31,107 @@
     padding: 40px 18px 110px; 
     line-height: 1.8; 
     -webkit-font-smoothing: antialiased; 
-    font-weight: 700; 
+    font-weight: 700; /* 全網頁基礎字體直接設定為 700 粗體 */
   }
   
   .sheet { max-width: 620px; margin: 0 auto; }
-  header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 28px; }
-  .title-block .eyebrow { display: block; font-size: 11px; letter-spacing: 3px; color: var(--gold); font-weight: 900; margin-bottom: 8px; text-transform: uppercase; }
-  .title-block h1 { font-size: 27px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
-  .title-block p { margin: 0; font-size: 13.5px; color: var(--muted); font-weight: 700; }
+  header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 2px solid var(--navy); padding-bottom: 22px; margin-bottom: 28px; }
+  .title-block .eyebrow { display: block; font-size: 12px; letter-spacing: 3px; color: var(--gold); font-weight: 900; margin-bottom: 8px; text-transform: uppercase; }
+  .title-block h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
+  .title-block p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 700; }
   .stamp { flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; text-align: center; letter-spacing: 2px; background: var(--accent-bg); writing-mode: vertical-rl; }
-  .order-meta { font-size: 12px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; font-weight: 700; }
+  
+  .order-meta { font-size: 13px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; font-weight: 700; }
   .order-meta span { font-weight: 900; color: var(--navy); }
   
-  section { background: var(--paper-card); border: 1px solid var(--line); padding: 26px 24px; margin-bottom: 22px; }
-  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-  .sec-head .num { font-size: 13px; color: var(--gold); font-weight: 900; }
-  .sec-label { font-weight: 900; font-size: 16.5px; color: var(--navy); letter-spacing: 2px; }
+  section { background: var(--paper-card); border: 1px solid var(--line); padding: 28px 24px; margin-bottom: 22px; }
   
-  .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 700; }
-  .kitchen-tips .tip-title { display: block; font-size: 11px; letter-spacing: 2px; color: var(--navy); font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
+  /* 【大標題層級】大於所有內容與小標題 */
+  .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .sec-head .num { font-size: 14px; color: var(--gold); font-weight: 900; }
+  .sec-label { font-weight: 900; font-size: 20px; color: var(--navy); letter-spacing: 2px; }
+  
+  /* 【說明、介紹文字層級】統一優雅小字，但維持清晰深色與粗體 */
+  .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 700; background: #FAF9F6; }
+  .kitchen-tips .tip-title { display: block; font-size: 12px; letter-spacing: 2px; color: var(--navy); font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
   .kitchen-tips .tip-row { margin-bottom: 8px; }
   .kitchen-tips .tip-row:last-child { margin-bottom: 0; }
   
   .field { margin-bottom: 18px; }
-  .field label { display: block; font-size: 13.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
-  .field .hint { font-weight: 900; font-size: 11px; color: var(--accent); margin-left: 4px; }
+  .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
+  .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
   
   input[type=text], input[type=tel], input[type=email], select, textarea { 
     width: 100%; 
     padding: 12px 13px; 
     border: 1px solid var(--line); 
     border-radius: 2px; 
-    font-size: 14px; 
+    font-size: 14.5px; 
     font-family: "Noto Serif TC", serif; 
     font-weight: 700; 
     color: var(--ink);
+    background-color: #FFF;
   }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   
   .seg { display: flex; border: 1px solid var(--line); overflow: hidden; background: #fff; }
-  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13.5px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 14px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; }
   .seg button.active { background: var(--navy); color: #fff; font-weight: 900; }
   .seg button:disabled { color: #B9B3A6; }
   
-  .category-title { font-size: 15.5px; font-weight: 900; color: var(--navy); margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: 1px; }
+  /* 【分類標題層級】介於大標題與內文卡片之間，清晰明顯 */
+  .category-title { font-size: 17.5px; font-weight: 900; color: var(--navy); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: 1px; }
   .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   
-  /* 💡 增加卡片左右內襯空間（15px），給手機端更充裕的橫向發揮 */
-  .product-card { border: 1px solid var(--line); background: #fff; padding: 16px 15px; text-align: left; cursor: pointer; transition: all 0.15s ease; position: relative; font-family: "Noto Serif TC", serif; }
+  /* 【商品卡片與中階文字層級】 */
+  .product-card { border: 1px solid var(--line); background: #fff; padding: 18px 15px; text-align: left; cursor: pointer; transition: all 0.15s ease; position: relative; font-family: "Noto Serif TC", serif; }
   .product-card:hover:not(:disabled) { border-color: var(--navy); }
   .product-card.in-cart { border-color: var(--navy); background: #F9FAFB; box-shadow: inset 0 0 0 1px var(--navy); }
   .product-card:disabled { opacity: 0.45; cursor: not-allowed; }
   
-  /* 💡 品名與規格字維持在同一行 (inline-block) */
-  .product-card .p-name { display: inline-block; font-weight: 900; font-size: 14.5px; margin-bottom: 8px; color: var(--navy); letter-spacing: 0.5px; line-height: 1.4; margin-right: 2px; }
-  
-  /* 💡 核心修正：inline-block 加上 white-space: nowrap，強制規格字在手機畫面上「絕對不允許折行」 */
-  .product-card .p-spec { display: inline-block; font-size: 11.5px; font-weight: 500; color: var(--navy); opacity: 0.75; white-space: nowrap; }
-  
-  .product-card .p-price { display: block; font-size: 14.5px; color: var(--accent); font-weight: 900; line-height: 1.3; }
-  .product-card .p-stock { display: block; font-size: 11.5px; color: var(--muted); margin-top: 8px; font-weight: 700; }
+  .product-card .p-name { display: block; font-weight: 900; font-size: 15.5px; margin-bottom: 8px; color: var(--ink); letter-spacing: 0.5px; line-height: 1.4; }
+  .product-card .p-price { display: block; font-size: 15px; color: var(--accent); font-weight: 900; line-height: 1.3; }
+  .product-card .p-stock { display: block; font-size: 12px; color: var(--muted); margin-top: 8px; font-weight: 700; }
   .product-card .p-stock.low-stock { color: var(--accent); font-weight: 900; }
   
-  .catalog-empty { font-size: 13.5px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
-  .cart { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
-  .cart-title { font-size: 11px; font-weight: 900; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
-  .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .catalog-empty { font-size: 14px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
+  .cart { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .cart-title { font-size: 12px; font-weight: 900; color: var(--navy); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
   .cart-row:last-child { border-bottom: none; }
   .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
-  .cart-row .c-price { font-size: 11.5px; color: var(--muted); display: block; font-weight: 700; }
+  .cart-row .c-price { font-size: 12px; color: var(--muted); display: block; font-weight: 700; }
   
   .qty-ctrl { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
   .qty-ctrl button { width: 26px; height: 26px; border: 1px solid var(--line); background: #fff; font-size: 15px; font-family: inherit; font-weight: 900; cursor: pointer; color: var(--navy); }
   .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 900; }
   .cart-row .c-sub { width: 68px; text-align: right; font-weight: 900; color: var(--accent); }
-  .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 17px; cursor: pointer; padding: 0 4px; font-weight: 900; font-family: inherit; }
-  .empty-cart { font-size: 13.5px; color: var(--muted); padding: 12px 0; text-align: center; font-weight: 700; }
+  .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; padding: 0 4px; font-weight: 900; font-family: inherit; }
+  .empty-cart { font-size: 14px; color: var(--muted); padding: 12px 0; text-align: center; font-weight: 700; }
   
   .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
-  .totals .fee-line { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
-  .totals .grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15.5px; font-weight: 900; color: var(--navy); }
-  .totals .grand .amt { color: var(--accent); font-size: 23px; font-weight: 900; }
+  .totals .fee-line { display: flex; justify-content: space-between; font-size: 14.5px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
+  .totals .grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; padding-top: 12px; border-top: 2px solid var(--navy); font-size: 16px; font-weight: 900; color: var(--navy); }
+  .totals .grand .amt { color: var(--accent); font-size: 24px; font-weight: 900; }
   
-  .submit-bar { position: sticky; bottom: 16px; margin-top: 18px; z-index: 10; }
-  .submit-btn { width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px; font-size: 15px; font-family: "Noto Serif TC", serif; font-weight: 900; letter-spacing: 3px; cursor: pointer; transition: all 0.2s; }
+  .submit-bar { position: sticky; bottom: 16px; margin-top: 22px; z-index: 10; }
+  .submit-btn { width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px; font-size: 16px; font-family: "Noto Serif TC", serif; font-weight: 900; letter-spacing: 3px; cursor: pointer; transition: all 0.2s; }
   .submit-btn:hover { background: var(--navy-light); }
   
-  .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: var(--accent); font-weight: 700; }
-  input.field-error, select.field-error { border-color: var(--accent) !important; }
+  .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 13.5px; color: var(--accent); font-weight: 700; }
+  input.field-error, select.field-error { border-color: var(--accent) !important; background-color: var(--accent-bg) !important; }
   
-  .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.55); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
+  .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.6); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   .modal { background: var(--paper-card); width: 100%; max-width: 620px; padding: 32px 26px; max-height: 85vh; overflow-y: auto; }
-  .modal h2 { margin: 0 0 8px; font-size: 19.5px; font-weight: 900; color: var(--navy); }
-  .modal p { font-size: 13.5px; }
-  .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 13.5px; line-height: 1.8; margin: 0; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); }
+  .modal h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--navy); }
+  .modal p { font-size: 14px; }
+  .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 14px; line-height: 1.8; margin: 0; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); }
   .modal-actions { display: flex; gap: 12px; margin-top: 20px; }
-  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 900; font-size: 14px; font-family: "Noto Serif TC", serif; cursor: pointer; border: none; background: var(--navy); color: #fff; }
+  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 900; font-size: 14.5px; font-family: "Noto Serif TC", serif; cursor: pointer; border: none; background: var(--navy); color: #fff; }
   
-  .icon-circle { width: 40px; height: 40px; border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 16px; color: var(--navy); font-weight: 900; }
-  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 13px; color: var(--muted); font-weight: 700; }
+  .icon-circle { width: 40px; height: 40px; border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 16px; color: var(--navy); font-weight: 900; }
+  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 13.5px; color: var(--muted); font-weight: 700; }
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .hidden { display: none !important; }
@@ -207,7 +208,7 @@
           <optgroup label="台北市">
             <option value="台北市中正區">台北市 中正區</option><option value="台北市大同區">台北市 大同區</option><option value="台北市中山區">台北市 中山區</option>
             <option value="台北市松山區">台北市 松山區</option><option value="台北市大安區">台北市 大安區</option><option value="台北市萬華區">台北市 萬華區</option>
-            <option value="台北市信義區">台北市 信義區</option><option value="台北市士林區">台北市 士林區</option><option value="台北市北投區">台北市 北投區</option>
+            <option value="台北市信義區">台北市 信義區</option><option value="台北市士林區">台北市 土死林區</option><option value="台北市北投區">台北市 北投區</option>
             <option value="台北市內湖區">台北市 內湖區</option><option value="台北市南港區">台北市 南港區</option><option value="台北市文山區">台北市 文山區</option>
           </optgroup>
           <optgroup label="新北市">
@@ -254,6 +255,9 @@
 
   <section>
     <div class="sec-head"><span class="num">03</span><div class="sec-label">商品選購</div></div>
+    
+    <div class="category-title">經典水餃區 | 50顆 / 包</div>
+    
     <div class="kitchen-tips">
       <span class="tip-title">保存與烹煮</span>
       <div class="tip-row">保存方式：全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
@@ -285,7 +289,7 @@
   <div class="modal">
     <div class="icon-circle">✓</div>
     <h2>訂單已送出</h2>
-    <p style="font-weight:700; font-size:13.5px; color:var(--muted); margin-bottom:16px;">訂單明細如下，請截圖保存以利核對。</p>
+    <p style="font-weight:700; font-size:14px; color:var(--muted); margin-bottom:16px;">訂單明細如下，請截圖保存以利核對。</p>
     <pre id="summaryContent"></pre>
     <div class="modal-actions"><button type="button" class="close-btn" onclick="location.reload()">完成，返回首頁</button></div>
   </div>
@@ -320,6 +324,15 @@
     document.body.appendChild(script);
   }
 
+  function cleanProductName(rawName) {
+    return rawName
+      .replace(/[\|｜]\s*50顆\s*[\/／]\s*包/g, '')
+      .replace(/[\(（]50\/包[\)）]/g, '')
+      .replace(/[\(（]50顆\/包[\)）]/g, '')
+      .replace(/50顆\s*[\/／]\s*包/g, '')
+      .trim();
+  }
+
   function renderCatalog() {
     const container = document.getElementById("catalogContainer");
     if (products.length === 0) {
@@ -330,7 +343,7 @@
     products.forEach(p => { if (!zones[p.zone]) zones[p.zone] = []; zones[p.zone].push(p); });
     let html = "";
     for (let zoneName in zones) {
-      html += `<div class="category-zone"><div class="category-title">${zoneName}</div><div class="catalog-grid">`;
+      html += `<div class="category-zone"><div class="catalog-grid">`;
       zones[zoneName].forEach(p => {
         const isOut = p.stock <= 0;
         
@@ -344,9 +357,8 @@
           isLow = true;
         }
 
-        const cleanName = p.name.replace(/[\(（]50\/包[\)）]/g, '').trim();
-        /* 💡 規格字帶有豎線，並被 p-spec 包裹以落實 white-space: nowrap 不折行邏輯 */
-        const displayName = `<span class="p-name">${cleanName}</span><span class="p-spec"> | 50顆 / 包</span>`;
+        const cleanName = cleanProductName(p.name);
+        const displayName = `<span class="p-name">${cleanName}</span>`;
 
         html += `<button type="button" class="product-card" id="card-${p.name}" ${isOut ? "disabled" : ""} onclick="addToCart('${p.name}')">
             ${displayName}<span class="p-price">NT$ ${p.price}</span>
@@ -446,7 +458,7 @@
       const card = document.getElementById(`card-${name}`);
       if (card) card.classList.add("in-cart");
 
-      const cleanCartName = name.replace(/[\(（]50\/包[\)）]/g, '').trim();
+      const cleanCartName = cleanProductName(name);
 
       html += `<div class="cart-row">
           <div class="c-name">${cleanCartName}<span class="c-price">NT$ ${p.price} / 包</span></div>
@@ -539,7 +551,7 @@
     if (!payload.deliveryType.includes('自取')) summary += `【區域縣市】${payload.deliveryZone}\n【完整地址】${payload.deliveryAddress}\n`;
     summary += `【購買品項】\n`;
     payload.items.forEach(it => { 
-      const cleanPayloadName = it.name.replace(/[\(（]50\/包[\)）]/g, '').trim();
+      const cleanPayloadName = cleanProductName(it.name);
       summary += `  • ${cleanPayloadName} x ${it.qty} 包 (小計: $${it.subtotal})\n`; 
     });
     summary += `【應付總額】NT$ ${payload.total} 元\n【備註候補】${payload.note || "無"}`;
