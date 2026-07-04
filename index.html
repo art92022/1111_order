@@ -91,9 +91,13 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .hidden { display: none !important; }
 
-  /* 💡 複製按戶小樣式 */
+  /* 💡 複製按鈕小樣式 */
   .copy-inline-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 2px; margin-left: 6px; transition: all 0.1s; }
   .copy-inline-btn:hover { background: var(--gold); color: #fff; }
+
+  /* 💡 地圖連結樣式：優雅的下底線 */
+  .map-link { color: var(--navy); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; transition: color 0.15s ease; }
+  .map-link:hover { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -141,7 +145,7 @@
 
     <div id="block-pickup" class="kitchen-tips">
       <span class="tip-title">自取資訊</span>
-      <div>地址：板橋區中興里63號</div>
+      <div>地址：<a href="https://maps.app.goo.gl/e5MS86ZxQU5NHSNfA?g_st=ic" target="_blank" class="map-link">📍 220新北市板橋區新興里中興路27號 (點擊打開地圖)</a></div>
       <div>電話：09-7280-6443</div>
       <div class="field" style="margin-top: 14px;">
         <label>預計自取時段 <span class="hint">*</span></label>
@@ -196,11 +200,11 @@
     <div id="block-transfer" class="kitchen-tips hidden" style="border: 1px dashed var(--gold); background: #FAF8F2; margin-top: 14px;">
       <span class="tip-title" style="color: var(--accent);">轉帳匯款資訊 (點選即可單獨複製)</span>
       <div style="margin-bottom: 6px;">
-        銀行代碼：<span id="bankCode" style="font-weight:900; color:var(--navy);">803</span> (聯邦)
+        銀行代碼：<span id="bankCode" style="font-weight:900; color:var(--navy);">822</span> (中國信託)
         <button type="button" class="copy-inline-btn" onclick="copyValue('bankCode')">📋 複製代碼</button>
       </div>
       <div>
-        銀行帳號：<span id="bankAccount" style="font-weight:900; color:var(--navy);">888502516431</span>
+        銀行帳號：<span id="bankAccount" style="font-weight:900; color:var(--navy);">123456789012</span>
         <button type="button" class="copy-inline-btn" onclick="copyValue('bankAccount')">📋 複製帳號</button>
       </div>
       <div style="font-size: 11px; color: var(--accent); margin-top: 8px; font-weight: 700;">※ 匯款完成後請保留明細截圖以利現場核對。</div>
@@ -247,13 +251,12 @@
 </div>
 
 <script>
-  // ⚠️ 你的專屬後端網址不變
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxgthRpX6of779wIzq1jKpKRm3EDWjYJ_xgvSQ5Rx5njnMoGJkUzQdXb4pEg63aTqOk/exec';
 
   let products = [];
   let cart = {};
   let currentDeliveryType = "自取";
-  let currentPaymentMethod = "現金"; // 💡 付款方式預設變數
+  let currentPaymentMethod = "現金";
   let shippingFee = 0;
 
   const now = new Date();
@@ -303,7 +306,6 @@
 
   document.addEventListener("DOMContentLoaded", loadCatalog);
 
-  // 💡 配送管道切換邏輯 (徹底二選一分離)
   document.getElementById("deliveryTypeSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
     if (btn && btn.tagName === "BUTTON") {
@@ -330,7 +332,6 @@
     }
   });
 
-  // 💡 新增：付款方式切換段選監聽
   document.getElementById("paymentMethodSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
     if (btn && btn.tagName === "BUTTON") {
@@ -347,7 +348,6 @@
     }
   });
 
-  // 💡 新增：點擊單獨複製文字功能
   function copyValue(id) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text).then(() => {
@@ -453,7 +453,7 @@
       deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "店面自取",
       deliveryAddress: (currentDeliveryType === "自取") ? `無 (預計自取時間：${pTime})` : dAddress,
       items: itemsPayload,
-      paymentMethod: currentPaymentMethod, // 💡 傳遞付款方式至後台
+      paymentMethod: currentPaymentMethod,
       total: finalTotal,
       note: document.getElementById("orderNote").value.trim()
     };
