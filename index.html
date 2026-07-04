@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>海鮮冷凍水餃</title>
+<title>冷凍水餃</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -22,80 +22,115 @@
   }
 
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--paper); font-family: "Noto Serif TC", serif; color: var(--ink); padding: 40px 18px 110px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  
+  body { 
+    margin: 0; 
+    background: var(--paper); 
+    font-family: "Noto Serif TC", serif; 
+    color: var(--ink); 
+    padding: 40px 18px 110px; 
+    line-height: 1.8; 
+    -webkit-font-smoothing: antialiased; 
+    font-weight: 700; 
+  }
+  
   .sheet { max-width: 620px; margin: 0 auto; }
   header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 28px; }
-  .title-block .eyebrow { display: block; font-size: 11px; letter-spacing: 3px; color: var(--gold); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+  .title-block .eyebrow { display: block; font-size: 11px; letter-spacing: 3px; color: var(--gold); font-weight: 900; margin-bottom: 8px; text-transform: uppercase; }
   .title-block h1 { font-size: 27px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
-  .title-block p { margin: 0; font-size: 13px; color: var(--muted); font-weight: 600; }
-  .stamp { flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; text-align: center; letter-spacing: 2px; background: var(--accent-bg); writing-mode: vertical-rl; }
-  .order-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; font-weight: 600; }
-  .order-meta span { font-weight: 800; color: var(--navy); }
+  .title-block p { margin: 0; font-size: 13.5px; color: var(--muted); font-weight: 700; }
+  .stamp { flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; text-align: center; letter-spacing: 2px; background: var(--accent-bg); writing-mode: vertical-rl; }
+  .order-meta { font-size: 12px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; font-weight: 700; }
+  .order-meta span { font-weight: 900; color: var(--navy); }
+  
   section { background: var(--paper-card); border: 1px solid var(--line); padding: 26px 24px; margin-bottom: 22px; }
   .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-  .sec-head .num { font-size: 13px; color: var(--gold); font-weight: 700; }
+  .sec-head .num { font-size: 13px; color: var(--gold); font-weight: 900; }
   .sec-label { font-weight: 900; font-size: 16.5px; color: var(--navy); letter-spacing: 2px; }
-  .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 12.5px; color: var(--muted); margin-bottom: 20px; font-weight: 600; }
+  
+  .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 700; }
   .kitchen-tips .tip-title { display: block; font-size: 11px; letter-spacing: 2px; color: var(--navy); font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
+  .kitchen-tips .tip-row { margin-bottom: 8px; }
+  .kitchen-tips .tip-row:last-child { margin-bottom: 0; }
+  
   .field { margin-bottom: 18px; }
-  .field label { display: block; font-size: 13px; font-weight: 900; margin-bottom: 8px; color: var(--navy); }
-  .field .hint { font-weight: 700; font-size: 11px; color: var(--accent); margin-left: 4px; }
-  input[type=text], input[type=tel], input[type=email], select, textarea { width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14px; font-family: inherit; font-weight: 600; }
+  .field label { display: block; font-size: 13.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
+  .field .hint { font-weight: 900; font-size: 11px; color: var(--accent); margin-left: 4px; }
+  
+  input[type=text], input[type=tel], input[type=email], select, textarea { 
+    width: 100%; 
+    padding: 12px 13px; 
+    border: 1px solid var(--line); 
+    border-radius: 2px; 
+    font-size: 14px; 
+    font-family: "Noto Serif TC", serif; 
+    font-weight: 700; 
+    color: var(--ink);
+  }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  
   .seg { display: flex; border: 1px solid var(--line); overflow: hidden; background: #fff; }
-  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; }
+  .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 13.5px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; }
   .seg button.active { background: var(--navy); color: #fff; font-weight: 900; }
   .seg button:disabled { color: #B9B3A6; }
-  .category-title { font-size: 15px; font-weight: 900; color: var(--navy); margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  
+  .category-title { font-size: 15.5px; font-weight: 900; color: var(--navy); margin: 18px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: 1px; }
   .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .product-card { border: 1px solid var(--line); background: #fff; padding: 15px 13px; text-align: left; cursor: pointer; transition: all 0.15s ease; position: relative; }
+  .product-card { border: 1px solid var(--line); background: #fff; padding: 15px 13px; text-align: left; cursor: pointer; transition: all 0.15s ease; position: relative; font-family: "Noto Serif TC", serif; }
   .product-card:hover:not(:disabled) { border-color: var(--navy); }
   .product-card.in-cart { border-color: var(--navy); background: #F9FAFB; box-shadow: inset 0 0 0 1px var(--navy); }
   .product-card:disabled { opacity: 0.45; cursor: not-allowed; }
-  .product-card .p-name { display: block; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
-  .product-card .p-price { display: block; font-size: 14.5px; color: var(--accent); font-weight: 700; }
-  .product-card .p-stock { display: block; font-size: 11px; color: var(--muted); margin-top: 8px; font-weight: 700; }
-  .product-card .p-stock.low-stock { color: var(--accent); }
-  .catalog-empty { font-size: 13px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
+  
+  .product-card .p-name { display: block; font-weight: 900; font-size: 15px; margin-bottom: 8px; color: var(--navy); letter-spacing: 0.5px; }
+  .product-card .p-spec { font-size: 12.5px; font-weight: 500; color: var(--navy); opacity: 0.85; margin-left: 2px; }
+  .product-card .p-price { display: block; font-size: 14.5px; color: var(--accent); font-weight: 900; }
+  .product-card .p-stock { display: block; font-size: 11.5px; color: var(--muted); margin-top: 8px; font-weight: 700; }
+  .product-card .p-stock.low-stock { color: var(--accent); font-weight: 900; }
+  
+  .catalog-empty { font-size: 13.5px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
   .cart { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
-  .cart-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .cart-title { font-size: 11px; font-weight: 900; color: var(--muted); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
   .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .cart-row:last-child { border-bottom: none; }
-  .cart-row .c-name { flex: 1; font-weight: 700; }
-  .cart-row .c-price { font-size: 11.5px; color: var(--muted); display: block; font-weight: 600; }
+  .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
+  .cart-row .c-price { font-size: 11.5px; color: var(--muted); display: block; font-weight: 700; }
+  
   .qty-ctrl { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
-  .qty-ctrl button { width: 26px; height: 26px; border: 1px solid var(--line); background: #fff; font-size: 15px; font-weight: 900; cursor: pointer; color: var(--navy); }
-  .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 700; }
-  .cart-row .c-sub { width: 68px; text-align: right; font-weight: 700; color: var(--accent); }
-  .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 17px; cursor: pointer; padding: 0 4px; font-weight: 700; }
-  .empty-cart { font-size: 13px; color: var(--muted); padding: 12px 0; text-align: center; font-weight: 700; }
+  .qty-ctrl button { width: 26px; height: 26px; border: 1px solid var(--line); background: #fff; font-size: 15px; font-family: inherit; font-weight: 900; cursor: pointer; color: var(--navy); }
+  .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 900; }
+  .cart-row .c-sub { width: 68px; text-align: right; font-weight: 900; color: var(--accent); }
+  .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 17px; cursor: pointer; padding: 0 4px; font-weight: 900; font-family: inherit; }
+  .empty-cart { font-size: 13.5px; color: var(--muted); padding: 12px 0; text-align: center; font-weight: 700; }
+  
   .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
-  .totals .fee-line { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
-  .totals .grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15px; font-weight: 900; color: var(--navy); }
+  .totals .fee-line { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
+  .totals .grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--navy); font-size: 15.5px; font-weight: 900; color: var(--navy); }
   .totals .grand .amt { color: var(--accent); font-size: 23px; font-weight: 900; }
+  
   .submit-bar { position: sticky; bottom: 16px; margin-top: 18px; z-index: 10; }
-  .submit-btn { width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px; font-size: 14.5px; font-weight: 700; letter-spacing: 3px; cursor: pointer; transition: all 0.2s; }
+  .submit-btn { width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px; font-size: 15px; font-family: "Noto Serif TC", serif; font-weight: 900; letter-spacing: 3px; cursor: pointer; transition: all 0.2s; }
   .submit-btn:hover { background: var(--navy-light); }
-  .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--accent); font-weight: 700; }
+  
+  .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 13px; color: var(--accent); font-weight: 700; }
   input.field-error, select.field-error { border-color: var(--accent) !important; }
+  
   .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.55); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   .modal { background: var(--paper-card); width: 100%; max-width: 620px; padding: 32px 26px; max-height: 85vh; overflow-y: auto; }
-  .modal h2 { margin: 0 0 8px; font-size: 19px; font-weight: 900; color: var(--navy); }
-  .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 13.5px; line-height: 1.8; margin: 0; }
+  .modal h2 { margin: 0 0 8px; font-size: 19.5px; font-weight: 900; color: var(--navy); }
+  .modal p { font-size: 13.5px; }
+  .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 13.5px; line-height: 1.8; margin: 0; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); }
   .modal-actions { display: flex; gap: 12px; margin-top: 20px; }
-  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 700; font-size: 14px; cursor: pointer; border: none; background: var(--navy); color: #fff; }
+  .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 900; font-size: 14px; font-family: "Noto Serif TC", serif; cursor: pointer; border: none; background: var(--navy); color: #fff; }
+  
   .icon-circle { width: 40px; height: 40px; border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 17px; margin-bottom: 16px; color: var(--navy); font-weight: 900; }
-  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 12.5px; color: var(--muted); font-weight: 700; }
+  .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 13px; color: var(--muted); font-weight: 700; }
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .hidden { display: none !important; }
 
-  /* 💡 複製按鈕小樣式 */
-  .copy-inline-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 2px; margin-left: 6px; transition: all 0.1s; }
+  .copy-inline-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 2px; margin-left: 6px; transition: all 0.1s; font-family: inherit; }
   .copy-inline-btn:hover { background: var(--gold); color: #fff; }
-
-  /* 💡 地圖連結樣式：優雅的下底線 */
   .map-link { color: var(--navy); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; transition: color 0.15s ease; }
   .map-link:hover { color: var(--gold); }
 </style>
@@ -106,7 +141,7 @@
   <header>
     <div class="title-block">
       <span class="eyebrow">Handmade Seafood Dumplings</span>
-      <h1>海鮮冷凍水餃</h1>
+      <h1>冷凍水餃</h1>
       <p>嚴選食材，職人手作 — 請選擇商品與配送方式</p>
     </div>
     <div class="stamp">職人手作</div>
@@ -145,8 +180,8 @@
 
     <div id="block-pickup" class="kitchen-tips">
       <span class="tip-title">自取資訊</span>
-      <div>地址：<a href="https://maps.app.goo.gl/e5MS86ZxQU5NHSNfA?g_st=ic" target="_blank" class="map-link">📍 220新北市板橋區新興里中興路27號</a></div>
-      <div>電話：09-7280-6443</div>
+      <div class="tip-row">地址：<a href="https://maps.app.goo.gl/e5MS86ZxQU5NHSNfA?g_st=ic" target="_blank" class="map-link">📍 220新北市板橋區新興里中興路27號</a></div>
+      <div class="tip-row">電話：09-7280-6443</div>
       <div class="field" style="margin-top: 14px;">
         <label>預計自取時段 <span class="hint">*</span></label>
         <select id="pickupTime">
@@ -171,7 +206,7 @@
           </optgroup>
           <optgroup label="新北市">
             <option value="新北市板橋區">新北市 板橋區</option><option value="新北市三重區">新北市 三重區</option><option value="新北市中和區">新北市 中和區</option>
-            <option value="新北市永和區">新北市 永和區</option><option value="新北市新莊區">新北市 新莊區</option><option value="新北市新店區">新北市 新店區</option>
+            <option value="新北市永和區">新北市 新莊區</option><option value="新北市新莊區">新北市 新莊區</option><option value="新北市新店區">新北市 新店區</option>
             <option value="新北市樹林區">新北市 樹林區</option><option value="新北市鶯歌區">新北市 鶯歌區</option><option value="新北市三峽區">新北市 三峽區</option>
             <option value="新北市淡水區">新北市 淡水區</option><option value="新北市汐止區">新北市 汐止區</option><option value="新北市瑞芳區">新北市 瑞芳區</option>
             <option value="新北市土城區">新北市 土城區</option><option value="新北市蘆洲區">新北市 蘆洲區</option><option value="新北市五股區">新北市 五股區</option>
@@ -215,9 +250,8 @@
     <div class="sec-head"><span class="num">03</span><div class="sec-label">商品選購</div></div>
     <div class="kitchen-tips">
       <span class="tip-title">保存與烹煮</span>
-      <div>保存方式：全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
-</span>
-      <div>美味烹煮：冷水下鍋，初滾加半碗冷水，再滾時加半碗冷水，待全數浮起轉小火慢滾一分鐘，即可優雅上桌。</div>
+      <div class="tip-row">保存方式：全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
+      <div class="tip-row">美味烹煮：冷水下鍋，初滾加半碗冷水，再滾時加半碗冷水，待全數浮起轉小火慢滾一分鐘，即可優雅上桌。</div>
     </div>
     <div id="catalogContainer">
       <div class="catalog-loading"><div class="spinner"></div><span>正在讀取今日冷凍水餃庫存清單</span></div>
@@ -245,7 +279,7 @@
   <div class="modal">
     <div class="icon-circle">✓</div>
     <h2>訂單已送出</h2>
-    <p style="font-weight:600; font-size:13px; color:var(--muted); margin-bottom:16px;">訂單明細如下，請截圖保存以利核對。</p>
+    <p style="font-weight:700; font-size:13.5px; color:var(--muted); margin-bottom:16px;">訂單明細如下，請截圖保存以利核對。</p>
     <pre id="summaryContent"></pre>
     <div class="modal-actions"><button type="button" class="close-btn" onclick="location.reload()">完成，返回首頁</button></div>
   </div>
@@ -292,11 +326,25 @@
     for (let zoneName in zones) {
       html += `<div class="category-zone"><div class="category-title">${zoneName}</div><div class="catalog-grid">`;
       zones[zoneName].forEach(p => {
-        const isLow = p.stock <= 5 && p.stock > 0;
         const isOut = p.stock <= 0;
-        const stockTxt = isOut ? "已售完" : (isLow ? `即將完售：僅剩 ${p.stock} 包` : `在庫庫存：${p.stock} 包`);
+        
+        let stockTxt = "";
+        let isLow = false;
+        
+        if (isOut) {
+          stockTxt = "已售完";
+        } else if (p.stock <= 10) {
+          stockTxt = `即將完售：僅剩 ${p.stock} 包`;
+          isLow = true;
+        }
+
+        /* 💡 修正關鍵：正則表達式同時匹配半形 (50/包) 與全形 （50/包），徹底消除重複出現的問題 */
+        const cleanName = p.name.replace(/[\(（]50\/包[\)）]/g, '').trim();
+        const displayName = `${cleanName}<span class="p-spec"> | 50顆 / 包</span>`;
+
         html += `<button type="button" class="product-card" id="card-${p.name}" ${isOut ? "disabled" : ""} onclick="addToCart('${p.name}')">
-            <span class="p-name">${p.name}</span><span class="p-price">NT$ ${p.price}</span><span class="p-stock ${isLow ? 'low-stock':''}">${stockTxt}</span>
+            <span class="p-name">${displayName}</span><span class="p-price">NT$ ${p.price}</span>
+            <span class="p-stock ${isLow ? 'low-stock':''}">${stockTxt}</span>
           </button>`;
       });
       html += `</div></div>`;
@@ -392,8 +440,11 @@
       const card = document.getElementById(`card-${name}`);
       if (card) card.classList.add("in-cart");
 
+      /* 💡 購物車明細同樣同步濾除全形與半形括號，維持清爽一致性 */
+      const cleanCartName = name.replace(/[\(（]50\/包[\)）]/g, '').trim();
+
       html += `<div class="cart-row">
-          <div class="c-name">${name}<span class="c-price">NT$ ${p.price} / 包</span></div>
+          <div class="c-name">${cleanCartName}<span class="c-price">NT$ ${p.price} / 包</span></div>
           <div class="qty-ctrl"><button type="button" onclick="changeQty('${name}', -1)">-</button><span class="qty-num">${qty}</span><button type="button" onclick="changeQty('${name}', 1)">+</button></div>
           <div class="c-sub">NT$ ${sub}</div><button type="button" class="c-del" onclick="deleteItem('${name}')">×</button>
         </div>`;
@@ -482,7 +533,11 @@
     let summary = `【訂單單號】${payload.orderNo}\n【訂購日期】${payload.orderDate}\n【聯絡姓名】${payload.name}\n【聯絡電話】${payload.phone}\n【配送管道】${payload.deliveryType}\n【付款方式】${payload.paymentMethod}\n`;
     if (!payload.deliveryType.includes('自取')) summary += `【區域縣市】${payload.deliveryZone}\n【完整地址】${payload.deliveryAddress}\n`;
     summary += `【購買品項】\n`;
-    payload.items.forEach(it => { summary += `  • ${it.name} x ${it.qty} 包 (小計: $${it.subtotal})\n`; });
+    payload.items.forEach(it => { 
+      /* 💡 彈出送出成功明細視窗時，同樣乾淨過濾全半形括號 */
+      const cleanPayloadName = it.name.replace(/[\(（]50\/包[\)）]/g, '').trim();
+      summary += `  • ${cleanPayloadName} x ${it.qty} 包 (小計: $${it.subtotal})\n`; 
+    });
     summary += `【應付總額】NT$ ${payload.total} 元\n【備註候補】${payload.note || "無"}`;
     document.getElementById("summaryContent").innerText = summary;
     document.getElementById("successOverlay").classList.remove("hidden");
