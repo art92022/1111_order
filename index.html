@@ -554,7 +554,7 @@
       const cleanPayloadName = cleanProductName(it.name);
       summary += `  • ${cleanPayloadName} x ${it.qty} 包 (小計: $${it.subtotal})\n`; 
     });
-    summary += `【應付總額】NT$ ${payload.total} 元\n【備註候補】${payload.note || "無"}`;
+    summary += `【應付總額】NT$ ${payload.total} 元\n【備註候補1】${payload.note || "無"}`;
     document.getElementById("summaryContent").innerText = summary;
     document.getElementById("successOverlay").classList.remove("hidden");
   }
