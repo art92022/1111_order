@@ -59,7 +59,7 @@
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
   
-  /* 基礎輸入框 */
+  /* 基礎通用輸入框樣式 */
   input[type=text], input[type=tel], input[type=email], textarea { 
     width: 100%; 
     padding: 12px 13px; 
@@ -77,11 +77,11 @@
   }
   textarea { height: auto; }
 
-  /* 🌟 修正版日期輸入框：跨裝置完美保留最右側內建日曆 ICON */
+  /* 🌟 終極修正版：手機、電腦完全同步的日期輸入框（內嵌高質感自訂日曆 ICON） */
   input[type=date] {
     width: 100%;
     height: 48px;
-    padding: 12px 13px;
+    padding: 12px 40px 12px 13px; /* 右側留空間給日曆圖示 */
     border: 1px solid var(--line);
     border-radius: 2px;
     font-size: 14.5px;
@@ -89,10 +89,31 @@
     font-weight: 700;
     color: var(--ink);
     background-color: #FFF;
+    -webkit-appearance: none;
+    appearance: none;
     display: block;
+    position: relative;
+    /* 直接嵌入自訂不跑版日曆圖示 SVG */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231D3461' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
   }
 
-  /* 修正下拉選單自訂小箭頭 */
+  /* 隱藏 Chrome 內建不穩定的點擊 icon，並將感應區擴大到整個輸入框，點哪都能彈出日曆 */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* 下拉選單自訂小箭頭 */
   select {
     width: 100%;
     height: 48px;
@@ -137,6 +158,7 @@
   .catalog-empty { font-size: 14px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
   .cart { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 18px; }
   .cart-title { font-size: 12px; font-weight: 900; color: var(--navy); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .cart">已選購商品</div>
   .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
   .cart-row:last-child { border-bottom: none; }
   .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
@@ -394,12 +416,12 @@
     document.body.appendChild(script);
   }
 
-  // 🌟 全自動極致防呆：精準鎖定當天+後3天（共鎖死4天，第4天後方可選擇）
+  // 🌟 全自動防呆：日曆直接將今天與後三天封鎖（共鎖 4 天），只能選第 4 天以後
   document.addEventListener("DOMContentLoaded", function() {
     loadCatalog();
     
     let targetMinDate = new Date();
-    targetMinDate.setDate(targetMinDate.getDate() + 4); // 舉一反三：跳過當天與後三天，直接設定第 4 天為最小值
+    targetMinDate.setDate(targetMinDate.getDate() + 4); 
     
     let yyyy = targetMinDate.getFullYear();
     let mm = String(targetMinDate.getMonth() + 1).padStart(2, '0');
@@ -574,23 +596,23 @@
       targetDate = dDate; targetTime = dTime; finalAddressStr = dAddress;
     }
 
-    // 🌟 核心防呆升級：確認送出時，執行程式碼「硬性時間差阻擋」攔截
+    // 🌟 硬體強制程式攔截防呆：下單當天+後3天（共4天）硬性禁止送出，徹底封死漏洞
     if (targetDate) {
       const selectedDate = new Date(targetDate);
       selectedDate.setHours(0,0,0,0);
       
       let minLimitDate = new Date();
-      minLimitDate.setDate(minLimitDate.getDate() + 4); // 今天+4天為最底限天數
+      minLimitDate.setDate(minLimitDate.getDate() + 4); 
       minLimitDate.setHours(0,0,0,0);
       
       if (selectedDate < minLimitDate) {
-        errors.push("❌ 選擇日期不合規範！手工現做水餃需滿 3 天備貨時間，請重新點選第 4 天以後的有效日期。");
+        errors.push("❌ 選擇日期不合規範！手工現做水餃需 3 天備貨時間，請重新點選第 4 天以後的有效日期。");
         if (currentDeliveryType === "自取") document.getElementById("pickupDate").classList.add("field-error");
         else document.getElementById("deliveryDate").classList.add("field-error");
       }
     }
 
-    if (itemTotal <= 0) errors.push("購物車目前是空的，請至少選購一商品。");
+    if (itemTotal <= 0) errors.push("購物車目前是空的，請至少選購一包商品。");
     
     if (errors.length > 0) {
       banner.innerHTML = errors.join("<br>"); banner.style.display = "block"; 
