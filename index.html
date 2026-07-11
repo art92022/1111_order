@@ -14,8 +14,8 @@
     --paper: #F7F4EC;      /* 生成り和紙色：網頁主底色 */
     --paper-card: #FFFFFF; /* 純白：卡片底色 */
     --line: #E3DDCF;       /* 淺褐灰：細線分隔 */
-    --ink: #1F1D1A;        /* 墨碳色：主體文字，全面加深確保清晰度 */
-    --muted: #2E2A25;      /* 深炭灰：提示與說明文字，拒絕偏淡灰色 */
+    --ink: #1F1D1A;        /* 墨碳色：主體文字 */
+    --muted: #2E2A25;      /* 深炭灰：提示與說明文字 */
     --accent: #9B4B34;     /* 深朱色：價格、強調標示 */
     --accent-bg: #F6EEE8;  /* 朱色淡底 */
     --gold: #B08F5C;       /* 金褐：細節點綴 */
@@ -59,8 +59,8 @@
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
   
-  /* 統一所有輸入框與選擇器的基礎樣式 */
-  input[type=text], input[type=tel], input[type=email], input[type=date], select, textarea { 
+  /* 基礎輸入框 */
+  input[type=text], input[type=tel], input[type=email], textarea { 
     width: 100%; 
     padding: 12px 13px; 
     border: 1px solid var(--line); 
@@ -70,31 +70,47 @@
     font-weight: 700; 
     color: var(--ink);
     background-color: #FFF;
-    display: block;
-  }
-
-  /* 🌟 修正版：完美相容手機與電腦的日期與下拉選單高度與圖示 */
-  input[type=text], input[type=tel], input[type=email], input[type=date], select {
     height: 48px;
     -webkit-appearance: none;
     appearance: none;
-  }
-
-  /* 讓電腦與手機瀏覽器保留內建的自訂右側日曆/下拉小圖示 */
-  input[type="date"]::-webkit-calendar-picker-indicator {
     display: block;
-    cursor: pointer;
-    opacity: 1;
-    color: var(--navy);
+  }
+  textarea { height: auto; }
+
+  /* 🌟 修正版日期輸入框：跨裝置完美保留最右側內建日曆 ICON */
+  input[type=date] {
+    width: 100%;
+    height: 48px;
+    padding: 12px 13px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    font-size: 14.5px;
+    font-family: "Noto Serif TC", serif;
+    font-weight: 700;
+    color: var(--ink);
+    background-color: #FFF;
+    display: block;
   }
 
-  /* 修正下拉選單在拔除原生樣式後的箭頭顯示 */
+  /* 修正下拉選單自訂小箭頭 */
   select {
+    width: 100%;
+    height: 48px;
+    padding: 12px 30px 12px 13px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    font-size: 14.5px;
+    font-family: "Noto Serif TC", serif;
+    font-weight: 700;
+    color: var(--ink);
+    background-color: #FFF;
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 5'><path fill='%231D3461' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 10px;
-    padding-right: 30px;
   }
 
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
@@ -215,12 +231,12 @@
       <div class="tip-row" style="color: var(--accent); font-weight: 900; margin-top: 4px;">※ 備註：領貨前請先電話聯繫 吳先生</div>
       
       <div class="field-notice" style="margin-top: 14px; margin-bottom: 14px; color: var(--navy); font-weight: 900;">
-        📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，請於開放日期中選擇。
+        📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，只能選擇第 4 天以後的日期。
       </div>
 
       <div class="field">
         <label>預計自取日期 <span class="hint">*</span></label>
-        <input type="date" id="pickupDate" required>
+        <input type="date" id="pickupDate">
       </div>
 
       <div class="field" style="margin-bottom: 0;">
@@ -237,14 +253,14 @@
     <div id="block-address" class="hidden">
       <div class="kitchen-tips" style="margin-bottom: 18px; padding: 12px 18px;">
         <div class="field-notice" style="color: var(--navy); font-weight: 900;">
-          📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，請於開放日期中選擇。
+          📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，只能選擇第 4 天以後的日期。
         </div>
       </div>
 
       <div class="row2">
         <div class="field">
           <label>預計外送日期 <span class="hint">*</span></label>
-          <input type="date" id="deliveryDate" required>
+          <input type="date" id="deliveryDate">
         </div>
         <div class="field">
           <label>預計外送時段 <span class="hint">*</span></label>
@@ -286,6 +302,7 @@
         <input type="text" id="deliveryAddress" placeholder="請填寫完整道路巷弄、樓層門牌">
       </div>
     </div>
+
     <div class="field" style="margin-top: 20px; border-top: 1px solid var(--line); padding-top: 20px;">
       <label>選擇付款方式</label>
       <div class="seg" id="paymentMethodSeg">
@@ -377,13 +394,16 @@
     document.body.appendChild(script);
   }
 
+  // 🌟 全自動極致防呆：精準鎖定當天+後3天（共鎖死4天，第4天後方可選擇）
   document.addEventListener("DOMContentLoaded", function() {
     loadCatalog();
-    let today = new Date();
-    today.setDate(today.getDate() + 3);
-    let yyyy = today.getFullYear();
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let dd = String(today.getDate()).padStart(2, '0');
+    
+    let targetMinDate = new Date();
+    targetMinDate.setDate(targetMinDate.getDate() + 4); // 舉一反三：跳過當天與後三天，直接設定第 4 天為最小值
+    
+    let yyyy = targetMinDate.getFullYear();
+    let mm = String(targetMinDate.getMonth() + 1).padStart(2, '0');
+    let dd = String(targetMinDate.getDate()).padStart(2, '0');
     let minDateStr = `${yyyy}-${mm}-${dd}`;
 
     const pDateInput = document.getElementById('pickupDate');
@@ -414,14 +434,9 @@
       html += `<div class="category-zone"><div class="catalog-grid">`;
       zones[zoneName].forEach(p => {
         const isOut = p.stock <= 0;
-        let stockTxt = "";
-        let isLow = false;
-        if (isOut) {
-          stockTxt = "已售完";
-        } else if (p.stock <= 10) {
-          stockTxt = `即將完售：僅剩 ${p.stock} 包`;
-          isLow = true;
-        }
+        let stockTxt = ""; let isLow = false;
+        if (isOut) stockTxt = "已售完";
+        else if (p.stock <= 10) { stockTxt = `即將完售：僅剩 ${p.stock} 包`; isLow = true; }
         const cleanName = cleanProductName(p.name);
         html += `<button type="button" class="product-card" id="card-${p.name}" ${isOut ? "disabled" : ""} onclick="addToCart('${p.name}')">
             <span class="p-name">${cleanName}</span><span class="p-price">NT$ ${p.price}</span>
@@ -447,12 +462,10 @@
       const shippingLine = document.getElementById("shippingFeeLine");
 
       if (currentDeliveryType === "自取") {
-        blockPickup.classList.remove("hidden");
-        blockAddress.classList.add("hidden"); 
+        blockPickup.classList.remove("hidden"); blockAddress.classList.add("hidden"); 
         shippingFee = 0; shippingLine.classList.add("hidden");
       } else if (currentDeliveryType === "雙北外送") {
-        blockPickup.classList.add("hidden");  
-        blockAddress.classList.remove("hidden");
+        blockPickup.classList.add("hidden"); blockAddress.classList.remove("hidden");
         shippingFee = 150; document.getElementById("shippingFeeVal").innerText = shippingFee;
         shippingLine.classList.remove("hidden");
       }
@@ -474,9 +487,7 @@
 
   function copyValue(id) {
     const text = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(text).then(() => {
-      alert("📋 已成功複製：\n" + text);
-    });
+    navigator.clipboard.writeText(text).then(() => { alert("📋 已成功複製招牌數字！"); });
   }
 
   function addToCart(name) {
@@ -563,26 +574,34 @@
       targetDate = dDate; targetTime = dTime; finalAddressStr = dAddress;
     }
 
-    if (itemTotal <= 0) errors.push("購物車目前是空的");
+    // 🌟 核心防呆升級：確認送出時，執行程式碼「硬性時間差阻擋」攔截
+    if (targetDate) {
+      const selectedDate = new Date(targetDate);
+      selectedDate.setHours(0,0,0,0);
+      
+      let minLimitDate = new Date();
+      minLimitDate.setDate(minLimitDate.getDate() + 4); // 今天+4天為最底限天數
+      minLimitDate.setHours(0,0,0,0);
+      
+      if (selectedDate < minLimitDate) {
+        errors.push("❌ 選擇日期不合規範！手工現做水餃需滿 3 天備貨時間，請重新點選第 4 天以後的有效日期。");
+        if (currentDeliveryType === "自取") document.getElementById("pickupDate").classList.add("field-error");
+        else document.getElementById("deliveryDate").classList.add("field-error");
+      }
+    }
+
+    if (itemTotal <= 0) errors.push("購物車目前是空的，請至少選購一商品。");
+    
     if (errors.length > 0) {
       banner.innerHTML = errors.join("<br>"); banner.style.display = "block"; 
       window.scrollTo({ top: banner.offsetTop - 40, behavior: 'smooth' }); return;
     }
 
     const finalPayload = {
-      orderNo: finalOrderNo,
-      orderDate: dateStr,
-      name: bName,
-      phone: bPhone,
-      email: bEmail,
-      deliveryType: currentDeliveryType, 
-      deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "無",
-      deliveryAddress: finalAddressStr,
-      targetDate: targetDate, 
-      targetTime: targetTime, 
-      items: itemsPayload,
-      paymentMethod: currentPaymentMethod,
-      total: itemTotal + shippingFee,
+      orderNo: finalOrderNo, orderDate: dateStr, name: bName, phone: bPhone, email: bEmail,
+      deliveryType: currentDeliveryType, deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "無",
+      deliveryAddress: finalAddressStr, targetDate: targetDate, targetTime: targetTime, 
+      items: itemsPayload, paymentMethod: currentPaymentMethod, total: itemTotal + shippingFee,
       note: document.getElementById("orderNote").value.trim()
     };
 
