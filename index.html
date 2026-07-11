@@ -59,7 +59,6 @@
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
   
-  /* 基礎通用輸入框樣式 */
   input[type=text], input[type=tel], input[type=email], textarea { 
     width: 100%; 
     padding: 12px 13px; 
@@ -77,11 +76,11 @@
   }
   textarea { height: auto; }
 
-  /* 🌟 終極修正版：手機、電腦完全同步的日期輸入框（內嵌高質感自訂日曆 ICON） */
+  /* 🌟 手機、電腦完全同步的日期輸入框（內嵌高質感自訂日曆 ICON） */
   input[type=date] {
     width: 100%;
     height: 48px;
-    padding: 12px 40px 12px 13px; /* 右側留空間給日曆圖示 */
+    padding: 12px 40px 12px 13px;
     border: 1px solid var(--line);
     border-radius: 2px;
     font-size: 14.5px;
@@ -93,14 +92,12 @@
     appearance: none;
     display: block;
     position: relative;
-    /* 直接嵌入自訂不跑版日曆圖示 SVG */
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231D3461' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line></svg>");
     background-repeat: no-repeat;
     background-position: right 14px center;
     background-size: 18px;
   }
 
-  /* 隱藏 Chrome 內建不穩定的點擊 icon，並將感應區擴大到整個輸入框，點哪都能彈出日曆 */
   input[type="date"]::-webkit-calendar-picker-indicator {
     position: absolute;
     top: 0;
@@ -113,7 +110,6 @@
     cursor: pointer;
   }
 
-  /* 下拉選單自訂小箭頭 */
   select {
     width: 100%;
     height: 48px;
@@ -158,7 +154,6 @@
   .catalog-empty { font-size: 14px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
   .cart { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 18px; }
   .cart-title { font-size: 12px; font-weight: 900; color: var(--navy); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
-  .cart">已選購商品</div>
   .cart-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
   .cart-row:last-child { border-bottom: none; }
   .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
@@ -416,7 +411,7 @@
     document.body.appendChild(script);
   }
 
-  // 🌟 全自動防呆：日曆直接將今天與後三天封鎖（共鎖 4 天），只能選第 4 天以後
+  // 🌟 針對 iOS 的終極防呆解法：除了設定 min，同時設定「預設值 value」強迫日曆定位！
   document.addEventListener("DOMContentLoaded", function() {
     loadCatalog();
     
@@ -429,9 +424,15 @@
     let minDateStr = `${yyyy}-${mm}-${dd}`;
 
     const pDateInput = document.getElementById('pickupDate');
-    if(pDateInput) pDateInput.setAttribute('min', minDateStr);
+    if(pDateInput) {
+      pDateInput.setAttribute('min', minDateStr);
+      pDateInput.value = minDateStr; // 🌟 這一行是解決 iOS 跑版的超級關鍵！
+    }
     const dDateInput = document.getElementById('deliveryDate');
-    if(dDateInput) dDateInput.setAttribute('min', minDateStr);
+    if(dDateInput) {
+      dDateInput.setAttribute('min', minDateStr);
+      dDateInput.value = minDateStr; // 🌟 這一行是解決 iOS 跑版的超級關鍵！
+    }
   });
 
   function cleanProductName(rawName) {
@@ -596,7 +597,7 @@
       targetDate = dDate; targetTime = dTime; finalAddressStr = dAddress;
     }
 
-    // 🌟 硬體強制程式攔截防呆：下單當天+後3天（共4天）硬性禁止送出，徹底封死漏洞
+    // 🌟 硬體強制程式攔截防呆
     if (targetDate) {
       const selectedDate = new Date(targetDate);
       selectedDate.setHours(0,0,0,0);
