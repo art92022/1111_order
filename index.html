@@ -59,6 +59,7 @@
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
   
+  /* 統一所有輸入框與選擇器的基礎樣式 */
   input[type=text], input[type=tel], input[type=email], input[type=date], select, textarea { 
     width: 100%; 
     padding: 12px 13px; 
@@ -69,37 +70,32 @@
     font-weight: 700; 
     color: var(--ink);
     background-color: #FFF;
+    display: block;
   }
 
-  /* ========================================================= */
-  /* 新增：針對 iOS 裝置的日期欄位與下拉選單強制重置樣式，解決跑版問題 */
-  /* ========================================================= */
-  input[type=date], select {
+  /* 🌟 修正版：完美相容手機與電腦的日期與下拉選單高度與圖示 */
+  input[type=text], input[type=tel], input[type=email], input[type=date], select {
+    height: 48px;
     -webkit-appearance: none;
     appearance: none;
-    min-height: 48px; /* 強制給定一個最小高度，避免被壓縮 */
-    background-color: #FFF; /* 確保底色是白色的，不會變透明 */
   }
 
-  /* 確保日期輸入框的文字能垂直置中，並讓日曆 icon 正常顯示 */
-  input[type="date"] {
-    position: relative;
-  }
-  
-  /* 修正部分手機瀏覽器日曆 icon 消失或排版錯誤的問題 */
+  /* 讓電腦與手機瀏覽器保留內建的自訂右側日曆/下拉小圖示 */
   input[type="date"]::-webkit-calendar-picker-indicator {
-    background: transparent;
-    bottom: 0;
-    color: transparent;
+    display: block;
     cursor: pointer;
-    height: auto;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
+    opacity: 1;
+    color: var(--navy);
   }
-  /* ========================================================= */
+
+  /* 修正下拉選單在拔除原生樣式後的箭頭顯示 */
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 5'><path fill='%231D3461' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 10px;
+    padding-right: 30px;
+  }
 
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -224,7 +220,7 @@
 
       <div class="field">
         <label>預計自取日期 <span class="hint">*</span></label>
-        <input type="date" id="pickupDate">
+        <input type="date" id="pickupDate" required>
       </div>
 
       <div class="field" style="margin-bottom: 0;">
@@ -248,7 +244,7 @@
       <div class="row2">
         <div class="field">
           <label>預計外送日期 <span class="hint">*</span></label>
-          <input type="date" id="deliveryDate">
+          <input type="date" id="deliveryDate" required>
         </div>
         <div class="field">
           <label>預計外送時段 <span class="hint">*</span></label>
@@ -290,7 +286,6 @@
         <input type="text" id="deliveryAddress" placeholder="請填寫完整道路巷弄、樓層門牌">
       </div>
     </div>
-
     <div class="field" style="margin-top: 20px; border-top: 1px solid var(--line); padding-top: 20px;">
       <label>選擇付款方式</label>
       <div class="seg" id="paymentMethodSeg">
@@ -570,7 +565,8 @@
 
     if (itemTotal <= 0) errors.push("購物車目前是空的");
     if (errors.length > 0) {
-      banner.innerHTML = errors.join("<br>"); banner.style.display = "block"; return;
+      banner.innerHTML = errors.join("<br>"); banner.style.display = "block"; 
+      window.scrollTo({ top: banner.offsetTop - 40, behavior: 'smooth' }); return;
     }
 
     const finalPayload = {
