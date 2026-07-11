@@ -31,7 +31,7 @@
     padding: 40px 18px 110px; 
     line-height: 1.8; 
     -webkit-font-smoothing: antialiased; 
-    font-weight: 700; /* 全網頁基礎字體直接設定為 700 粗體 */
+    font-weight: 700;
   }
   
   .sheet { max-width: 620px; margin: 0 auto; }
@@ -46,12 +46,10 @@
   
   section { background: var(--paper-card); border: 1px solid var(--line); padding: 28px 24px; margin-bottom: 22px; }
   
-  /* 【大標題層級】大於所有內容與小標題 */
   .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
   .sec-head .num { font-size: 14px; color: var(--gold); font-weight: 900; }
   .sec-label { font-weight: 900; font-size: 20px; color: var(--navy); letter-spacing: 2px; }
   
-  /* 【說明、介紹文字層級】統一優雅小字，但維持清晰深色與粗體 */
   .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 700; background: #FAF9F6; }
   .kitchen-tips .tip-title { display: block; font-size: 12px; letter-spacing: 2px; color: var(--navy); font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
   .kitchen-tips .tip-row { margin-bottom: 8px; }
@@ -80,11 +78,9 @@
   .seg button.active { background: var(--navy); color: #fff; font-weight: 900; }
   .seg button:disabled { color: #B9B3A6; }
   
-  /* 【分類標題層級】介於大標題與內文卡片之間，清晰明顯 */
   .category-title { font-size: 17.5px; font-weight: 900; color: var(--navy); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: 1px; }
   .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   
-  /* 【商品卡片與中階文字層級】 */
   .product-card { border: 1px solid var(--line); background: #fff; padding: 18px 15px; text-align: left; cursor: pointer; transition: all 0.15s ease; position: relative; font-family: "Noto Serif TC", serif; }
   .product-card:hover:not(:disabled) { border-color: var(--navy); }
   .product-card.in-cart { border-color: var(--navy); background: #F9FAFB; box-shadow: inset 0 0 0 1px var(--navy); }
@@ -185,11 +181,15 @@
       </div>
     </div>
 
+    <!-- =============== 【自取資訊區塊】開始 =============== -->
     <div id="block-pickup" class="kitchen-tips">
       <span class="tip-title">自取資訊</span>
       <div class="tip-row">地址：<a href="https://maps.app.goo.gl/e5MS86ZxQU5NHSNfA?g_st=ic" target="_blank" class="map-link">📍 220新北市板橋區新興里中興路27號</a></div>
       <div class="tip-row">電話：09-7280-6443</div>
+      <!-- 改寫：直接將備註寫死在資訊欄中，不上客人輸入 -->
+      <div class="tip-row" style="color: var(--accent); font-weight: 900; margin-top: 4px;">※ 備註：領貨前請先電話聯繫 吳先生</div>
       
+      <!-- 備貨時間提示 -->
       <div class="field-notice" style="margin-top: 14px; margin-bottom: 14px; color: var(--navy); font-weight: 900;">
         📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，請於開放日期中選擇。
       </div>
@@ -199,7 +199,7 @@
         <input type="date" id="pickupDate" required>
       </div>
 
-      <div class="field">
+      <div class="field" style="margin-bottom: 0;">
         <label>預計自取時段 <span class="hint">*</span></label>
         <select id="pickupTime">
           <option value="">-- 請選擇自取時段 --</option>
@@ -208,13 +208,36 @@
           <option value="晚間時段 (19:00 - 21:00)">晚間時段 (19:00 - 21:00)</option>
         </select>
       </div>
-
-      <div class="field" style="margin-bottom: 0;">
-        <label>自取備註</label>
-        <input type="text" id="pickupMemo" value="領貨前電話聯繫 吳先生">
-      </div>
     </div>
+    <!-- =============== 【自取資訊區塊】結束 =============== -->
+
+    <!-- =============== 【外送資訊區塊】開始 =============== -->
     <div id="block-address" class="hidden">
+      
+      <!-- 新增：外送的備貨時間提示（帶入漂亮底色） -->
+      <div class="kitchen-tips" style="margin-bottom: 18px; padding: 12px 18px;">
+        <div class="field-notice" style="color: var(--navy); font-weight: 900;">
+          📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，請於開放日期中選擇。
+        </div>
+      </div>
+
+      <!-- 新增：外送日期與時段 -->
+      <div class="row2">
+        <div class="field">
+          <label>預計外送日期 <span class="hint">*</span></label>
+          <input type="date" id="deliveryDate" required>
+        </div>
+        <div class="field">
+          <label>預計外送時段 <span class="hint">*</span></label>
+          <select id="deliveryTime">
+            <option value="">-- 請選擇時段 --</option>
+            <option value="下午時段 (13:00 - 16:00)">下午 (13:00 - 16:00)</option>
+            <option value="傍晚時段 (16:00 - 19:00)">傍晚 (16:00 - 19:00)</option>
+            <option value="晚間時段 (19:00 - 21:00)">晚間 (19:00 - 21:00)</option>
+          </select>
+        </div>
+      </div>
+
       <div class="field" id="zone-field">
         <label>外送地區（僅限雙北） <span class="hint">*</span></label>
         <select id="deliveryZone">
@@ -244,6 +267,7 @@
         <input type="text" id="deliveryAddress" placeholder="請填寫完整道路巷弄、樓層門牌">
       </div>
     </div>
+    <!-- =============== 【外送資訊區塊】結束 =============== -->
 
     <div class="field" style="margin-top: 20px; border-top: 1px solid var(--line); padding-top: 20px;">
       <label>選擇付款方式</label>
@@ -338,19 +362,22 @@
     document.body.appendChild(script);
   }
 
-  // 設定自動鎖定 3 天內日期的腳本
+  // 設定自動鎖定 3 天內日期的腳本（同時套用自取與外送）
   document.addEventListener("DOMContentLoaded", function() {
     loadCatalog();
 
-    const dateInput = document.getElementById('pickupDate');
-    if(dateInput) {
-      let today = new Date();
-      today.setDate(today.getDate() + 3);
-      let yyyy = today.getFullYear();
-      let mm = String(today.getMonth() + 1).padStart(2, '0');
-      let dd = String(today.getDate()).padStart(2, '0');
-      dateInput.setAttribute('min', `${yyyy}-${mm}-${dd}`);
-    }
+    let today = new Date();
+    today.setDate(today.getDate() + 3);
+    let yyyy = today.getFullYear();
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let dd = String(today.getDate()).padStart(2, '0');
+    let minDateStr = `${yyyy}-${mm}-${dd}`;
+
+    const pDateInput = document.getElementById('pickupDate');
+    if(pDateInput) pDateInput.setAttribute('min', minDateStr);
+
+    const dDateInput = document.getElementById('deliveryDate');
+    if(dDateInput) dDateInput.setAttribute('min', minDateStr);
   });
 
   function cleanProductName(rawName) {
@@ -507,10 +534,11 @@
     const bPhone = document.getElementById("buyerPhone").value.trim();
     const bEmail = document.getElementById("buyerEmail").value.trim();
     
-    // 新增抓取自取日期與備註的值
+    // 抓取自取與外送的日期時間
     const pDate = document.getElementById("pickupDate") ? document.getElementById("pickupDate").value : "";
     const pTime = document.getElementById("pickupTime") ? document.getElementById("pickupTime").value : ""; 
-    const pMemo = document.getElementById("pickupMemo") ? document.getElementById("pickupMemo").value.trim() : "";
+    const dDate = document.getElementById("deliveryDate") ? document.getElementById("deliveryDate").value : "";
+    const dTime = document.getElementById("deliveryTime") ? document.getElementById("deliveryTime").value : ""; 
     
     const dZone = document.getElementById("deliveryZone").value;
     const dAddress = document.getElementById("deliveryAddress").value.trim();
@@ -533,6 +561,8 @@
       if (!pDate) { errors.push("請選擇預計自取日期"); document.getElementById("pickupDate").classList.add("field-error"); }
       if (!pTime) { errors.push("請選擇預計自取時段"); document.getElementById("pickupTime").classList.add("field-error"); }
     } else if (currentDeliveryType === "雙北外送") {
+      if (!dDate) { errors.push("請選擇預計外送日期"); document.getElementById("deliveryDate").classList.add("field-error"); }
+      if (!dTime) { errors.push("請選擇預計外送時段"); document.getElementById("deliveryTime").classList.add("field-error"); }
       if (!dZone) { errors.push("請選擇雙北外送區域"); document.getElementById("deliveryZone").classList.add("field-error"); }
       if (!dAddress) { errors.push("請輸入外送收件地址"); document.getElementById("deliveryAddress").classList.add("field-error"); }
     }
@@ -544,6 +574,17 @@
       window.scrollTo({ top: banner.offsetTop - 40, behavior: 'smooth' }); return;
     }
 
+    // 處理要送去 Google Sheet 的格式
+    let finalDeliveryStr = "";
+    let finalAddressStr = "";
+    if (currentDeliveryType === "自取") {
+      finalDeliveryStr = `店面自取 (${pDate} ${pTime})`;
+      finalAddressStr = `無 (備註：領貨前電話聯繫 吳先生)`;
+    } else if (currentDeliveryType === "雙北外送") {
+      finalDeliveryStr = `雙北外送 (${dDate} ${dTime} / 外送費 $${shippingFee})`;
+      finalAddressStr = dAddress;
+    }
+
     const finalTotal = itemTotal + shippingFee;
     const finalPayload = {
       orderNo: finalOrderNo,
@@ -551,11 +592,9 @@
       name: bName,
       phone: bPhone,
       email: bEmail,
-      // 寫入包含日期的自取資訊
-      deliveryType: currentDeliveryType === "自取" ? `店面自取 (${pDate} ${pTime})` : `${currentDeliveryType} (外送費 $${shippingFee})`, 
+      deliveryType: finalDeliveryStr, 
       deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "店面自取",
-      // 將自取備註寫進地址欄位，方便後台直接看到
-      deliveryAddress: (currentDeliveryType === "自取") ? `無 (自取備註：${pMemo})` : dAddress,
+      deliveryAddress: finalAddressStr,
       items: itemsPayload,
       paymentMethod: currentPaymentMethod,
       total: finalTotal,
@@ -583,8 +622,11 @@
 
   function showSuccessModal(payload) {
     let summary = `【訂單單號】${payload.orderNo}\n【訂購日期】${payload.orderDate}\n【聯絡姓名】${payload.name}\n【聯絡電話】${payload.phone}\n【配送管道】${payload.deliveryType}\n【付款方式】${payload.paymentMethod}\n`;
-    if (!payload.deliveryType.includes('自取')) summary += `【區域縣市】${payload.deliveryZone}\n【完整地址】${payload.deliveryAddress}\n`;
-    else summary += `【自取備註】${document.getElementById("pickupMemo").value.trim()}\n`;
+    if (!payload.deliveryType.includes('自取')) {
+      summary += `【區域縣市】${payload.deliveryZone}\n【完整地址】${payload.deliveryAddress}\n`;
+    } else {
+      summary += `【自取備註】領貨前請先電話聯繫 吳先生\n`;
+    }
     summary += `【購買品項】\n`;
     payload.items.forEach(it => { 
       const cleanPayloadName = cleanProductName(it.name);
