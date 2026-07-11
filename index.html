@@ -61,7 +61,7 @@
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
   
-  input[type=text], input[type=tel], input[type=email], select, textarea { 
+  input[type=text], input[type=tel], input[type=email], input[type=date], select, textarea { 
     width: 100%; 
     padding: 12px 13px; 
     border: 1px solid var(--line); 
@@ -189,7 +189,17 @@
       <span class="tip-title">自取資訊</span>
       <div class="tip-row">地址：<a href="https://maps.app.goo.gl/e5MS86ZxQU5NHSNfA?g_st=ic" target="_blank" class="map-link">📍 220新北市板橋區新興里中興路27號</a></div>
       <div class="tip-row">電話：09-7280-6443</div>
-      <div class="field" style="margin-top: 14px;">
+      
+      <div class="field-notice" style="margin-top: 14px; margin-bottom: 14px; color: var(--navy); font-weight: 900;">
+        📢 備貨時間：本商品為手工現做，需 3 個工作天備貨，請於開放日期中選擇。
+      </div>
+
+      <div class="field">
+        <label>預計自取日期 <span class="hint">*</span></label>
+        <input type="date" id="pickupDate" required>
+      </div>
+
+      <div class="field">
         <label>預計自取時段 <span class="hint">*</span></label>
         <select id="pickupTime">
           <option value="">-- 請選擇自取時段 --</option>
@@ -198,8 +208,12 @@
           <option value="晚間時段 (19:00 - 21:00)">晚間時段 (19:00 - 21:00)</option>
         </select>
       </div>
-    </div>
 
+      <div class="field" style="margin-bottom: 0;">
+        <label>自取備註</label>
+        <input type="text" id="pickupMemo" value="領貨前電話聯繫 吳先生">
+      </div>
+    </div>
     <div id="block-address" class="hidden">
       <div class="field" id="zone-field">
         <label>外送地區（僅限雙北） <span class="hint">*</span></label>
@@ -208,12 +222,12 @@
           <optgroup label="台北市">
             <option value="台北市中正區">台北市 中正區</option><option value="台北市大同區">台北市 大同區</option><option value="台北市中山區">台北市 中山區</option>
             <option value="台北市松山區">台北市 松山區</option><option value="台北市大安區">台北市 大安區</option><option value="台北市萬華區">台北市 萬華區</option>
-            <option value="台北市信義區">台北市 信義區</option><option value="台北市士林區">台北市 土死林區</option><option value="台北市北投區">台北市 北投區</option>
+            <option value="台北市信義區">台北市 信義區</option><option value="台北市士林區">台北市 士林區</option><option value="台北市北投區">台北市 北投區</option>
             <option value="台北市內湖區">台北市 內湖區</option><option value="台北市南港區">台北市 南港區</option><option value="台北市文山區">台北市 文山區</option>
           </optgroup>
           <optgroup label="新北市">
             <option value="新北市板橋區">新北市 板橋區</option><option value="新北市三重區">新北市 三重區</option><option value="新北市中和區">新北市 中和區</option>
-            <option value="新北市永和區">新北市 新莊區</option><option value="新北市新莊區">新北市 新莊區</option><option value="新北市新店區">新北市 新店區</option>
+            <option value="新北市永和區">新北市 永和區</option><option value="新北市新莊區">新北市 新莊區</option><option value="新北市新店區">新北市 新店區</option>
             <option value="新北市樹林區">新北市 樹林區</option><option value="新北市鶯歌區">新北市 鶯歌區</option><option value="新北市三峽區">新北市 三峽區</option>
             <option value="新北市淡水區">新北市 淡水區</option><option value="新北市汐止區">新北市 汐止區</option><option value="新北市瑞芳區">新北市 瑞芳區</option>
             <option value="新北市土城區">新北市 土城區</option><option value="新北市蘆洲區">新北市 蘆洲區</option><option value="新北市五股區">新北市 五股區</option>
@@ -324,6 +338,21 @@
     document.body.appendChild(script);
   }
 
+  // 設定自動鎖定 3 天內日期的腳本
+  document.addEventListener("DOMContentLoaded", function() {
+    loadCatalog();
+
+    const dateInput = document.getElementById('pickupDate');
+    if(dateInput) {
+      let today = new Date();
+      today.setDate(today.getDate() + 3);
+      let yyyy = today.getFullYear();
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let dd = String(today.getDate()).padStart(2, '0');
+      dateInput.setAttribute('min', `${yyyy}-${mm}-${dd}`);
+    }
+  });
+
   function cleanProductName(rawName) {
     return rawName
       .replace(/[\|｜]\s*50顆\s*[\/／]\s*包/g, '')
@@ -370,8 +399,6 @@
     container.innerHTML = html;
     updateCartUI();
   }
-
-  document.addEventListener("DOMContentLoaded", loadCatalog);
 
   document.getElementById("deliveryTypeSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
@@ -479,7 +506,12 @@
     const bName = document.getElementById("buyerName").value.trim();
     const bPhone = document.getElementById("buyerPhone").value.trim();
     const bEmail = document.getElementById("buyerEmail").value.trim();
-    const pTime = document.getElementById("pickupTime").value; 
+    
+    // 新增抓取自取日期與備註的值
+    const pDate = document.getElementById("pickupDate") ? document.getElementById("pickupDate").value : "";
+    const pTime = document.getElementById("pickupTime") ? document.getElementById("pickupTime").value : ""; 
+    const pMemo = document.getElementById("pickupMemo") ? document.getElementById("pickupMemo").value.trim() : "";
+    
     const dZone = document.getElementById("deliveryZone").value;
     const dAddress = document.getElementById("deliveryAddress").value.trim();
     
@@ -498,6 +530,7 @@
     if (!bEmail) { errors.push("請輸入電子信箱"); document.getElementById("buyerEmail").classList.add("field-error"); }
 
     if (currentDeliveryType === "自取") {
+      if (!pDate) { errors.push("請選擇預計自取日期"); document.getElementById("pickupDate").classList.add("field-error"); }
       if (!pTime) { errors.push("請選擇預計自取時段"); document.getElementById("pickupTime").classList.add("field-error"); }
     } else if (currentDeliveryType === "雙北外送") {
       if (!dZone) { errors.push("請選擇雙北外送區域"); document.getElementById("deliveryZone").classList.add("field-error"); }
@@ -518,9 +551,11 @@
       name: bName,
       phone: bPhone,
       email: bEmail,
-      deliveryType: currentDeliveryType === "自取" ? `店面自取 (${pTime})` : `${currentDeliveryType} (外送費 $${shippingFee})`, 
+      // 寫入包含日期的自取資訊
+      deliveryType: currentDeliveryType === "自取" ? `店面自取 (${pDate} ${pTime})` : `${currentDeliveryType} (外送費 $${shippingFee})`, 
       deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "店面自取",
-      deliveryAddress: (currentDeliveryType === "自取") ? `無 (預計自取時間：${pTime})` : dAddress,
+      // 將自取備註寫進地址欄位，方便後台直接看到
+      deliveryAddress: (currentDeliveryType === "自取") ? `無 (自取備註：${pMemo})` : dAddress,
       items: itemsPayload,
       paymentMethod: currentPaymentMethod,
       total: finalTotal,
@@ -549,12 +584,13 @@
   function showSuccessModal(payload) {
     let summary = `【訂單單號】${payload.orderNo}\n【訂購日期】${payload.orderDate}\n【聯絡姓名】${payload.name}\n【聯絡電話】${payload.phone}\n【配送管道】${payload.deliveryType}\n【付款方式】${payload.paymentMethod}\n`;
     if (!payload.deliveryType.includes('自取')) summary += `【區域縣市】${payload.deliveryZone}\n【完整地址】${payload.deliveryAddress}\n`;
+    else summary += `【自取備註】${document.getElementById("pickupMemo").value.trim()}\n`;
     summary += `【購買品項】\n`;
     payload.items.forEach(it => { 
       const cleanPayloadName = cleanProductName(it.name);
       summary += `  • ${cleanPayloadName} x ${it.qty} 包 (小計: $${it.subtotal})\n`; 
     });
-    summary += `【應付總額】NT$ ${payload.total} 元\n【備註候補】${payload.note || "無"}`;
+    summary += `【應付總額】NT$ ${payload.total} 元\n【訂單備註】${payload.note || "無"}`;
     document.getElementById("summaryContent").innerText = summary;
     document.getElementById("successOverlay").classList.remove("hidden");
   }
