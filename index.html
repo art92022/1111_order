@@ -70,6 +70,37 @@
     color: var(--ink);
     background-color: #FFF;
   }
+
+  /* ========================================================= */
+  /* 新增：針對 iOS 裝置的日期欄位與下拉選單強制重置樣式，解決跑版問題 */
+  /* ========================================================= */
+  input[type=date], select {
+    -webkit-appearance: none;
+    appearance: none;
+    min-height: 48px; /* 強制給定一個最小高度，避免被壓縮 */
+    background-color: #FFF; /* 確保底色是白色的，不會變透明 */
+  }
+
+  /* 確保日期輸入框的文字能垂直置中，並讓日曆 icon 正常顯示 */
+  input[type="date"] {
+    position: relative;
+  }
+  
+  /* 修正部分手機瀏覽器日曆 icon 消失或排版錯誤的問題 */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+  }
+  /* ========================================================= */
+
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   
@@ -551,8 +582,8 @@
       deliveryType: currentDeliveryType, 
       deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "無",
       deliveryAddress: finalAddressStr,
-      targetDate: targetDate, // 拆分日期
-      targetTime: targetTime, // 拆分時段
+      targetDate: targetDate, 
+      targetTime: targetTime, 
       items: itemsPayload,
       paymentMethod: currentPaymentMethod,
       total: itemTotal + shippingFee,
