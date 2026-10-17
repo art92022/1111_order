@@ -206,6 +206,7 @@
   .hidden { display: none !important; }
   /* 選 7-11 時，本頁表單其他部分都不需要 */
   body.mode-711 .hide-for-711 { display: none !important; }
+  .submit-btn:disabled { background: #B9B3A6; cursor: not-allowed; }
   #myshipBtn.disabled { background: #B9B3A6; pointer-events: none; }
 
   .copy-inline-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 2px; margin-left: 6px; transition: all 0.1s; font-family: inherit; }
@@ -253,7 +254,7 @@
       <div class="seg" id="deliveryTypeSeg">
         <button type="button" class="active" data-val="自取">店面自取</button>
         <button type="button" data-val="7-11冷凍">7-11 冷凍店到店</button>
-        <button type="button" data-val="雙北外送">雙北外送（滿 NT$20,000）</button>
+        <button type="button" data-val="雙北外送">雙北外送（滿 NT$20,000 免運）</button>
       </div>
     </div>
 
@@ -283,7 +284,7 @@
 
       <div class="field">
         <label>預計自取日期 <span class="hint">*</span></label>
-        <input type="date" id="pickupDate">
+        <select id="pickupDate"><option value="">-- 請選擇自取日期 --</option></select>
       </div>
 
       <div class="field" style="margin-bottom: 0;">
@@ -320,7 +321,7 @@
       </div>
 
       <div class="kitchen-tips" style="margin-bottom: 18px; padding: 12px 18px;">
-        <div class="field-notice" style="color: var(--accent); font-weight: 900;">🚚 雙北外送為專人配送，訂單金額需滿 NT$20,000（不含運費）才提供外送服務。<span id="deliveryMinGap"></span></div>
+        <div class="field-notice" style="color: var(--accent); font-weight: 900;">🚚 雙北外送為專人配送，商品金額滿 NT$20,000 才提供外送，<b>免運費</b>；未滿無法送出訂單。<span id="deliveryMinGap"></span></div>
       </div>
 
       <div class="field" id="zone-field">
@@ -381,6 +382,14 @@
       <span class="tip-title">水餃保存與烹煮</span>
       <div class="tip-row">保存方式：全程冷凍保存，建議於 1 個月內食用完畢，鎖住最佳鮮度！</div>
       <div class="tip-row">美味烹煮：冷水下鍋，初滾加半碗冷水，再滾時加半碗冷水，待全數浮起轉小火慢滾一分鐘，即可優雅上桌。</div>
+    </div>
+    <div class="kitchen-tips">
+      <span class="tip-title">海鮮保存與退冰</span>
+      <div class="tip-row">保存方式：收到後請立即放入冷凍庫（-18°C 以下），建議於 1 個月內食用完畢。</div>
+      <div class="tip-row">退冰方式：料理前一晚移到冷藏室慢慢退冰；趕時間可連同包裝袋泡冷水解凍，請勿用熱水或常溫久放。</div>
+      <div class="tip-row">退冰後請盡快料理，<b style="color:var(--accent);">請勿再次冷凍</b>，以免影響口感與鮮度。</div>
+      <div class="tip-row">魚貨皆為人工處理，可能殘留少許魚刺或魚鱗，食用時請留意，尤其是長輩與小朋友。</div>
+      <div class="tip-row">整尾魚與盒裝蝦依實際重量略有差異；生鮮食品不適用 7 天鑑賞期，收到如有問題請當天拍照聯繫。</div>
     </div>
     <div id="catalogContainer">
       <div class="catalog-loading"><div class="spinner"></div><span>正在讀取今日商品與庫存</span></div>
@@ -464,19 +473,21 @@
     let dd = String(targetMinDate.getDate()).padStart(2, '0');
     let minDateStr = `${yyyy}-${mm}-${dd}`;
 
-    const pDateInput = document.getElementById('pickupDate');
-    if(pDateInput) {
-      pDateInput.setAttribute('min', minDateStr);
-      // 自取預設日期遇到週一（公休）就順延一天
-      let pDefault = new Date(targetMinDate);
-      if (pDefault.getDay() === 1) pDefault.setDate(pDefault.getDate() + 1);
-      pDateInput.value = pDefault.getFullYear() + '-' + String(pDefault.getMonth()+1).padStart(2,'0') + '-' + String(pDefault.getDate()).padStart(2,'0'); // 🌟 這一行是解決 iOS 跑版的超級關鍵！
-      pDateInput.addEventListener('change', function() {
-        if (this.value && new Date(this.value + 'T00:00:00').getDay() === 1) {
-          alert('週一公休，請選擇週二至週日的自取日期。');
-          this.value = '';
-        }
-      });
+    // 自取日期：列出第 4 天起 30 天，週一公休顯示灰色、不能選
+    const pSel = document.getElementById('pickupDate');
+    if (pSel) {
+      const W = ["日","一","二","三","四","五","六"];
+      let html = '<option value="">-- 請選擇自取日期 --</option>';
+      let firstOk = "";
+      for (let i = 0; i < 30; i++) {
+        const d = new Date(targetMinDate); d.setDate(d.getDate() + i);
+        const v = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+        const label = `${d.getMonth()+1}/${d.getDate()}（${W[d.getDay()]}）`;
+        if (d.getDay() === 1) html += `<option value="${v}" disabled>${label} 公休</option>`;
+        else { html += `<option value="${v}">${label}</option>`; if (!firstOk) firstOk = v; }
+      }
+      pSel.innerHTML = html;
+      pSel.value = firstOk;
     }
     const dDateInput = document.getElementById('deliveryDate');
     if(dDateInput) {
@@ -569,7 +580,7 @@
         shippingFee = 0; shippingLine.classList.add("hidden");
       } else if (currentDeliveryType === "雙北外送") {
         blockPickup.classList.add("hidden"); blockAddress.classList.remove("hidden");
-        shippingFee = 150; document.getElementById("shippingFeeVal").innerText = shippingFee;
+        shippingFee = 0; document.getElementById("shippingFeeVal").innerText = "0（免運）";
         shippingLine.classList.remove("hidden");
       }
       updateCartUI();
@@ -622,6 +633,12 @@
     if (!gapEl) return;
     const gap = DELIVERY_MIN - cartItemTotal();
     gapEl.innerText = gap > 0 ? `（目前還差 NT$${gap.toLocaleString()}）` : "（已達外送門檻 ✓）";
+    // 選雙北外送但未滿兩萬：送出按鈕反灰
+    const sb = document.getElementById("submitBtn");
+    if (sb.innerText === "訂單傳送中...") return;
+    const blocked = currentDeliveryType === "雙北外送" && gap > 0;
+    sb.disabled = blocked;
+    sb.innerText = blocked ? `雙北外送需滿 NT$20,000（還差 NT$${gap.toLocaleString()}）` : "確認送出訂單";
   }
 
   function updateCartUI() {
