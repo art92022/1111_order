@@ -22,51 +22,51 @@
   }
 
   * { box-sizing: border-box; }
-  
-  body { 
-    margin: 0; 
-    background: var(--paper); 
-    font-family: "Noto Serif TC", serif; 
-    color: var(--ink); 
-    padding: 40px 18px 110px; 
-    line-height: 1.8; 
-    -webkit-font-smoothing: antialiased; 
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    font-family: "Noto Serif TC", serif;
+    color: var(--ink);
+    padding: 40px 18px 110px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
     font-weight: 700;
   }
-  
+
   .sheet { max-width: 620px; margin: 0 auto; }
   header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 2px solid var(--navy); padding-bottom: 22px; margin-bottom: 28px; }
   .title-block .eyebrow { display: block; font-size: 12px; letter-spacing: 3px; color: var(--gold); font-weight: 900; margin-bottom: 8px; text-transform: uppercase; }
   .title-block h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
   .title-block p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 700; }
   .stamp { flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; text-align: center; letter-spacing: 2px; background: var(--accent-bg); writing-mode: vertical-rl; }
-  
+
   .order-meta { font-size: 13px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; font-weight: 700; }
   .order-meta span { font-weight: 900; color: var(--navy); }
-  
+
   section { background: var(--paper-card); border: 1px solid var(--line); padding: 28px 24px; margin-bottom: 22px; }
-  
+
   .sec-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
   .sec-head .num { font-size: 14px; color: var(--gold); font-weight: 900; }
   .sec-label { font-weight: 900; font-size: 20px; color: var(--navy); letter-spacing: 2px; }
-  
+
   .kitchen-tips { border: 1px solid var(--line); padding: 16px 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px; font-weight: 700; background: #FAF9F6; }
   .kitchen-tips .tip-title { display: block; font-size: 12px; letter-spacing: 2px; color: var(--navy); font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
   .kitchen-tips .tip-row { margin-bottom: 8px; }
   .kitchen-tips .tip-row:last-child { margin-bottom: 0; }
-  
+
   .field { margin-bottom: 18px; }
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
-  
-  input[type=text], input[type=tel], input[type=email], textarea { 
-    width: 100%; 
-    padding: 12px 13px; 
-    border: 1px solid var(--line); 
-    border-radius: 2px; 
-    font-size: 14.5px; 
-    font-family: "Noto Serif TC", serif; 
-    font-weight: 700; 
+
+  input[type=text], input[type=tel], input[type=email], textarea {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    font-size: 14.5px;
+    font-family: "Noto Serif TC", serif;
+    font-weight: 700;
     color: var(--ink);
     background-color: #FFF;
     height: 48px;
@@ -132,25 +132,38 @@
 
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  
+
   .seg { display: flex; border: 1px solid var(--line); overflow: hidden; background: #fff; }
   .seg button { flex: 1; padding: 12px 8px; border: none; background: #fff; font-size: 14px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; }
   .seg button.active { background: var(--navy); color: #fff; font-weight: 900; }
   .seg button:disabled { color: #B9B3A6; }
-  
+
   .category-title { font-size: 17.5px; font-weight: 900; color: var(--navy); margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--line); letter-spacing: 1px; }
   .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  
+
   .product-card { border: 1px solid var(--line); background: #fff; padding: 18px 15px; text-align: left; cursor: pointer; transition: all 0.15s ease; position: relative; font-family: "Noto Serif TC", serif; }
   .product-card:hover:not(:disabled) { border-color: var(--navy); }
   .product-card.in-cart { border-color: var(--navy); background: #F9FAFB; box-shadow: inset 0 0 0 1px var(--navy); }
   .product-card:disabled { opacity: 0.45; cursor: not-allowed; }
-  
+
   .product-card .p-name { display: block; font-weight: 900; font-size: 15.5px; margin-bottom: 8px; color: var(--ink); letter-spacing: 0.5px; line-height: 1.4; }
   .product-card .p-price { display: block; font-size: 15px; color: var(--accent); font-weight: 900; line-height: 1.3; }
   .product-card .p-stock { display: block; font-size: 12px; color: var(--muted); margin-top: 8px; font-weight: 700; }
   .product-card .p-stock.low-stock { color: var(--accent); font-weight: 900; }
-  
+
+  /* 分區與多規格（例：鮭魚片 300g / 500g） */
+  .category-zone { margin-bottom: 26px; }
+  .category-zone:last-child { margin-bottom: 0; }
+  .product-card .p-spec { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
+  .product-card .p-note { display: block; font-size: 12px; color: var(--muted); margin-top: 6px; font-weight: 700; line-height: 1.5; }
+  .product-card.multi { cursor: default; grid-column: 1 / -1; }
+  .spec-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+  .spec-btn { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; width: 100%; padding: 8px 10px; border: 1px solid var(--line); background: #fff; font-family: inherit; font-size: 13px; font-weight: 700; color: var(--ink); cursor: pointer; text-align: left; }
+  .spec-btn:hover:not(:disabled) { border-color: var(--navy); }
+  .spec-btn.in-cart { border-color: var(--navy); box-shadow: inset 0 0 0 1px var(--navy); background: #F9FAFB; }
+  .spec-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .spec-btn .sp-price { color: var(--accent); font-weight: 900; white-space: nowrap; }
+
   .catalog-empty { font-size: 14px; color: var(--muted); text-align: center; padding: 32px 0; font-weight: 700; }
   .cart { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 18px; }
   .cart-title { font-size: 12px; font-weight: 900; color: var(--navy); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; }
@@ -158,26 +171,26 @@
   .cart-row:last-child { border-bottom: none; }
   .cart-row .c-name { flex: 1; font-weight: 700; color: var(--ink); }
   .cart-row .c-price { font-size: 12px; color: var(--muted); display: block; font-weight: 700; }
-  
+
   .qty-ctrl { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
   .qty-ctrl button { width: 26px; height: 26px; border: 1px solid var(--line); background: #fff; font-size: 15px; font-family: inherit; font-weight: 900; cursor: pointer; color: var(--navy); }
   .qty-ctrl .qty-num { min-width: 20px; text-align: center; font-weight: 900; }
   .cart-row .c-sub { width: 68px; text-align: right; font-weight: 900; color: var(--accent); }
   .cart-row .c-del { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; padding: 0 4px; font-weight: 900; font-family: inherit; }
   .empty-cart { font-size: 14px; color: var(--muted); padding: 12px 0; text-align: center; font-weight: 700; }
-  
+
   .totals { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
   .totals .fee-line { display: flex; justify-content: space-between; font-size: 14.5px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
   .totals .grand { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; padding-top: 12px; border-top: 2px solid var(--navy); font-size: 16px; font-weight: 900; color: var(--navy); }
   .totals .grand .amt { color: var(--accent); font-size: 24px; font-weight: 900; }
-  
+
   .submit-bar { position: sticky; bottom: 16px; margin-top: 22px; z-index: 10; }
   .submit-btn { width: 100%; padding: 16px; background: var(--navy); color: #fff; border: none; border-radius: 2px; font-size: 16px; font-family: "Noto Serif TC", serif; font-weight: 900; letter-spacing: 3px; cursor: pointer; transition: all 0.2s; }
   .submit-btn:hover { background: var(--navy-light); }
-  
+
   .validation-banner { display: none; background: var(--accent-bg); border: 1px solid var(--accent); padding: 14px 16px; margin-bottom: 16px; font-size: 13.5px; color: var(--accent); font-weight: 700; }
   input.field-error, select.field-error { border-color: var(--accent) !important; background-color: var(--accent-bg) !important; }
-  
+
   .overlay { position: fixed; inset: 0; background: rgba(42,39,36,0.6); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   .modal { background: var(--paper-card); width: 100%; max-width: 620px; padding: 32px 26px; max-height: 85vh; overflow-y: auto; }
   .modal h2 { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--navy); }
@@ -185,7 +198,7 @@
   .modal pre { white-space: pre-wrap; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 14px; line-height: 1.8; margin: 0; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); }
   .modal-actions { display: flex; gap: 12px; margin-top: 20px; }
   .modal-actions button { flex: 1; padding: 14px; border-radius: 2px; font-weight: 900; font-size: 14.5px; font-family: "Noto Serif TC", serif; cursor: pointer; border: none; background: var(--navy); color: #fff; }
-  
+
   .icon-circle { width: 40px; height: 40px; border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 16px; color: var(--navy); font-weight: 900; }
   .catalog-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; font-size: 13.5px; color: var(--muted); font-weight: 700; }
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -263,7 +276,7 @@
       <div class="tip-row">電話：09-7280-6443</div>
       <div class="tip-row">營業時間：週二至週日 07:00–13:00（早市時段，<b style="color:var(--accent);">週一公休</b>）</div>
       <div class="tip-row" style="color: var(--accent); font-weight: 900; margin-top: 4px;">※ 備註：領貨前請先電話聯繫 吳先生</div>
-      
+
       <div class="field-notice" style="margin-top: 14px; margin-bottom: 14px; color: var(--navy); font-weight: 900;">
         📢 備貨時間：本商品為手工現做，新鮮魚貨皆為人工處理，需 3 個工作天備貨，只能選擇第 4 天以後的日期。
       </div>
@@ -307,7 +320,7 @@
       </div>
 
       <div class="kitchen-tips" style="margin-bottom: 18px; padding: 12px 18px;">
-        <div class="field-notice" style="color: var(--accent); font-weight: 900;">🚚 雙北外送為專人配送，訂單金額需滿 NT$20,000（不含運費）才提供外送服務。</div>
+        <div class="field-notice" style="color: var(--accent); font-weight: 900;">🚚 雙北外送為專人配送，訂單金額需滿 NT$20,000（不含運費）才提供外送服務。<span id="deliveryMinGap"></span></div>
       </div>
 
       <div class="field" id="zone-field">
@@ -414,7 +427,7 @@
   const GOOGLE_SCRIPT_URL ='https://script.google.com/macros/s/AKfycbxgthRpX6of779wIzq1jKpKRm3EDWjYJ_xgvSQ5Rx5njnMoGJkUzQdXb4pEg63aTqOk/exec';
 
   let products = [];
-  let cart = {};
+  let cart = {};          // key = 商品 id（商品名稱｜規格）
   let currentDeliveryType = "自取";
   let currentPaymentMethod = "現金";
   let shippingFee = 0;
@@ -442,10 +455,10 @@
   // 🌟 針對 iOS 的終極防呆解法：除了設定 min，同時設定「預設值 value」強迫日曆定位！
   document.addEventListener("DOMContentLoaded", function() {
     loadCatalog();
-    
+
     let targetMinDate = new Date();
-    targetMinDate.setDate(targetMinDate.getDate() + 4); 
-    
+    targetMinDate.setDate(targetMinDate.getDate() + 4);
+
     let yyyy = targetMinDate.getFullYear();
     let mm = String(targetMinDate.getMonth() + 1).padStart(2, '0');
     let dd = String(targetMinDate.getDate()).padStart(2, '0');
@@ -472,40 +485,61 @@
     }
   });
 
-  function cleanProductName(rawName) {
-    return rawName
-      .replace(/[\|｜]\s*50顆\s*[\/／]\s*包/g, '')
-      .replace(/[\(（]50\/包[\)）]/g, '')
-      .replace(/[\(（]50顆\/包[\)）]/g, '')
-      .replace(/50顆\s*[\/／]\s*包/g, '')
-      .trim();
+  // ===== 商品清單（分區 → 商品 → 規格） =====
+  const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const findP = id => products.find(p => p.id === id);
+  const isWeighed = p => p.pricing === "秤重";
+  const noteOf = p => p.note || p.desc || "";
+  function priceText(p) { return `NT$ ${p.price}${isWeighed(p) ? " 起" : ""}`; }
+  function stockText(p) {
+    if (p.stock <= 0) return { t: "已售完", low: false };
+    if (p.stock <= 10) return { t: `即將完售：僅剩 ${p.stock} ${p.unit}`, low: true };
+    return { t: "", low: false };
   }
 
   function renderCatalog() {
     const container = document.getElementById("catalogContainer");
+    // 相容舊後台：沒有 id / 規格 / 單位時自動補上
+    products.forEach(p => { if (!p.id) p.id = p.name; if (!p.unit) p.unit = "份"; if (p.spec == null) p.spec = ""; if (!p.zone) p.zone = "商品"; });
     if (products.length === 0) {
-      container.innerHTML = '<div class="catalog-empty">目前後台庫存沒有任何上架的冷凍水餃</div>';
+      container.innerHTML = '<div class="catalog-empty">目前沒有上架中的商品</div>';
       return;
     }
-    let zones = {};
-    products.forEach(p => { if (!zones[p.zone]) zones[p.zone] = []; zones[p.zone].push(p); });
+    const zones = {};
+    products.forEach((p, idx) => {
+      p._idx = idx;
+      zones[p.zone] = zones[p.zone] || {};
+      (zones[p.zone][p.name] = zones[p.zone][p.name] || []).push(p);
+    });
     let html = "";
-    for (let zoneName in zones) {
-      html += `<div class="category-zone" style="margin-bottom: 22px;"><div class="category-title">${zoneName}</div><div class="catalog-grid">`;
-      zones[zoneName].forEach(p => {
-        const isOut = p.stock <= 0;
-        let stockTxt = ""; let isLow = false;
-        if (isOut) stockTxt = "已售完";
-        else if (p.stock <= 10) { stockTxt = `即將完售：僅剩 ${p.stock} ${p.unit || '份'}`; isLow = true; }
-        const cleanName = cleanProductName(p.name);
-        html += `<button type="button" class="product-card" id="card-${p.name}" ${isOut ? "disabled" : ""} onclick="addToCart('${p.name}')">
-            <span class="p-name">${cleanName}</span>
-            ${p.spec ? `<span class="p-stock" style="margin:0 0 6px;">${p.spec}</span>` : ""}
-            <span class="p-price">NT$ ${p.price}${p.pricing === "秤重" ? " 起" : ""}</span>
-            ${p.pricing === "秤重" ? `<span class="p-stock">依實際重量計價${p.desc ? "・" + p.desc : ""}</span>` : (p.desc ? `<span class="p-stock">${p.desc}</span>` : "")}
-            <span class="p-stock ${isLow ? 'low-stock':''}">${stockTxt}</span>
-          </button>`;
-      });
+    for (const zoneName in zones) {
+      html += `<div class="category-zone"><div class="category-title">${esc(zoneName)}</div><div class="catalog-grid">`;
+      for (const name in zones[zoneName]) {
+        const vars = zones[zoneName][name];
+        const note = vars.map(noteOf).find(n => n) || "";
+        const weighed = vars.some(isWeighed);
+        const noteLine = (weighed ? "依實際重量計價" : "") + (weighed && note ? "・" : "") + note;
+        if (vars.length === 1) {
+          const p = vars[0], st = stockText(p);
+          html += `<button type="button" class="product-card" data-id="${esc(p.id)}" ${p.stock <= 0 ? "disabled" : ""} onclick="addToCart(${p._idx})">
+              <span class="p-name">${esc(p.name)}</span>
+              ${p.spec ? `<span class="p-spec">${esc(p.spec)}</span>` : ""}
+              <span class="p-price">${priceText(p)} / ${esc(p.unit)}</span>
+              ${noteLine ? `<span class="p-note">${esc(noteLine)}</span>` : ""}
+              <span class="p-stock ${st.low ? 'low-stock' : ''}">${st.t}</span>
+            </button>`;
+        } else {
+          html += `<div class="product-card multi"><span class="p-name">${esc(name)}</span><div class="spec-list">`;
+          vars.forEach(p => {
+            const st = stockText(p);
+            html += `<button type="button" class="spec-btn" data-id="${esc(p.id)}" ${p.stock <= 0 ? "disabled" : ""} onclick="addToCart(${p._idx})">
+                <span>${esc(p.spec || "標準")}${st.t ? `<span class="p-stock ${st.low ? 'low-stock' : ''}" style="margin-top:2px;">${st.t}</span>` : ""}</span>
+                <span class="sp-price">${priceText(p)} / ${esc(p.unit)}</span>
+              </button>`;
+          });
+          html += `</div>${noteLine ? `<span class="p-note">${esc(noteLine)}</span>` : ""}</div>`;
+        }
+      }
       html += `</div></div>`;
     }
     container.innerHTML = html;
@@ -538,7 +572,7 @@
         shippingFee = 150; document.getElementById("shippingFeeVal").innerText = shippingFee;
         shippingLine.classList.remove("hidden");
       }
-      updateCartUI(); 
+      updateCartUI();
     }
   });
 
@@ -559,41 +593,56 @@
     navigator.clipboard.writeText(text).then(() => { alert("📋 已成功複製招牌數字！"); });
   }
 
-  function addToCart(name) {
-    const p = products.find(prod => prod.name === name);
+  // ===== 購物車 =====
+  function addToCart(idx) {
+    const p = products[idx];
     if (!p || p.stock <= 0) return;
-    if (!cart[name]) cart[name] = 1; else if (cart[name] < p.stock) cart[name]++;
+    if (!cart[p.id]) cart[p.id] = 1; else if (cart[p.id] < p.stock) cart[p.id]++;
     updateCartUI();
   }
 
-  function changeQty(name, delta) {
-    const p = products.find(prod => prod.name === name);
-    if (!cart[name]) return;
-    cart[name] += delta;
-    if (cart[name] <= 0) delete cart[name]; else if (cart[name] > p.stock) cart[name] = p.stock;
+  function changeQty(id, delta) {
+    const p = findP(id);
+    if (!p || !cart[id]) return;
+    cart[id] += delta;
+    if (cart[id] <= 0) delete cart[id]; else if (cart[id] > p.stock) cart[id] = p.stock;
     updateCartUI();
   }
 
-  function deleteItem(name) { delete cart[name]; updateCartUI(); }
+  function deleteItem(id) { delete cart[id]; updateCartUI(); }
+
+  function cartItemTotal() {
+    let t = 0;
+    for (const id in cart) { const p = findP(id); if (p) t += p.price * cart[id]; }
+    return t;
+  }
+
+  function updateDeliveryMinHint() {
+    const gapEl = document.getElementById("deliveryMinGap");
+    if (!gapEl) return;
+    const gap = DELIVERY_MIN - cartItemTotal();
+    gapEl.innerText = gap > 0 ? `（目前還差 NT$${gap.toLocaleString()}）` : "（已達外送門檻 ✓）";
+  }
 
   function updateCartUI() {
     const rowsContainer = document.getElementById("cartRows");
-    products.forEach(p => { const card = document.getElementById(`card-${p.name}`); if (card) card.classList.remove("in-cart"); });
+    document.querySelectorAll("[data-id]").forEach(el => el.classList.toggle("in-cart", !!cart[el.getAttribute("data-id")]));
+    document.querySelectorAll(".product-card.multi").forEach(card => card.classList.toggle("in-cart", !!card.querySelector(".spec-btn.in-cart")));
+    updateDeliveryMinHint();
     if (Object.keys(cart).length === 0) {
       rowsContainer.innerHTML = '<div class="empty-cart">尚未選購任何商品</div>';
       document.getElementById("grandTotal").innerText = shippingFee; return;
     }
     let html = ""; let total = 0;
-    for (let name in cart) {
-      const qty = cart[name]; const p = products.find(prod => prod.name === name);
+    for (const id in cart) {
+      const qty = cart[id]; const p = findP(id);
       if (!p) continue;
       total += p.price * qty;
-      const card = document.getElementById(`card-${name}`);
-      if (card) card.classList.add("in-cart");
+      const jsId = JSON.stringify(id).replace(/"/g, '&quot;');
       html += `<div class="cart-row">
-          <div class="c-name">${cleanProductName(name)}<span class="c-price">NT$ ${p.price}${p.pricing === "秤重" ? " 起" : ""} / ${p.unit || '份'}</span></div>
-          <div class="qty-ctrl"><button type="button" onclick="changeQty('${name}', -1)">-</button><span class="qty-num">${qty}</span><button type="button" onclick="changeQty('${name}', 1)">+</button></div>
-          <div class="c-sub">NT$ ${p.price * qty}</div><button type="button" class="c-del" onclick="deleteItem('${name}')">×</button>
+          <div class="c-name">${esc(p.name)}${p.spec ? `（${esc(p.spec)}）` : ""}<span class="c-price">${priceText(p)} / ${esc(p.unit)}</span></div>
+          <div class="qty-ctrl"><button type="button" onclick="changeQty(${jsId}, -1)">-</button><span class="qty-num">${qty}</span><button type="button" onclick="changeQty(${jsId}, 1)">+</button></div>
+          <div class="c-sub">NT$ ${p.price * qty}</div><button type="button" class="c-del" onclick="deleteItem(${jsId})">×</button>
         </div>`;
     }
     rowsContainer.innerHTML = html;
@@ -609,20 +658,20 @@
     const bName = document.getElementById("buyerName").value.trim();
     const bPhone = document.getElementById("buyerPhone").value.trim();
     const bEmail = document.getElementById("buyerEmail").value.trim();
-    
+
     const pDate = document.getElementById("pickupDate").value;
-    const pTime = document.getElementById("pickupTime").value; 
+    const pTime = document.getElementById("pickupTime").value;
     const dDate = document.getElementById("deliveryDate").value;
-    const dTime = document.getElementById("deliveryTime").value; 
+    const dTime = document.getElementById("deliveryTime").value;
     const dZone = document.getElementById("deliveryZone").value;
     const dAddress = document.getElementById("deliveryAddress").value.trim();
-    
+
     let itemTotal = 0; let itemsPayload = [];
-    for (let name in cart) {
-      const p = products.find(prod => prod.name === name);
+    for (const id in cart) {
+      const p = findP(id);
       if (p) {
-        itemTotal += p.price * cart[name];
-        itemsPayload.push({ name: name, qty: cart[name], price: p.price, subtotal: p.price * cart[name], unit: p.unit || "份", pricing: p.pricing || "固定" });
+        itemTotal += p.price * cart[id];
+        itemsPayload.push({ id: p.id, name: p.name, spec: p.spec, unit: p.unit, qty: cart[id], price: p.price, subtotal: p.price * cart[id], pricing: p.pricing || "固定" });
       }
     }
 
@@ -648,13 +697,13 @@
     if (targetDate) {
       const selectedDate = new Date(targetDate);
       selectedDate.setHours(0,0,0,0);
-      
+
       let minLimitDate = new Date();
-      minLimitDate.setDate(minLimitDate.getDate() + 4); 
+      minLimitDate.setDate(minLimitDate.getDate() + 4);
       minLimitDate.setHours(0,0,0,0);
-      
+
       if (selectedDate < minLimitDate) {
-        errors.push("❌ 選擇日期不合規範！手工現做水餃需 3 天備貨時間，請重新點選第 4 天以後的有效日期。");
+        errors.push("❌ 選擇日期不合規範！手工現做商品需 3 天備貨時間，請重新點選第 4 天以後的有效日期。");
         if (currentDeliveryType === "自取") document.getElementById("pickupDate").classList.add("field-error");
         else document.getElementById("deliveryDate").classList.add("field-error");
       }
@@ -662,17 +711,18 @@
 
     if (itemTotal <= 0) errors.push("購物車目前是空的，請至少選購一項商品。");
     if (currentDeliveryType === "雙北外送" && itemTotal > 0 && itemTotal < DELIVERY_MIN) errors.push(`雙北外送需商品金額滿 NT$${DELIVERY_MIN.toLocaleString()}，目前 NT$${itemTotal.toLocaleString()}，可改選店面自取或 7-11 冷凍店到店。`);
-    
+
     if (errors.length > 0) {
-      banner.innerHTML = errors.join("<br>"); banner.style.display = "block"; 
+      banner.innerHTML = errors.join("<br>"); banner.style.display = "block";
       window.scrollTo({ top: banner.offsetTop - 40, behavior: 'smooth' }); return;
     }
 
     const finalPayload = {
       orderNo: finalOrderNo, orderDate: dateStr, name: bName, phone: bPhone, email: bEmail,
       deliveryType: currentDeliveryType, deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "無",
-      deliveryAddress: finalAddressStr, targetDate: targetDate, targetTime: targetTime, 
+      deliveryAddress: finalAddressStr, targetDate: targetDate, targetTime: targetTime,
       items: itemsPayload, paymentMethod: currentPaymentMethod, total: itemTotal + shippingFee,
+      shippingFee: shippingFee,
       note: document.getElementById("orderNote").value.trim()
     };
 
@@ -697,6 +747,7 @@
 
   function showSuccessModal(payload) {
     let summary = `【訂單單號】${payload.orderNo}\n【配送管道】${payload.deliveryType}\n【預計日期】${payload.targetDate}\n【預計時段】${payload.targetTime}\n【應付總額】NT$ ${payload.total} 元\n`;
+    if (payload.items.some(it => it.pricing === "秤重")) summary += `※ 秤重商品依實際重量計價，總額以店家確認為準。\n`;
     document.getElementById("summaryContent").innerText = summary;
     document.getElementById("successOverlay").classList.remove("hidden");
   }
