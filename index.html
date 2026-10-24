@@ -208,6 +208,22 @@
   body.mode-711 .hide-for-711 { display: none !important; }
   .submit-btn:disabled { background: #B9B3A6; cursor: not-allowed; }
   #myshipBtn.disabled { background: #B9B3A6; pointer-events: none; }
+  .sp-list { margin-top: 10px; max-height: 320px; overflow-y: auto; border: 1px solid var(--line); background: #fff; }
+  .sp-list:empty { display: none; }
+  .sp-item { display: block; width: 100%; text-align: left; padding: 12px 14px; border: none; border-bottom: 1px solid var(--line); background: #fff; font-family: inherit; cursor: pointer; }
+  .sp-item:last-child { border-bottom: none; }
+  .sp-item:hover { background: #F9FAFB; }
+  .sp-item b { display: block; color: var(--navy); font-size: 14.5px; font-weight: 900; }
+  .sp-item span { display: block; color: var(--muted); font-size: 12.5px; font-weight: 700; line-height: 1.5; }
+  .sp-msg { padding: 16px; font-size: 13px; color: var(--muted); text-align: center; font-weight: 700; }
+  .store-picked { border: 1px solid var(--navy); box-shadow: inset 0 0 0 1px var(--navy); background: #F9FAFB; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .store-picked b { color: var(--navy); font-size: 15px; font-weight: 900; display: block; }
+  .store-picked span { color: var(--muted); font-size: 12.5px; font-weight: 700; display: block; }
+  .sp-link { background: none; border: none; padding: 8px 0 0; color: var(--muted); font-family: inherit; font-size: 12.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .report-box { margin-top: 10px; }
+  .report-box summary { cursor: pointer; font-weight: 900; color: var(--navy); font-size: 15px; letter-spacing: 1px; }
+  .report-msg { margin-top: 10px; font-size: 13.5px; font-weight: 900; }
+  .ghost-btn { width: 100%; padding: 13px; background: #fff; color: var(--navy); border: 1px solid var(--navy); border-radius: 2px; font-size: 15px; font-family: inherit; font-weight: 900; letter-spacing: 2px; cursor: pointer; }
 
   .copy-inline-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 2px; margin-left: 6px; transition: all 0.1s; font-family: inherit; }
   .copy-inline-btn:hover { background: var(--gold); color: #fff; }
@@ -227,7 +243,7 @@
     <div class="stamp">職人手作</div>
   </header>
 
-  <div class="order-meta hide-for-711">單號 <span id="orderNo">---</span> ・ 日期 <span id="orderDate">---</span></div>
+  <div class="order-meta hide-for-711">單號 <span id="orderNo">送出後產生</span> ・ 日期 <span id="orderDate">---</span></div>
 
   <section class="hide-for-711">
     <div class="sec-head"><span class="num">01</span><div class="sec-label">顧客資料 (必填)</div></div>
@@ -252,23 +268,67 @@
     <div class="field">
       <label>選擇取貨管道</label>
       <div class="seg" id="deliveryTypeSeg">
-        <button type="button" class="active" data-val="自取">店面自取</button>
-        <button type="button" data-val="7-11冷凍">7-11 冷凍店到店</button>
-        <button type="button" data-val="雙北外送">雙北外送（滿 NT$20,000 免運）</button>
+        <button type="button" class="active" data-val="7-11冷凍">7-11 冷凍店到店</button>
+        <button type="button" data-val="自取">店面自取</button>
+        <button type="button" data-val="雙北外送">雙北外送（滿 NT$20,000）</button>
       </div>
     </div>
 
-    <!-- 7-11 冷凍店到店：直接到賣貨便賣場下單（選門市、付款、寄件都在賣貨便完成） -->
+    <!-- 7-11 冷凍店到店：①到賣貨便下單（icash Pay） ②在本站下單＋匯款（訂單留在本站，不經過賣貨便） -->
     <div id="block-711" class="hidden">
       <div class="kitchen-tips">
         <span class="tip-title">7-11 冷凍店到店</span>
-        <div class="tip-row">全台 7-11 冷凍店到店，請點下方按鈕到我們的「7-ELEVEN 賣貨便」賣場下單。</div>
-        <div class="tip-row">在賣貨便選擇口味、取貨門市並完成付款，不需填寫本頁表單。</div>
-        <div class="tip-row">完成付款後才會安排出貨，<b style="color:var(--accent);">逾期未付款恕不受理。</b></div>
         <div class="tip-row">新鮮魚貨皆為人工處理，7-11 冷凍店到店訂單需<b>一星期備貨期</b>，<b>每週一統一出貨</b>。</div>
+        <div class="tip-row">完成付款後才會安排出貨，<b style="color:var(--accent);">逾期未付款恕不受理。</b></div>
         <div class="tip-row">包裹到店後請於期限內取貨，<b style="color:var(--accent);">逾期未取件退回，商品及運費恕不退款。</b></div>
       </div>
-      <a id="myshipBtn" class="submit-btn" style="display:block; text-align:center; text-decoration:none;" target="_blank" rel="noopener">前往賣貨便下單 →</a>
+      <div class="field">
+        <label>選擇下單方式</label>
+        <div class="seg" id="mode711Seg">
+          <button type="button" data-val="賣貨便">賣貨便下單（icash Pay）</button>
+          <button type="button" data-val="匯款">本站下單・銀行匯款</button>
+        </div>
+      </div>
+      <div id="block-711-myship">
+        <div class="kitchen-tips">
+          <div class="tip-row">點下方按鈕到「7-ELEVEN 賣貨便」賣場，在那裡選口味、選門市、付款，不需填寫本頁表單。</div>
+        </div>
+        <a id="myshipBtn" class="submit-btn" style="display:block; text-align:center; text-decoration:none;" target="_blank" rel="noopener">前往賣貨便下單 →</a>
+      </div>
+      <div id="block-711-transfer" class="hidden">
+        <div class="kitchen-tips">
+          <div class="tip-row">在本頁填寫資料、選購商品並匯款，<b>不用到賣貨便</b>。我們確認入帳後，會幫您寄到指定的 7-11 門市。</div>
+        </div>
+
+        <!-- 7-11 門市選擇器：縣市 → 區 → 路 → 點選門市（只列出有「冷凍店到店」服務的門市） -->
+        <div class="field" style="margin-bottom: 10px;">
+          <label>選擇取貨門市 <span class="hint">*</span>　<span style="font-size:12px; color:var(--muted);">只顯示可收冷凍包裹的門市</span></label>
+          <div id="storePicked" class="store-picked hidden"></div>
+          <div id="storePicker">
+            <div class="row2">
+              <select id="spCity"><option value="">-- 縣市 --</option></select>
+              <select id="spTown" disabled><option value="">-- 區域 --</option></select>
+            </div>
+            <div class="row2" style="margin-top: 10px;">
+              <select id="spRoad" disabled><option value="">-- 全部路段 --</option></select>
+              <input type="text" id="spKeyword" placeholder="搜尋店名或路名" disabled>
+            </div>
+            <div id="spList" class="sp-list"></div>
+          </div>
+          <button type="button" id="spManualBtn" class="sp-link">找不到門市？改用手動輸入</button>
+        </div>
+        <div id="storeManual" class="row2 hidden">
+          <div class="field">
+            <label>取貨門市名稱 <span class="hint">*</span></label>
+            <input type="text" id="storeName" placeholder="例：板橋門市">
+          </div>
+          <div class="field">
+            <label>門市店號 <span class="hint">*</span></label>
+            <input type="tel" id="storeNo" maxlength="6" placeholder="6 碼數字">
+          </div>
+          <div class="tip-row" style="grid-column: 1 / -1; font-size: 12px; color: var(--muted);">門市名稱與店號可到 <a href="https://emap.pcsc.com.tw/" target="_blank" rel="noopener" class="map-link">7-11 電子地圖</a> 查詢。</div>
+        </div>
+      </div>
     </div>
 
     <div id="block-pickup" class="kitchen-tips">
@@ -372,7 +432,7 @@
         銀行帳號：<span id="bankAccount" style="font-weight:900; color:var(--navy);">888502516431</span>
         <button type="button" class="copy-inline-btn" onclick="copyValue('bankAccount')">📋</button>
       </div>
-      <div style="font-size: 11px; color: var(--accent); margin-top: 8px; font-weight: 700;">※ 匯款完成後請保留明細截圖以利現場核對。</div>
+      <div style="font-size: 12px; color: var(--accent); margin-top: 8px; font-weight: 900;">※ 請於下單後 <span class="unpaidHours">3</span> 小時內完成匯款，並到本頁最下方「匯款回報」填寫帳號後五碼；逾時未回報，訂單將自動取消。</div>
     </div>
   </section>
 
@@ -389,6 +449,7 @@
       <div class="tip-row">退冰方式：料理前一晚移到冷藏室慢慢退冰；趕時間可連同包裝袋泡冷水解凍，請勿用熱水或常溫久放。</div>
       <div class="tip-row">退冰後請盡快料理，<b style="color:var(--accent);">請勿再次冷凍</b>，以免影響口感與鮮度。</div>
       <div class="tip-row">魚貨皆為人工處理，可能殘留少許魚刺或魚鱗，食用時請留意，尤其是長輩與小朋友。</div>
+      <div class="tip-row">鮭魚、鱈魚依<b>重量級距</b>計價（例：250–300g），同級距同價，不另補退差額。</div>
       <div class="tip-row">整尾魚與盒裝蝦依實際重量略有差異；生鮮食品不適用 7 天鑑賞期，收到如有問題請當天拍照聯繫。</div>
     </div>
     <div id="catalogContainer">
@@ -411,6 +472,30 @@
 
   <div id="validationBanner" class="validation-banner hide-for-711"></div>
   <div class="submit-bar hide-for-711"><button type="button" id="submitBtn" class="submit-btn">確認送出訂單</button></div>
+
+  <section id="reportSection" style="margin-top: 30px;">
+    <details class="report-box" id="reportBox">
+      <summary>💰 已匯款？點這裡回報帳號後五碼</summary>
+      <div style="margin-top: 18px;">
+        <div class="field">
+          <label>訂單編號 <span class="hint">*</span></label>
+          <input type="text" id="rpOrderNo" placeholder="例：HJ261024-003">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>訂購電話末 3 碼 <span class="hint">*</span></label>
+            <input type="tel" id="rpPhone3" maxlength="3" placeholder="例：443">
+          </div>
+          <div class="field">
+            <label>匯款帳號後五碼 <span class="hint">*</span></label>
+            <input type="tel" id="rpLast5" maxlength="5" placeholder="例：12345">
+          </div>
+        </div>
+        <button type="button" id="rpBtn" class="ghost-btn">送出匯款回報</button>
+        <div id="rpMsg" class="report-msg"></div>
+      </div>
+    </details>
+  </section>
 </div>
 
 <div id="successOverlay" class="overlay hidden">
@@ -419,13 +504,27 @@
     <h2>訂單已送出</h2>
     <p style="font-weight:700; font-size:14px; color:var(--muted); margin-bottom:16px;">訂單明細如下，請截圖保存以利核對。</p>
     <pre id="summaryContent"></pre>
-    <div class="modal-actions"><button type="button" class="close-btn" onclick="location.reload()">完成，返回首頁</button></div>
+    <!-- 匯款訂單：送出後直接在這裡回報後五碼 -->
+    <div id="modalReport" class="hidden" style="margin-top: 18px; border: 1px dashed var(--gold); background: #FAF8F2; padding: 16px;">
+      <div style="font-weight: 900; color: var(--navy); font-size: 15px; margin-bottom: 4px;">💰 已匯款？回報帳號後五碼</div>
+      <div style="font-size: 12.5px; color: var(--muted); font-weight: 700; margin-bottom: 12px;">還沒匯也沒關係，我們也會寄一封確認信給您，信裡有回報按鈕。</div>
+      <div style="display: flex; gap: 10px;">
+        <input type="tel" id="mrLast5" maxlength="5" placeholder="帳號後五碼" style="flex: 1;">
+        <button type="button" id="mrBtn" class="submit-btn" style="width: auto; padding: 0 18px; letter-spacing: 1px; font-size: 14.5px;">送出回報</button>
+      </div>
+      <div id="mrMsg" class="report-msg"></div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="close-btn" onclick="location.href = location.pathname">完成，返回首頁</button>
+    </div>
   </div>
 </div>
 
 <script>
   // 7-11 冷凍店到店：賣貨便賣場網址（賣場開好、icash Pay 開通後貼上；空白時按鈕顯示「即將開放」）
   const MYSHIP_STORE_URL = '';
+  const SHIP_711_FEE = 0;   // 7-11 冷凍店到店（本站匯款）運費；要收運費就改數字，例如 150
+  let unpaidHours = 3;      // 匯款期限（會跟著後台設定更新）
   (function () {
     const btn = document.getElementById("myshipBtn");
     if (MYSHIP_STORE_URL) { btn.href = MYSHIP_STORE_URL; }
@@ -437,16 +536,16 @@
 
   let products = [];
   let cart = {};          // key = 商品 id（商品名稱｜規格）
-  let currentDeliveryType = "自取";
+  let currentDeliveryType = "7-11冷凍";   // 預設：7-11 冷凍店到店
   let currentPaymentMethod = "現金";
   let shippingFee = 0;
+  // 7-11 下單方式：賣貨便 / 匯款（賣貨便還沒開放時，預設本站匯款）
+  let mode711 = MYSHIP_STORE_URL ? "賣貨便" : "匯款";
 
   const now = new Date();
   const dateStr = now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
-  const randNo = String(now.getHours()).padStart(2,'0') + String(now.getMinutes()).padStart(2,'0') + String(Math.floor(Math.random()*900)+100);
-  const finalOrderNo = "DMP" + randNo;
+  // 訂單編號改由後台產生（HJ + 年月日 + 流水號），送出後顯示
 
-  document.getElementById("orderNo").innerText = finalOrderNo;
   document.getElementById("orderDate").innerText = dateStr;
 
   function loadCatalog() {
@@ -455,6 +554,7 @@
     window[callbackName] = (data) => {
       delete window[callbackName]; script.remove();
       products = (data && data.products) ? data.products.filter(p => p.status !== 'hidden') : [];
+      if (data && data.unpaidHours) { unpaidHours = data.unpaidHours; document.querySelectorAll(".unpaidHours").forEach(el => el.innerText = unpaidHours); }
       renderCatalog();
     };
     script.src = GOOGLE_SCRIPT_URL + '?action=getCatalog&callback=' + callbackName + '&_cacheBust=' + Date.now();
@@ -529,7 +629,7 @@
         const vars = zones[zoneName][name];
         const note = vars.map(noteOf).find(n => n) || "";
         const weighed = vars.some(isWeighed);
-        const noteLine = (weighed ? "依實際重量計價" : "") + (weighed && note ? "・" : "") + note;
+        const noteLine = (weighed ? "依實際重量計價" : "") + (weighed && note ? "・" : "") + note;  // 重量級距商品＝固定價，不會出現「起」
         if (vars.length === 1) {
           const p = vars[0], st = stockText(p);
           html += `<button type="button" class="product-card" data-id="${esc(p.id)}" ${p.stock <= 0 ? "disabled" : ""} onclick="addToCart(${p._idx})">
@@ -564,38 +664,62 @@
       Array.from(this.children).forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       currentDeliveryType = btn.getAttribute("data-val");
-
-      const blockPickup = document.getElementById("block-pickup");
-      const blockAddress = document.getElementById("block-address");
-      const shippingLine = document.getElementById("shippingFeeLine");
-
-      const is711 = currentDeliveryType === "7-11冷凍";
-      document.body.classList.toggle("mode-711", is711);
-      document.getElementById("block-711").classList.toggle("hidden", !is711);
-      if (is711) {
-        blockPickup.classList.add("hidden"); blockAddress.classList.add("hidden");
-        shippingFee = 0; shippingLine.classList.add("hidden");
-      } else if (currentDeliveryType === "自取") {
-        blockPickup.classList.remove("hidden"); blockAddress.classList.add("hidden");
-        shippingFee = 0; shippingLine.classList.add("hidden");
-      } else if (currentDeliveryType === "雙北外送") {
-        blockPickup.classList.add("hidden"); blockAddress.classList.remove("hidden");
-        shippingFee = 0; document.getElementById("shippingFeeVal").innerText = "0（免運）";
-        shippingLine.classList.remove("hidden");
-      }
-      updateCartUI();
+      applyDeliveryUI();
     }
   });
+
+  document.getElementById("mode711Seg").addEventListener("click", function(e) {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    mode711 = btn.getAttribute("data-val");
+    applyDeliveryUI();
+  });
+
+  function setPayment(val) {
+    currentPaymentMethod = val;
+    document.querySelectorAll("#paymentMethodSeg button").forEach(b => b.classList.toggle("active", b.getAttribute("data-val") === val));
+    document.getElementById("block-transfer").classList.toggle("hidden", val !== "匯款");
+  }
+
+  function applyDeliveryUI() {
+    const blockPickup = document.getElementById("block-pickup");
+    const blockAddress = document.getElementById("block-address");
+    const shippingLine = document.getElementById("shippingFeeLine");
+    const cashBtn = document.querySelector('#paymentMethodSeg button[data-val="現金"]');
+
+    const is711 = currentDeliveryType === "7-11冷凍";
+    const myship = is711 && mode711 === "賣貨便";
+    document.body.classList.toggle("mode-711", myship);   // 只有走賣貨便才隱藏本頁表單
+    document.getElementById("block-711").classList.toggle("hidden", !is711);
+    document.querySelectorAll("#mode711Seg button").forEach(b => b.classList.toggle("active", b.getAttribute("data-val") === mode711));
+    document.getElementById("block-711-myship").classList.toggle("hidden", !myship);
+    document.getElementById("block-711-transfer").classList.toggle("hidden", !(is711 && mode711 === "匯款"));
+
+    // 7-11 本站下單只能匯款；其他配送方式可選現金
+    cashBtn.classList.toggle("hidden", is711);
+    if (is711) setPayment("匯款");
+
+    if (is711) {
+      blockPickup.classList.add("hidden"); blockAddress.classList.add("hidden");
+      shippingFee = myship ? 0 : SHIP_711_FEE;
+      if (!myship) { document.getElementById("shippingFeeVal").innerText = SHIP_711_FEE ? SHIP_711_FEE : "0（免運）"; shippingLine.firstElementChild.innerText = "7-11 冷凍運費"; }
+      shippingLine.classList.toggle("hidden", myship);
+    } else if (currentDeliveryType === "自取") {
+      blockPickup.classList.remove("hidden"); blockAddress.classList.add("hidden");
+      shippingFee = 0; shippingLine.classList.add("hidden");
+    } else if (currentDeliveryType === "雙北外送") {
+      blockPickup.classList.add("hidden"); blockAddress.classList.remove("hidden");
+      shippingFee = 0; document.getElementById("shippingFeeVal").innerText = "0（免運）";
+      shippingLine.firstElementChild.innerText = "雙北外送運費";
+      shippingLine.classList.remove("hidden");
+    }
+    updateCartUI();
+  }
 
   document.getElementById("paymentMethodSeg").addEventListener("click", function(e) {
     const btn = e.target.closest("button");
     if (btn && btn.tagName === "BUTTON") {
-      Array.from(this.children).forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      currentPaymentMethod = btn.getAttribute("data-val");
-      const blockTransfer = document.getElementById("block-transfer");
-      if (currentPaymentMethod === "匯款") blockTransfer.classList.remove("hidden");
-      else blockTransfer.classList.add("hidden");
+      setPayment(btn.getAttribute("data-val"));
     }
   });
 
@@ -702,6 +826,16 @@
       if (!pTime) { errors.push("請選擇預計自取時段"); document.getElementById("pickupTime").classList.add("field-error"); }
       if (pDate && new Date(pDate + 'T00:00:00').getDay() === 1) { errors.push("週一公休，請選擇週二至週日的自取日期。"); document.getElementById("pickupDate").classList.add("field-error"); }
       targetDate = pDate; targetTime = pTime; finalAddressStr = "店面自取 (領貨前聯絡吳先生)";
+    } else if (currentDeliveryType === "7-11冷凍") {
+      const sName = document.getElementById("storeName").value.trim();
+      const sNo = document.getElementById("storeNo").value.trim();
+      const manualMode = !document.getElementById("storeManual").classList.contains("hidden");
+      if (!manualMode && (!sName || !sNo)) { errors.push("請選擇 7-11 取貨門市"); document.getElementById("spCity").classList.add("field-error"); }
+      else {
+        if (!sName) { errors.push("請輸入 7-11 取貨門市名稱"); document.getElementById("storeName").classList.add("field-error"); }
+        if (!/^\d{6}$/.test(sNo)) { errors.push("請輸入 6 碼數字的 7-11 門市店號"); document.getElementById("storeNo").classList.add("field-error"); }
+      }
+      targetDate = ""; targetTime = "每週一統一出貨"; finalAddressStr = `7-11 ${sName}（店號 ${sNo}）${storeAddress ? "｜" + storeAddress : ""}`;
     } else {
       if (!dDate) { errors.push("請選擇預計外送日期"); document.getElementById("deliveryDate").classList.add("field-error"); }
       if (!dTime) { errors.push("請選擇預計外送時段"); document.getElementById("deliveryTime").classList.add("field-error"); }
@@ -734,8 +868,11 @@
       window.scrollTo({ top: banner.offsetTop - 40, behavior: 'smooth' }); return;
     }
 
+    const is711Transfer = currentDeliveryType === "7-11冷凍";
     const finalPayload = {
-      orderNo: finalOrderNo, orderDate: dateStr, name: bName, phone: bPhone, email: bEmail,
+      orderDate: dateStr, name: bName, phone: bPhone, email: bEmail,
+      storeName: is711Transfer ? document.getElementById("storeName").value.trim() : "",
+      storeNo: is711Transfer ? document.getElementById("storeNo").value.trim() : "",
       deliveryType: currentDeliveryType, deliveryZone: (currentDeliveryType === "雙北外送") ? dZone : "無",
       deliveryAddress: finalAddressStr, targetDate: targetDate, targetTime: targetTime,
       items: itemsPayload, paymentMethod: currentPaymentMethod, total: itemTotal + shippingFee,
@@ -753,7 +890,13 @@
     })
     .then(res => res.json())
     .then(resData => {
-      if (resData.status === 'success') showSuccessModal(finalPayload);
+      if (resData.status === 'success') {
+        finalPayload.orderNo = resData.orderNo;
+        if (resData.total) finalPayload.total = resData.total;
+        finalPayload.deadline = resData.deadline || "";
+        document.getElementById("orderNo").innerText = resData.orderNo;
+        showSuccessModal(finalPayload);
+      }
       else throw new Error(resData.message);
     })
     .catch(err => {
@@ -763,11 +906,157 @@
   });
 
   function showSuccessModal(payload) {
-    let summary = `【訂單單號】${payload.orderNo}\n【配送管道】${payload.deliveryType}\n【預計日期】${payload.targetDate}\n【預計時段】${payload.targetTime}\n【應付總額】NT$ ${payload.total} 元\n`;
+    let summary = `【訂單單號】${payload.orderNo}\n【配送管道】${payload.deliveryType}\n`;
+    if (payload.deliveryType === "7-11冷凍") summary += `【取貨門市】${payload.deliveryAddress}\n【出貨時間】${payload.targetTime}\n`;
+    else summary += `【預計日期】${payload.targetDate}\n【預計時段】${payload.targetTime}\n`;
+    summary += `【付款方式】${payload.paymentMethod}\n【應付總額】NT$ ${payload.total} 元\n`;
+    if (payload.paymentMethod === "匯款") {
+      summary += `\n【匯款帳戶】803 聯邦銀行 888502516431\n`;
+      summary += `請於 ${payload.deadline || unpaidHours + " 小時內"} 前完成匯款，並回報帳號後五碼；逾時訂單自動取消。\n`;
+      document.getElementById("modalReport").classList.remove("hidden");
+    }
     if (payload.items.some(it => it.pricing === "秤重")) summary += `※ 秤重商品依實際重量計價，總額以店家確認為準。\n`;
+    window._lastOrder = { no: payload.orderNo, phone: payload.phone };
     document.getElementById("summaryContent").innerText = summary;
     document.getElementById("successOverlay").classList.remove("hidden");
   }
+
+  // ===== 匯款回報 =====
+  function sendReport(orderNo, phoneLast3, last5, msg, btn, btnText) {
+    if (!orderNo || !/^\d{3}$/.test(phoneLast3) || !/^\d{5}$/.test(last5)) {
+      msg.style.color = "var(--accent)"; msg.innerText = "請填寫訂單編號、電話末 3 碼（數字）、帳號後五碼（5 碼數字）。"; return;
+    }
+    btn.disabled = true; btn.innerText = "回報中...";
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: "reportPayment", orderNo, phoneLast3, last5 })
+    })
+    .then(res => res.json())
+    .then(d => { msg.style.color = d.status === "success" ? "var(--navy)" : "var(--accent)"; msg.innerText = (d.status === "success" ? "✓ " : "✗ ") + d.message; })
+    .catch(err => { msg.style.color = "var(--accent)"; msg.innerText = "✗ 回報失敗：" + err.message; })
+    .finally(() => { btn.disabled = false; btn.innerText = btnText; });
+  }
+
+  // 頁面最下方的回報表單
+  document.getElementById("rpBtn").addEventListener("click", function() {
+    sendReport(document.getElementById("rpOrderNo").value.trim(), document.getElementById("rpPhone3").value.trim(),
+               document.getElementById("rpLast5").value.trim(), document.getElementById("rpMsg"), this, "送出匯款回報");
+  });
+
+  // 送出訂單後跳出視窗裡的回報（訂單編號、電話自動帶入）
+  document.getElementById("mrBtn").addEventListener("click", function() {
+    const o = window._lastOrder || {};
+    sendReport(o.no || "", (o.phone || "").replace(/\D/g, "").slice(-3),
+               document.getElementById("mrLast5").value.trim(), document.getElementById("mrMsg"), this, "送出回報");
+  });
+
+  // 從確認信的按鈕點進來（網址帶 ?report=訂單編號）：自動打開回報表單
+  (function openReportFromLink() {
+    const no = new URLSearchParams(location.search).get("report");
+    if (!no) return;
+    document.getElementById("rpOrderNo").value = no;
+    document.getElementById("reportBox").open = true;
+    setTimeout(() => {
+      document.getElementById("reportSection").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("rpPhone3").focus();
+    }, 300);
+  })();
+
+  // ===== 7-11 門市選擇器（資料由後台向 7-11 電子地圖查詢，只留「66冷凍交貨便」門市） =====
+  const SP_CITIES = [["01","台北市"],["03","新北市"],["02","基隆市"],["04","桃園市"],["05","新竹市"],["06","新竹縣"],["07","苗栗縣"],["08","台中市"],["10","彰化縣"],["11","南投縣"],["12","雲林縣"],["13","嘉義市"],["14","嘉義縣"],["15","台南市"],["17","高雄市"],["19","屏東縣"],["20","宜蘭縣"],["21","花蓮縣"],["22","台東縣"],["23","澎湖縣"],["25","金門縣"],["24","連江縣"]];
+  let spStores = [];
+  let storeAddress = "";
+
+  function jsonp(params) {
+    return new Promise((resolve, reject) => {
+      const cb = 'spCb_' + Date.now() + Math.floor(Math.random() * 1000);
+      const s = document.createElement('script');
+      const timer = setTimeout(() => { delete window[cb]; s.remove(); reject(new Error("逾時")); }, 20000);
+      window[cb] = (data) => { clearTimeout(timer); delete window[cb]; s.remove(); resolve(data); };
+      s.onerror = () => { clearTimeout(timer); delete window[cb]; reject(new Error("連線失敗")); };
+      s.src = GOOGLE_SCRIPT_URL + '?' + new URLSearchParams(Object.assign({}, params, { callback: cb })).toString();
+      document.body.appendChild(s);
+    });
+  }
+
+  (function initStorePicker() {
+    const city = document.getElementById("spCity"), town = document.getElementById("spTown");
+    const road = document.getElementById("spRoad"), kw = document.getElementById("spKeyword");
+    const list = document.getElementById("spList");
+    city.innerHTML = '<option value="">-- 縣市 --</option>' + SP_CITIES.map(c => `<option value="${c[0]}">${c[1]}</option>`).join("");
+
+    city.addEventListener("change", async () => {
+      town.innerHTML = '<option value="">讀取中...</option>'; town.disabled = true;
+      road.disabled = true; kw.disabled = true; list.innerHTML = ""; spStores = [];
+      if (!city.value) { town.innerHTML = '<option value="">-- 區域 --</option>'; return; }
+      try {
+        const d = await jsonp({ action: "getTowns", cityId: city.value });
+        town.innerHTML = '<option value="">-- 區域 --</option>' + (d.towns || []).map(t => `<option>${esc(t)}</option>`).join("");
+        town.disabled = false;
+      } catch (e) { town.innerHTML = '<option value="">讀取失敗，請重選縣市</option>'; }
+    });
+
+    town.addEventListener("change", async () => {
+      list.innerHTML = '<div class="sp-msg">正在搜尋可收冷凍的門市...</div>';
+      road.disabled = true; kw.disabled = true; spStores = [];
+      if (!town.value) { list.innerHTML = ""; return; }
+      const cityName = city.options[city.selectedIndex].text;
+      try {
+        const d = await jsonp({ action: "getStores", city: cityName, town: town.value });
+        spStores = d.stores || [];
+        const roads = [...new Set(spStores.map(s => s.road).filter(Boolean))].sort((a, b) => a.localeCompare(b, "zh-Hant"));
+        road.innerHTML = '<option value="">-- 全部路段 --</option>' + roads.map(r => `<option>${esc(r)}</option>`).join("");
+        road.disabled = false; kw.disabled = false; kw.value = "";
+        renderStoreList();
+      } catch (e) { list.innerHTML = '<div class="sp-msg">讀取失敗，請重新選擇區域，或改用手動輸入。</div>'; }
+    });
+
+    road.addEventListener("change", renderStoreList);
+    kw.addEventListener("input", renderStoreList);
+
+    document.getElementById("spManualBtn").addEventListener("click", () => {
+      const manual = document.getElementById("storeManual");
+      const show = manual.classList.contains("hidden");
+      manual.classList.toggle("hidden", !show);
+      document.getElementById("storePicker").classList.toggle("hidden", show);
+      document.getElementById("storePicked").classList.add("hidden");
+      document.getElementById("spManualBtn").innerText = show ? "改回用清單選門市" : "找不到門市？改用手動輸入";
+      document.getElementById("storeName").value = ""; document.getElementById("storeNo").value = ""; storeAddress = "";
+    });
+  })();
+
+  function renderStoreList() {
+    const list = document.getElementById("spList");
+    const r = document.getElementById("spRoad").value;
+    const k = document.getElementById("spKeyword").value.trim();
+    const rows = spStores.filter(s => (!r || s.road === r) && (!k || s.name.includes(k) || s.address.includes(k)));
+    if (!spStores.length) { list.innerHTML = '<div class="sp-msg">這個區域沒有可收冷凍包裹的門市，請換一區看看。</div>'; return; }
+    if (!rows.length) { list.innerHTML = '<div class="sp-msg">找不到符合的門市</div>'; return; }
+    list.innerHTML = rows.map(s => `<button type="button" class="sp-item" data-no="${esc(s.id)}"><b>${esc(s.name)}門市</b><span>${esc(s.address)}・店號 ${esc(s.id)}</span></button>`).join("");
+    list.querySelectorAll(".sp-item").forEach(btn => btn.addEventListener("click", () => pickStore(spStores.find(s => s.id === btn.getAttribute("data-no")))));
+  }
+
+  function pickStore(s) {
+    if (!s) return;
+    document.getElementById("storeName").value = s.name + "門市";
+    document.getElementById("storeNo").value = s.id;
+    storeAddress = s.address;
+    const box = document.getElementById("storePicked");
+    box.innerHTML = `<div><b>✓ ${esc(s.name)}門市</b><span>${esc(s.address)}・店號 ${esc(s.id)}</span></div><button type="button" class="sp-link" style="padding:0; white-space:nowrap;" onclick="unpickStore()">重新選擇</button>`;
+    box.classList.remove("hidden");
+    document.getElementById("storePicker").classList.add("hidden");
+    document.getElementById("spManualBtn").classList.add("hidden");
+  }
+
+  function unpickStore() {
+    document.getElementById("storeName").value = ""; document.getElementById("storeNo").value = ""; storeAddress = "";
+    document.getElementById("storePicked").classList.add("hidden");
+    document.getElementById("storePicker").classList.remove("hidden");
+    document.getElementById("spManualBtn").classList.remove("hidden");
+  }
+
+  applyDeliveryUI();
 </script>
 </body>
 </html>
