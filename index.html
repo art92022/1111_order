@@ -206,6 +206,13 @@
   .hidden { display: none !important; }
   /* 選 7-11 時，本頁表單其他部分都不需要 */
   body.mode-711 .hide-for-711 { display: none !important; }
+  /* 後台按「暫停接單」時：只顯示暫停說明 */
+  .closed-card { text-align: center; padding: 48px 26px; }
+  .closed-card .closed-mark { font-size: 12px; letter-spacing: 6px; color: var(--gold); font-weight: 900; margin-bottom: 12px; }
+  .closed-card h2 { font-size: 24px; letter-spacing: 6px; color: var(--navy); margin: 0 0 14px; font-weight: 900; }
+  .closed-card p { font-size: 14.5px; color: var(--muted); margin: 0; line-height: 1.9; }
+  body.shop-closed .sheet > section:not(.closed-card), body.shop-closed .order-meta,
+  body.shop-closed .submit-bar, body.shop-closed #validationBanner { display: none !important; }
   .submit-btn:disabled { background: #B9B3A6; cursor: not-allowed; }
   #myshipBtn.disabled { background: #B9B3A6; pointer-events: none; }
   .sp-list { margin-top: 10px; max-height: 320px; overflow-y: auto; border: 1px solid var(--line); background: #fff; }
@@ -242,6 +249,12 @@
     </div>
     <div class="stamp">職人手作</div>
   </header>
+
+  <section class="closed-card hidden" id="closedCard">
+    <div class="closed-mark">CLOSED</div>
+    <h2>暫停接單中</h2>
+    <p id="closedMsg"></p>
+  </section>
 
   <div class="order-meta hide-for-711">單號 <span id="orderNo">送出後產生</span> ・ 日期 <span id="orderDate">---</span></div>
 
@@ -554,6 +567,11 @@
     window[callbackName] = (data) => {
       delete window[callbackName]; script.remove();
       products = (data && data.products) ? data.products.filter(p => p.status !== 'hidden') : [];
+      if (data && data.open === false) {
+        document.body.classList.add("shop-closed");
+        document.getElementById("closedMsg").innerText = data.closedMessage || "目前暫停接單，下次開放時間請留意 LINE 官方帳號公告。";
+        document.getElementById("closedCard").classList.remove("hidden");
+      }
       if (data && data.unpaidHours) { unpaidHours = data.unpaidHours; document.querySelectorAll(".unpaidHours").forEach(el => el.innerText = unpaidHours); }
       renderCatalog();
     };
