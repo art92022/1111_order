@@ -146,6 +146,17 @@
   .product-card.in-cart { border-color: var(--navy); background: #F9FAFB; box-shadow: inset 0 0 0 1px var(--navy); }
   .product-card:disabled { opacity: 0.45; cursor: not-allowed; }
 
+  /* 🌟 商品圖片樣式 */
+  .product-card .p-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    background-color: var(--accent-bg);
+    display: block;
+  }
+
   .product-card .p-name { display: block; font-weight: 900; font-size: 15.5px; margin-bottom: 8px; color: var(--ink); letter-spacing: 0.5px; line-height: 1.4; }
   .product-card .p-price { display: block; font-size: 15px; color: var(--accent); font-weight: 900; line-height: 1.3; }
   .product-card .p-stock { display: block; font-size: 12px; color: var(--muted); margin-top: 8px; font-weight: 700; }
@@ -315,7 +326,7 @@
 
         <!-- 7-11 門市選擇器：縣市 → 區 → 路 → 點選門市（只列出有「冷凍店到店」服務的門市） -->
         <div class="field" style="margin-bottom: 10px;">
-          <label>選擇取貨門市 <span class="hint">*</span>　<span style="font-size:12px; color:var(--muted);">只顯示可收冷凍包裹的門市</span></label>
+          <label>選擇取貨門市 <span class="hint">*</span> <span style="font-size:12px; color:var(--muted);">只顯示可收冷凍包裹的門市</span></label>
           <div id="storePicked" class="store-picked hidden"></div>
           <div id="storePicker">
             <div class="row2">
@@ -648,9 +659,15 @@
         const note = vars.map(noteOf).find(n => n) || "";
         const weighed = vars.some(isWeighed);
         const noteLine = (weighed ? "依實際重量計價" : "") + (weighed && note ? "・" : "") + note;  // 重量級距商品＝固定價，不會出現「起」
+        
+        // === 新增圖片處理 ===
+        const firstP = vars[0];
+        const imgHtml = firstP.image ? `<img src="${firstP.image}" class="p-img" alt="${esc(firstP.name)}">` : '';
+
         if (vars.length === 1) {
           const p = vars[0], st = stockText(p);
           html += `<button type="button" class="product-card" data-id="${esc(p.id)}" ${p.stock <= 0 ? "disabled" : ""} onclick="addToCart(${p._idx})">
+              ${imgHtml}
               <span class="p-name">${esc(p.name)}</span>
               ${p.spec ? `<span class="p-spec">${esc(p.spec)}</span>` : ""}
               <span class="p-price">${priceText(p)} / ${esc(p.unit)}</span>
@@ -658,7 +675,9 @@
               <span class="p-stock ${st.low ? 'low-stock' : ''}">${st.t}</span>
             </button>`;
         } else {
-          html += `<div class="product-card multi"><span class="p-name">${esc(name)}</span><div class="spec-list">`;
+          html += `<div class="product-card multi">
+              ${imgHtml}
+              <span class="p-name">${esc(name)}</span><div class="spec-list">`;
           vars.forEach(p => {
             const st = stockText(p);
             html += `<button type="button" class="spec-btn" data-id="${esc(p.id)}" ${p.stock <= 0 ? "disabled" : ""} onclick="addToCart(${p._idx})">
