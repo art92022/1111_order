@@ -35,11 +35,19 @@
   }
 
   .sheet { max-width: 620px; margin: 0 auto; }
-  header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 2px solid var(--navy); padding-bottom: 22px; margin-bottom: 28px; }
+  header { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 2px solid var(--navy); padding-bottom: 22px; margin-bottom: 24px; }
   .title-block .eyebrow { display: block; font-size: 12px; letter-spacing: 3px; color: var(--gold); font-weight: 900; margin-bottom: 8px; text-transform: uppercase; }
   .title-block h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: 4px; font-weight: 900; color: var(--navy); }
   .title-block p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 700; }
   .stamp { flex-shrink: 0; width: 52px; height: 68px; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; text-align: center; letter-spacing: 2px; background: var(--accent-bg); writing-mode: vertical-rl; }
+
+  /* 🌟 首頁輪播圖樣式 */
+  .banner-carousel { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; margin-bottom: 26px; border: 1px solid var(--line); display: none; background: var(--paper-card); }
+  .banner-slide { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; object-fit: cover; }
+  .banner-slide.active { opacity: 1; z-index: 1; }
+  .banner-nav { position: absolute; bottom: 12px; width: 100%; display: flex; justify-content: center; gap: 8px; z-index: 2; }
+  .banner-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: 1px solid rgba(0,0,0,0.2); cursor: pointer; transition: all 0.3s; }
+  .banner-dot.active { background: #fff; transform: scale(1.3); }
 
   .order-meta { font-size: 13px; color: var(--muted); margin-bottom: 22px; text-align: right; letter-spacing: 1px; font-weight: 700; }
   .order-meta span { font-weight: 900; color: var(--navy); }
@@ -59,77 +67,13 @@
   .field label { display: block; font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: var(--navy); letter-spacing: 1px; }
   .field .hint { font-weight: 900; font-size: 12px; color: var(--accent); margin-left: 4px; }
 
-  input[type=text], input[type=tel], input[type=email], textarea {
-    width: 100%;
-    padding: 12px 13px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    font-size: 14.5px;
-    font-family: "Noto Serif TC", serif;
-    font-weight: 700;
-    color: var(--ink);
-    background-color: #FFF;
-    height: 48px;
-    -webkit-appearance: none;
-    appearance: none;
-    display: block;
-  }
+  input[type=text], input[type=tel], input[type=email], textarea { width: 100%; padding: 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14.5px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); background-color: #FFF; height: 48px; -webkit-appearance: none; appearance: none; display: block; }
   textarea { height: auto; }
 
-  /* 🌟 手機、電腦完全同步的日期輸入框（內嵌高質感自訂日曆 ICON） */
-  input[type=date] {
-    width: 100%;
-    height: 48px;
-    padding: 12px 40px 12px 13px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    font-size: 14.5px;
-    font-family: "Noto Serif TC", serif;
-    font-weight: 700;
-    color: var(--ink);
-    background-color: #FFF;
-    -webkit-appearance: none;
-    appearance: none;
-    display: block;
-    position: relative;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231D3461' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line></svg>");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 18px;
-  }
+  input[type=date] { width: 100%; height: 48px; padding: 12px 40px 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14.5px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); background-color: #FFF; -webkit-appearance: none; appearance: none; display: block; position: relative; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231D3461' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'></rect><line x1='16' y1='2' x2='16' y2='6'></line><line x1='8' y1='2' x2='8' y2='6'></line><line x1='3' y1='10' x2='21' y2='10'></line></svg>"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px; }
+  input[type="date"]::-webkit-calendar-picker-indicator { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
 
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  select {
-    width: 100%;
-    height: 48px;
-    padding: 12px 30px 12px 13px;
-    border: 1px solid var(--line);
-    border-radius: 2px;
-    font-size: 14.5px;
-    font-family: "Noto Serif TC", serif;
-    font-weight: 700;
-    color: var(--ink);
-    background-color: #FFF;
-    -webkit-appearance: none;
-    appearance: none;
-    display: block;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 5'><path fill='%231D3461' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    background-size: 10px;
-  }
-
+  select { width: 100%; height: 48px; padding: 12px 30px 12px 13px; border: 1px solid var(--line); border-radius: 2px; font-size: 14.5px; font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--ink); background-color: #FFF; -webkit-appearance: none; appearance: none; display: block; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 4 5'><path fill='%231D3461' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>"); background-repeat: no-repeat; background-position: right 14px center; background-size: 10px; }
   input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
@@ -147,22 +91,13 @@
   .product-card:disabled { opacity: 0.45; cursor: not-allowed; }
 
   /* 🌟 商品圖片樣式 */
-  .product-card .p-img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 12px;
-    background-color: var(--accent-bg);
-    display: block;
-  }
+  .product-card .p-img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; margin-bottom: 12px; background-color: var(--accent-bg); display: block; }
 
   .product-card .p-name { display: block; font-weight: 900; font-size: 15.5px; margin-bottom: 8px; color: var(--ink); letter-spacing: 0.5px; line-height: 1.4; }
   .product-card .p-price { display: block; font-size: 15px; color: var(--accent); font-weight: 900; line-height: 1.3; }
   .product-card .p-stock { display: block; font-size: 12px; color: var(--muted); margin-top: 8px; font-weight: 700; }
   .product-card .p-stock.low-stock { color: var(--accent); font-weight: 900; }
 
-  /* 分區與多規格（例：鮭魚片 300g / 500g） */
   .category-zone { margin-bottom: 26px; }
   .category-zone:last-child { margin-bottom: 0; }
   .product-card .p-spec { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 6px; font-weight: 700; }
@@ -215,9 +150,7 @@
   .spinner { width: 26px; height: 26px; border: 2px solid var(--line); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .hidden { display: none !important; }
-  /* 選 7-11 時，本頁表單其他部分都不需要 */
   body.mode-711 .hide-for-711 { display: none !important; }
-  /* 後台按「暫停接單」時：只顯示暫停說明 */
   .closed-card { text-align: center; padding: 48px 26px; }
   .closed-card .closed-mark { font-size: 12px; letter-spacing: 6px; color: var(--gold); font-weight: 900; margin-bottom: 12px; }
   .closed-card h2 { font-size: 24px; letter-spacing: 6px; color: var(--navy); margin: 0 0 14px; font-weight: 900; }
@@ -242,7 +175,6 @@
   .report-box summary { cursor: pointer; font-weight: 900; color: var(--navy); font-size: 15px; letter-spacing: 1px; }
   .report-msg { margin-top: 10px; font-size: 13.5px; font-weight: 900; }
   .ghost-btn { width: 100%; padding: 13px; background: #fff; color: var(--navy); border: 1px solid var(--navy); border-radius: 2px; font-size: 15px; font-family: inherit; font-weight: 900; letter-spacing: 2px; cursor: pointer; }
-
   .copy-inline-btn { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 2px 8px; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 2px; margin-left: 6px; transition: all 0.1s; font-family: inherit; }
   .copy-inline-btn:hover { background: var(--gold); color: #fff; }
   .map-link { color: var(--navy); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; transition: color 0.15s ease; }
@@ -260,6 +192,12 @@
     </div>
     <div class="stamp">職人手作</div>
   </header>
+
+  <!-- 🌟 新增：首頁輪播圖區塊 -->
+  <div id="bannerCarousel" class="banner-carousel">
+    <div id="bannerTrack"></div>
+    <div id="bannerDots" class="banner-nav"></div>
+  </div>
 
   <section class="closed-card hidden" id="closedCard">
     <div class="closed-mark">CLOSED</div>
@@ -298,7 +236,6 @@
       </div>
     </div>
 
-    <!-- 7-11 冷凍店到店：①到賣貨便下單（icash Pay） ②在本站下單＋匯款（訂單留在本站，不經過賣貨便） -->
     <div id="block-711" class="hidden">
       <div class="kitchen-tips">
         <span class="tip-title">7-11 冷凍店到店</span>
@@ -324,7 +261,6 @@
           <div class="tip-row">在本頁填寫資料、選購商品並匯款，<b>不用到賣貨便</b>。我們確認入帳後，會幫您寄到指定的 7-11 門市。</div>
         </div>
 
-        <!-- 7-11 門市選擇器：縣市 → 區 → 路 → 點選門市（只列出有「冷凍店到店」服務的門市） -->
         <div class="field" style="margin-bottom: 10px;">
           <label>選擇取貨門市 <span class="hint">*</span> <span style="font-size:12px; color:var(--muted);">只顯示可收冷凍包裹的門市</span></label>
           <div id="storePicked" class="store-picked hidden"></div>
@@ -528,7 +464,6 @@
     <h2>訂單已送出</h2>
     <p style="font-weight:700; font-size:14px; color:var(--muted); margin-bottom:16px;">訂單明細如下，請截圖保存以利核對。</p>
     <pre id="summaryContent"></pre>
-    <!-- 匯款訂單：送出後直接在這裡回報後五碼 -->
     <div id="modalReport" class="hidden" style="margin-top: 18px; border: 1px dashed var(--gold); background: #FAF8F2; padding: 16px;">
       <div style="font-weight: 900; color: var(--navy); font-size: 15px; margin-bottom: 4px;">💰 已匯款？回報帳號後五碼</div>
       <div style="font-size: 12.5px; color: var(--muted); font-weight: 700; margin-bottom: 12px;">還沒匯也沒關係，我們也會寄一封確認信給您，信裡有回報按鈕。</div>
@@ -545,30 +480,32 @@
 </div>
 
 <script>
-  // 7-11 冷凍店到店：賣貨便賣場網址（賣場開好、icash Pay 開通後貼上；空白時按鈕顯示「即將開放」）
   const MYSHIP_STORE_URL = '';
-  const SHIP_711_FEE = 0;   // 7-11 冷凍店到店（本站匯款）運費；要收運費就改數字，例如 150
-  let unpaidHours = 3;      // 匯款期限（會跟著後台設定更新）
+  const SHIP_711_FEE = 0;   
+  let unpaidHours = 3;      
   (function () {
     const btn = document.getElementById("myshipBtn");
     if (MYSHIP_STORE_URL) { btn.href = MYSHIP_STORE_URL; }
     else { btn.classList.add("disabled"); btn.innerText = "賣貨便賣場即將開放"; }
   })();
 
-  const DELIVERY_MIN = 20000; // 雙北外送最低商品金額
+  const DELIVERY_MIN = 20000; 
+  // ⚠️ 請確保這是你最新版發布的 Apps Script 網址
   const GOOGLE_SCRIPT_URL ='https://script.google.com/macros/s/AKfycbxgthRpX6of779wIzq1jKpKRm3EDWjYJ_xgvSQ5Rx5njnMoGJkUzQdXb4pEg63aTqOk/exec';
 
   let products = [];
-  let cart = {};          // key = 商品 id（商品名稱｜規格）
-  let currentDeliveryType = "7-11冷凍";   // 預設：7-11 冷凍店到店
+  let cart = {};          
+  let currentDeliveryType = "7-11冷凍";   
   let currentPaymentMethod = "現金";
   let shippingFee = 0;
-  // 7-11 下單方式：賣貨便 / 匯款（賣貨便還沒開放時，預設本站匯款）
   let mode711 = MYSHIP_STORE_URL ? "賣貨便" : "匯款";
+  
+  // 🌟 輪播圖變數
+  let currentSlide = 0;
+  let slideInterval;
 
   const now = new Date();
   const dateStr = now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0');
-  // 訂單編號改由後台產生（HJ + 年月日 + 流水號），送出後顯示
 
   document.getElementById("orderDate").innerText = dateStr;
 
@@ -584,13 +521,79 @@
         document.getElementById("closedCard").classList.remove("hidden");
       }
       if (data && data.unpaidHours) { unpaidHours = data.unpaidHours; document.querySelectorAll(".unpaidHours").forEach(el => el.innerText = unpaidHours); }
+      
+      // 🌟 呼叫並生成輪播圖
+      renderBanners(data ? data.banners : []);
       renderCatalog();
     };
     script.src = GOOGLE_SCRIPT_URL + '?action=getCatalog&callback=' + callbackName + '&_cacheBust=' + Date.now();
     document.body.appendChild(script);
   }
 
-  // 🌟 針對 iOS 的終極防呆解法：除了設定 min，同時設定「預設值 value」強迫日曆定位！
+  // 🌟 輪播圖動態生成與控制邏輯
+  function renderBanners(banners) {
+    const carousel = document.getElementById("bannerCarousel");
+    const track = document.getElementById("bannerTrack");
+    const dots = document.getElementById("bannerDots");
+    
+    if (!banners || banners.length === 0) {
+      carousel.style.display = 'none';
+      return;
+    }
+
+    carousel.style.display = 'block';
+    track.innerHTML = '';
+    dots.innerHTML = '';
+
+    banners.forEach((url, i) => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.className = 'banner-slide' + (i === 0 ? ' active' : '');
+      track.appendChild(img);
+
+      if (banners.length > 1) {
+        const dot = document.createElement('div');
+        dot.className = 'banner-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSlide(i));
+        dots.appendChild(dot);
+      }
+    });
+
+    if (banners.length > 1) {
+      slideInterval = setInterval(nextSlide, 3500); // 3.5 秒自動輪播
+    }
+  }
+
+  function nextSlide() {
+    const slides = document.querySelectorAll('.banner-slide');
+    const dotsEl = document.querySelectorAll('.banner-dot');
+    if (slides.length <= 1) return;
+    
+    slides[currentSlide].classList.remove('active');
+    if(dotsEl[currentSlide]) dotsEl[currentSlide].classList.remove('active');
+    
+    currentSlide = (currentSlide + 1) % slides.length;
+    
+    slides[currentSlide].classList.add('active');
+    if(dotsEl[currentSlide]) dotsEl[currentSlide].classList.add('active');
+  }
+
+  function goToSlide(index) {
+    clearInterval(slideInterval);
+    const slides = document.querySelectorAll('.banner-slide');
+    const dotsEl = document.querySelectorAll('.banner-dot');
+    
+    slides[currentSlide].classList.remove('active');
+    if(dotsEl[currentSlide]) dotsEl[currentSlide].classList.remove('active');
+    
+    currentSlide = index;
+    
+    slides[currentSlide].classList.add('active');
+    if(dotsEl[currentSlide]) dotsEl[currentSlide].classList.add('active');
+    
+    slideInterval = setInterval(nextSlide, 3500);
+  }
+
   document.addEventListener("DOMContentLoaded", function() {
     loadCatalog();
 
@@ -602,7 +605,6 @@
     let dd = String(targetMinDate.getDate()).padStart(2, '0');
     let minDateStr = `${yyyy}-${mm}-${dd}`;
 
-    // 自取日期：列出第 4 天起 30 天，週一公休顯示灰色、不能選
     const pSel = document.getElementById('pickupDate');
     if (pSel) {
       const W = ["日","一","二","三","四","五","六"];
@@ -621,11 +623,10 @@
     const dDateInput = document.getElementById('deliveryDate');
     if(dDateInput) {
       dDateInput.setAttribute('min', minDateStr);
-      dDateInput.value = minDateStr; // 🌟 這一行是解決 iOS 跑版的超級關鍵！
+      dDateInput.value = minDateStr;
     }
   });
 
-  // ===== 商品清單（分區 → 商品 → 規格） =====
   const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const findP = id => products.find(p => p.id === id);
   const isWeighed = p => p.pricing === "秤重";
@@ -639,7 +640,6 @@
 
   function renderCatalog() {
     const container = document.getElementById("catalogContainer");
-    // 相容舊後台：沒有 id / 規格 / 單位時自動補上
     products.forEach(p => { if (!p.id) p.id = p.name; if (!p.unit) p.unit = "份"; if (p.spec == null) p.spec = ""; if (!p.zone) p.zone = "商品"; });
     if (products.length === 0) {
       container.innerHTML = '<div class="catalog-empty">目前沒有上架中的商品</div>';
@@ -658,9 +658,8 @@
         const vars = zones[zoneName][name];
         const note = vars.map(noteOf).find(n => n) || "";
         const weighed = vars.some(isWeighed);
-        const noteLine = (weighed ? "依實際重量計價" : "") + (weighed && note ? "・" : "") + note;  // 重量級距商品＝固定價，不會出現「起」
+        const noteLine = (weighed ? "依實際重量計價" : "") + (weighed && note ? "・" : "") + note;  
         
-        // === 新增圖片處理 ===
         const firstP = vars[0];
         const imgHtml = firstP.image ? `<img src="${firstP.image}" class="p-img" alt="${esc(firstP.name)}">` : '';
 
@@ -726,13 +725,12 @@
 
     const is711 = currentDeliveryType === "7-11冷凍";
     const myship = is711 && mode711 === "賣貨便";
-    document.body.classList.toggle("mode-711", myship);   // 只有走賣貨便才隱藏本頁表單
+    document.body.classList.toggle("mode-711", myship);   
     document.getElementById("block-711").classList.toggle("hidden", !is711);
     document.querySelectorAll("#mode711Seg button").forEach(b => b.classList.toggle("active", b.getAttribute("data-val") === mode711));
     document.getElementById("block-711-myship").classList.toggle("hidden", !myship);
     document.getElementById("block-711-transfer").classList.toggle("hidden", !(is711 && mode711 === "匯款"));
 
-    // 7-11 本站下單只能匯款；其他配送方式可選現金
     cashBtn.classList.toggle("hidden", is711);
     if (is711) setPayment("匯款");
 
@@ -765,7 +763,6 @@
     navigator.clipboard.writeText(text).then(() => { alert("📋 已成功複製招牌數字！"); });
   }
 
-  // ===== 購物車 =====
   function addToCart(idx) {
     const p = products[idx];
     if (!p || p.stock <= 0) return;
@@ -794,7 +791,6 @@
     if (!gapEl) return;
     const gap = DELIVERY_MIN - cartItemTotal();
     gapEl.innerText = gap > 0 ? `（目前還差 NT$${gap.toLocaleString()}）` : "（已達外送門檻 ✓）";
-    // 選雙北外送但未滿兩萬：送出按鈕反灰
     const sb = document.getElementById("submitBtn");
     if (sb.innerText === "訂單傳送中...") return;
     const blocked = currentDeliveryType === "雙北外送" && gap > 0;
@@ -881,7 +877,6 @@
       targetDate = dDate; targetTime = dTime; finalAddressStr = dAddress;
     }
 
-    // 🌟 硬體強制程式攔截防呆
     if (targetDate) {
       const selectedDate = new Date(targetDate);
       selectedDate.setHours(0,0,0,0);
@@ -958,7 +953,6 @@
     document.getElementById("successOverlay").classList.remove("hidden");
   }
 
-  // ===== 匯款回報 =====
   function sendReport(orderNo, phoneLast3, last5, msg, btn, btnText) {
     if (!orderNo || !/^\d{3}$/.test(phoneLast3) || !/^\d{5}$/.test(last5)) {
       msg.style.color = "var(--accent)"; msg.innerText = "請填寫訂單編號、電話末 3 碼（數字）、帳號後五碼（5 碼數字）。"; return;
@@ -975,20 +969,17 @@
     .finally(() => { btn.disabled = false; btn.innerText = btnText; });
   }
 
-  // 頁面最下方的回報表單
   document.getElementById("rpBtn").addEventListener("click", function() {
     sendReport(document.getElementById("rpOrderNo").value.trim(), document.getElementById("rpPhone3").value.trim(),
                document.getElementById("rpLast5").value.trim(), document.getElementById("rpMsg"), this, "送出匯款回報");
   });
 
-  // 送出訂單後跳出視窗裡的回報（訂單編號、電話自動帶入）
   document.getElementById("mrBtn").addEventListener("click", function() {
     const o = window._lastOrder || {};
     sendReport(o.no || "", (o.phone || "").replace(/\D/g, "").slice(-3),
                document.getElementById("mrLast5").value.trim(), document.getElementById("mrMsg"), this, "送出回報");
   });
 
-  // 從確認信的按鈕點進來（網址帶 ?report=訂單編號）：自動打開回報表單
   (function openReportFromLink() {
     const no = new URLSearchParams(location.search).get("report");
     if (!no) return;
@@ -1000,7 +991,6 @@
     }, 300);
   })();
 
-  // ===== 7-11 門市選擇器（資料由後台向 7-11 電子地圖查詢，只留「66冷凍交貨便」門市） =====
   const SP_CITIES = [["01","台北市"],["03","新北市"],["02","基隆市"],["04","桃園市"],["05","新竹市"],["06","新竹縣"],["07","苗栗縣"],["08","台中市"],["10","彰化縣"],["11","南投縣"],["12","雲林縣"],["13","嘉義市"],["14","嘉義縣"],["15","台南市"],["17","高雄市"],["19","屏東縣"],["20","宜蘭縣"],["21","花蓮縣"],["22","台東縣"],["23","澎湖縣"],["25","金門縣"],["24","連江縣"]];
   let spStores = [];
   let storeAddress = "";
